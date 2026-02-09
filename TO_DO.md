@@ -1,7 +1,3 @@
-MAIN WORK - GET DATA FROM MUNICIPALITIES ACROSS THE GLOBE
-
-
-
 Phase 0: Problem Quantification (The "How Big" Phase)
 [ ] Data Mining (National): Extract specific NRW (Non-Revenue Water) stats from the NITI Aayog CWMI Report.
 
