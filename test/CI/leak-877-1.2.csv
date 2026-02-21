@@ -1,0 +1,3 @@
+Pipe_ID,Pipe_Length_m,Pipe_Diameter_m,Pipe_Roughness,Pipe_Material,Acoustic_Propagation_Speed_mps,Attenuation_Alpha_per_m,Leak_Status,True_Leak_Position_m,Distance_To_Leak_m,Distance_To_Left_Sensor_m,Distance_To_Right_Sensor_m,Number_of_Leaks,Leak_Area_m2,Leak_Flow_Lps,Avg_Pressure_at_Leak
+6601,54.92496,0.15239999999999998,140.0,CI,1200.0,0.001,1,45.879652475954025,18.417172475954025,18.417172475954025,0,1,1.5231358149071056e-05,0.31109804,37.800335
+7215,23.22576,0.6095999999999999,140.0,CI,1200.0,0.001,1,18.56480521384933,6.951925213849329,6.951925213849329,0,1,6.627997420864974e-06,0.13907331,39.89343
