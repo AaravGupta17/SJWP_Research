@@ -1,0 +1,89 @@
+{
+  "model": "C_seed42_accelerometer_eval",
+  "sensor_type": "accelerometer",
+  "fs_model": 5000,
+  "fs_detected": "auto from CSV timestamps",
+  "note": "Correct sensor modality \u2014 A1/A2 CSV files, fs auto-detected",
+  "overall": {
+    "auroc": 0.501,
+    "f1": 0.8789,
+    "acc": 0.7843,
+    "n_total": 3574,
+    "n_leak": 2861,
+    "n_no_leak": 713
+  },
+  "by_topology": {
+    "Looped": {
+      "auroc": 0.4934,
+      "f1": 0.8896,
+      "n": 1786
+    },
+    "Branched": {
+      "auroc": 0.5076,
+      "f1": 0.8681,
+      "n": 1788
+    }
+  },
+  "by_type": {
+    "Looped/Orifice Leak": {
+      "mean_prob": 0.9927741289138794,
+      "detection_rate": 0.9943820224719101,
+      "n_windows": 356,
+      "label": 1
+    },
+    "Looped/Longitudinal Crack": {
+      "mean_prob": 1.0,
+      "detection_rate": 1.0,
+      "n_windows": 360,
+      "label": 1
+    },
+    "Looped/Circumferential Crack": {
+      "mean_prob": 1.0,
+      "detection_rate": 1.0,
+      "n_windows": 357,
+      "label": 1
+    },
+    "Looped/Gasket Leak": {
+      "mean_prob": 1.0,
+      "detection_rate": 1.0,
+      "n_windows": 359,
+      "label": 1
+    },
+    "Looped/No-leak": {
+      "mean_prob": 0.9971320629119873,
+      "false_alarm_rate": 0.9971751412429378,
+      "n_windows": 354,
+      "label": 0
+    },
+    "Branched/Orifice Leak": {
+      "mean_prob": 0.9999580383300781,
+      "detection_rate": 1.0,
+      "n_windows": 360,
+      "label": 1
+    },
+    "Branched/Longitudinal Crack": {
+      "mean_prob": 0.9288071990013123,
+      "detection_rate": 0.9211267605633803,
+      "n_windows": 355,
+      "label": 1
+    },
+    "Branched/Circumferential Crack": {
+      "mean_prob": 0.994397759437561,
+      "detection_rate": 0.9943977591036415,
+      "n_windows": 357,
+      "label": 1
+    },
+    "Branched/Gasket Leak": {
+      "mean_prob": 0.9161578416824341,
+      "detection_rate": 0.9159663865546218,
+      "n_windows": 357,
+      "label": 1
+    },
+    "Branched/No-leak": {
+      "mean_prob": 0.9877660870552063,
+      "false_alarm_rate": 0.9916434540389972,
+      "n_windows": 359,
+      "label": 0
+    }
+  }
+}

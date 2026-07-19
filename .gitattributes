@@ -1,0 +1,7 @@
+# Network input files (large, under 100MB)
+/inp/ filter=lfs diff=lfs merge=lfs -text
+# CSV data files (large, under 100MB)
+/csv/ filter=lfs diff=lfs merge=lfs -text
+# Model weights
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text

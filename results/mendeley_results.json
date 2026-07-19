@@ -1,0 +1,50 @@
+{
+  "overall": {
+    "auroc": 0.6102,
+    "f1": 0.4381,
+    "acc": 0.5469,
+    "n_total": 2293,
+    "n_leak": 1096,
+    "n_no_leak": 1197
+  },
+  "by_topology": {
+    "Looped": {
+      "auroc": 0.1997,
+      "f1": 0.1996,
+      "acc": 0.3082,
+      "n": 1113
+    },
+    "Branched": {
+      "auroc": 0.8924,
+      "f1": 0.6967,
+      "acc": 0.772,
+      "n": 1180
+    }
+  },
+  "by_type": {
+    "Looped/Orifice Leak": {
+      "mean_prob": 0.21491512656211853,
+      "detection_rate": 0.17518248175182483,
+      "n_windows": 548,
+      "label": 1
+    },
+    "Looped/No-leak": {
+      "mean_prob": 0.5735057592391968,
+      "false_alarm_rate": 0.5628318584070796,
+      "n_windows": 565,
+      "label": 0
+    },
+    "Branched/Orifice Leak": {
+      "mean_prob": 0.5643875598907471,
+      "detection_rate": 0.5638686131386861,
+      "n_windows": 548,
+      "label": 1
+    },
+    "Branched/No-leak": {
+      "mean_prob": 0.07336937636137009,
+      "false_alarm_rate": 0.04746835443037975,
+      "n_windows": 632,
+      "label": 0
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "experiment": 2,
+  "description": "Mendeley flow-matched retraining proves domain mismatch",
+  "fixes_applied": [
+    "Auto-detected sampling rate from CSV timestamps (was hardcoded 51200, actual 25600)",
+    "Joint normalisation in slice_to_windows (matches training preprocessing)"
+  ],
+  "comparison_table": {
+    "municipal_epanet_municipal_pipes": 1.0,
+    "municipal_epanet_mendeley_pipes": 0.4919,
+    "mendeley_epanet_mendeley_pipes": 0.5151
+  },
+  "exp2_real_mendeley_eval": {
+    "auroc": 0.5151,
+    "f1": 0.8732,
+    "acc": 0.7764,
+    "by_topology": {
+      "Looped": {
+        "auroc": 0.5204,
+        "f1": 0.8796,
+        "n": 1786
+      },
+      "Branched": {
+        "auroc": 0.5102,
+        "f1": 0.8666,
+        "n": 1788
+      }
+    },
+    "by_type": {
+      "Looped/Orifice Leak": {
+        "mean_prob": 0.9100150465965271,
+        "detection_rate": 0.9073033707865169,
+        "n_windows": 356,
+        "label": 1
+      },
+      "Looped/Longitudinal Crack": {
+        "mean_prob": 1.0,
+        "detection_rate": 1.0,
+        "n_windows": 360,
+        "label": 1
+      },
+      "Looped/Circumferential Crack": {
+        "mean_prob": 1.0,
+        "detection_rate": 1.0,
+        "n_windows": 357,
+        "label": 1
+      },
+      "Looped/Gasket Leak": {
+        "mean_prob": 1.0,
+        "detection_rate": 1.0,
+        "n_windows": 359,
+        "label": 1
+      },
+      "Looped/No-leak": {
+        "mean_prob": 0.9888858199119568,
+        "false_alarm_rate": 0.9887005649717514,
+        "n_windows": 354,
+        "label": 0
+      },
+      "Branched/Orifice Leak": {
+        "mean_prob": 0.9612559080123901,
+        "detection_rate": 0.9611111111111111,
+        "n_windows": 360,
+        "label": 1
+      },
+      "Branched/Longitudinal Crack": {
+        "mean_prob": 0.9129636287689209,
+        "detection_rate": 0.9126760563380282,
+        "n_windows": 355,
+        "label": 1
+      },
+      "Branched/Circumferential Crack": {
+        "mean_prob": 0.9915968179702759,
+        "detection_rate": 0.9915966386554622,
+        "n_windows": 357,
+        "label": 1
+      },
+      "Branched/Gasket Leak": {
+        "mean_prob": 0.9160395860671997,
+        "detection_rate": 0.9159663865546218,
+        "n_windows": 357,
+        "label": 1
+      },
+      "Branched/No-leak": {
+        "mean_prob": 0.9422136545181274,
+        "false_alarm_rate": 0.9415041782729805,
+        "n_windows": 359,
+        "label": 0
+      }
+    }
+  },
+  "sim_val_auroc": 1.0,
+  "fine_tune_cfg": {
+    "base_ckpt": "best_model_c_v4.pt",
+    "epochs": 20,
+    "lr": 0.0001,
+    "batch_size": 128
+  }
+}

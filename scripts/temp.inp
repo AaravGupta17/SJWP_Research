@@ -1,0 +1,154 @@
+; Filename: ../inp/mend.inp
+; WNTR: 1.4.0
+; Created: 2026-06-14 00:47:12
+[TITLE]
+
+[JUNCTIONS]
+;ID                      Elevation       Demand Pattern                 
+ J0                                 0               0                            ;
+ J_S1                               0               0                            ;
+ J_OL                               0               0                            ;
+ J_LC                               0               0                            ;
+ J_CC                               0               0                            ;
+ J_GL                               0               0                            ;
+ J_S2                               0               0                            ;
+ J_END                              0               0                            ;
+ LEAK_test                          0               0                            ;
+
+[RESERVOIRS]
+;ID                                   Head                  Pattern
+ R_IN                              12                            ;
+ R_OUT                              2                            ;
+
+[TANKS]
+;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
+
+[PIPES]
+;ID                   Node1                Node2                              Length             Diameter            Roughness           Minor Loss               Status
+ P2                   J_S1                 J_OL                               8           152.4             135               0                 Open   ;
+ P3                   J_OL                 J_LC                               4           152.4             135               0                 Open   ;
+ P4                   J_LC                 J_CC                               4           152.4             135               0                 Open   ;
+ P5                   J_CC                 J_GL                               4           152.4             135               0                 Open   ;
+ P6                   J_GL                 J_S2                               3           152.4             135               0                 Open   ;
+ P7                   J_S2                 J_END                             12           152.4             135               0                 Open   ;
+ P_RIN                R_IN                 J0                               0.1           152.4             140               0                 Open   ;
+ P_ROUT               J_END                R_OUT                            0.1           152.4             140               0                 Open   ;
+ P1_L                 J0                   LEAK_test                        4.7           152.4             135               0                 Open   ;
+ P1_R                 LEAK_test            J_S1                             7.3           152.4             135               0                 Open   ;
+
+[PUMPS]
+;ID                   Node1                Node2                Properties          
+
+[VALVES]
+;ID                   Node1                Node2                            Diameter Type              Setting           Minor Loss
+
+[TAGS]
+;type      name       tag       
+
+[DEMANDS]
+;ID        Demand     Pattern   
+
+[STATUS]
+;ID        Setting   
+
+[PATTERNS]
+;ID        Multipliers
+
+[CURVES]
+;ID         X-Value      Y-Value     
+
+[CONTROLS]
+
+[RULES]
+
+[ENERGY]
+GLOBAL EFFICIENCY      75.0000
+GLOBAL PRICE           0.0000
+DEMAND CHARGE          0.0000
+
+[EMITTERS]
+;ID        Flow coefficient
+J_OL       0.002432  
+J_LC       0.001351  
+J_CC       0.001081  
+J_GL       0.00054   
+LEAK_test  0.00543   
+
+[QUALITY]
+
+[SOURCES]
+;Node      Type       Quality    Pattern   
+
+[REACTIONS]
+;Type           Pipe/Tank               Coefficient
+
+ ORDER BULK 1
+ ORDER TANK 1
+ ORDER WALL 1
+ GLOBAL BULK 0.0000    
+ GLOBAL WALL 0.0000    
+ LIMITING POTENTIAL 0.0000    
+ ROUGHNESS CORRELATION 0.0000    
+
+[MIXING]
+;Tank ID             Model Fraction
+
+[TIMES]
+DURATION             01:00:00
+HYDRAULIC TIMESTEP   00:00:01
+QUALITY TIMESTEP     00:05:00
+PATTERN TIMESTEP     01:00:00
+PATTERN START        00:00:00
+REPORT TIMESTEP      00:00:01
+REPORT START         00:00:00
+START CLOCKTIME      00:00:00 AM
+RULE TIMESTEP        00:06:00
+STATISTIC            NONE      
+
+[REPORT]
+STATUS     YES
+PAGE       0
+NODES      ALL
+LINKS      ALL
+
+[OPTIONS]
+UNITS                LPS                 
+HEADLOSS             H-W                 
+SPECIFIC GRAVITY     1
+VISCOSITY            1
+TRIALS               200
+ACCURACY             0.001
+CHECKFREQ            2
+MAXCHECK             10
+UNBALANCED           CONTINUE 10
+DEMAND MULTIPLIER    1
+EMITTER EXPONENT     0.5
+QUALITY              NONE                
+DIFFUSIVITY          1
+TOLERANCE            0.01
+
+[COORDINATES]
+;Node      X-Coord    Y-Coord   
+J0                  0.000000000          0.000000000
+J_S1               12.000000000          0.000000000
+J_OL               20.000000000          0.000000000
+J_LC               24.000000000          0.000000000
+J_CC               28.000000000          0.000000000
+J_GL               32.000000000          0.000000000
+J_S2               35.000000000          0.000000000
+J_END              47.000000000          0.000000000
+R_IN               -5.000000000          0.000000000
+R_OUT              52.000000000          0.000000000
+LEAK_test           0.000000000          0.000000000
+
+[VERTICES]
+;Link      X-Coord    Y-Coord   
+
+[LABELS]
+ 12.00          1.00            "Sensor 1" J_S1
+ 35.00          1.00            "Sensor 2" J_S2
+
+[BACKDROP]
+UNITS    NONE
+
+[END]

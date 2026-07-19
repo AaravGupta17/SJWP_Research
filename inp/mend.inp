@@ -1,0 +1,147 @@
+[TITLE]
+; Aghashahi et al. (2023) Mendeley Testbed — EPANET Model
+; Generated: 2026-06-14 00:27:46
+; Pipe: 47.0 m, 152.4 mm Sch-80 PVC
+; Wall thickness: 11.43 mm | HW roughness C=135
+; Leak area: 2 mm² | Model D weighting | Geotextile damping upper range
+; Wave speed (Sch-80 PVC, 152.4mm): ~395 m/s
+; Orifice flow @ 7.5 m head: 0.0148 LPS
+
+[JUNCTIONS]
+;ID               Elev    Demand   Pattern
+ J0               0.00     0.0000   ;
+ J_S1             0.00     0.0000   ;
+ J_OL             0.00     0.0000   ;
+ J_LC             0.00     0.0000   ;
+ J_CC             0.00     0.0000   ;
+ J_GL             0.00     0.0000   ;
+ J_S2             0.00     0.0000   ;
+ J_END            0.00     0.0000   ;
+
+[RESERVOIRS]
+;ID         Head    Pattern
+ R_IN       12.00    ;  Upstream reservoir (12.0 m head)
+ R_OUT      2.00    ;  Downstream fixed head (2.0 m head)
+
+[TANKS]
+
+[PIPES]
+;ID         Node1        Node2        Length   Diameter   Roughness  MinorLoss  Status
+ P1         J0           J_S1         12.00    152.4      135        0          Open
+ P2         J_S1         J_OL         8.00     152.4      135        0          Open
+ P3         J_OL         J_LC         4.00     152.4      135        0          Open
+ P4         J_LC         J_CC         4.00     152.4      135        0          Open
+ P5         J_CC         J_GL         4.00     152.4      135        0          Open
+ P6         J_GL         J_S2         3.00     152.4      135        0          Open
+ P7         J_S2         J_END        12.00    152.4      135        0          Open
+ P_RIN      R_IN         J0           0.10     152.4      140        0          Open
+ P_ROUT     J_END        R_OUT        0.10     152.4      140        0          Open
+
+[PUMPS]
+
+[VALVES]
+
+[EMITTERS]
+;Junction        Coefficient
+;  Emitter models Q(LPS) = Coeff * sqrt(P_m)  [EPANET flow units = LPS]
+;  Calibrated at P_ref=7.5 m, 2 mm² orifice, Cd=0.61
+;  Total Q @ ref = 0.0148 LPS  |  Model D weights: OL=45% LC=25% CC=20% GL=10%
+ J_OL             0.002432   ; OL  (45%)  Q@7.5m=0.0067 LPS
+ J_LC             0.001351   ; LC  (25%)  Q@7.5m=0.0037 LPS
+ J_CC             0.001081   ; CC  (20%)  Q@7.5m=0.0030 LPS
+ J_GL             0.000540   ; GL  (10%)  Q@7.5m=0.0015 LPS
+
+[CURVES]
+
+[PATTERNS]
+
+[ENERGY]
+ Global Efficiency   75
+ Global Price        0
+ Demand Charge       0
+
+[STATUS]
+
+[CONTROLS]
+
+[RULES]
+
+[DEMANDS]
+
+[QUALITY]
+
+[SOURCES]
+
+[REACTIONS]
+ Order  Bulk            1
+ Order  Tank            1
+ Order  Wall            1
+ Global Bulk            0
+ Global Wall            0
+ Limiting Potential     0
+ Roughness Correlation  0
+
+[MIXING]
+
+[TIMES]
+ Duration            0:30
+ Hydraulic Timestep  0:00:01
+ Quality Timestep    0:05
+ Pattern Timestep    1:00
+ Pattern Start       0:00
+ Report Timestep     0:00:01
+ Report Start        0:00
+ Start ClockTime     12 am
+ Statistic           None
+
+[REPORT]
+ Status             Yes
+ Summary            Yes
+ Page               0
+ Nodes              All
+ Links              All
+ Pressure           Yes
+ Flow               Yes
+ Velocity           Yes
+
+[OPTIONS]
+ Units               LPS
+ Headloss            H-W
+ Specific Gravity    1.0
+ Viscosity           1.0
+ Trials              200
+ Accuracy            0.001
+ CHECKFREQ           2
+ MAXCHECK            10
+ DAMPLIMIT           0
+ Unbalanced          Continue 10
+ Pattern             1
+ Demand Multiplier   1.0
+ Emitter Exponent    0.5
+ Quality             None mg/L
+ Diffusivity         1
+ Tolerance           0.01
+
+[COORDINATES]
+;Node           X-Coord         Y-Coord
+ J0               0.00             0.00
+ J_S1             12.00            0.00
+ J_OL             20.00            0.00
+ J_LC             24.00            0.00
+ J_CC             28.00            0.00
+ J_GL             32.00            0.00
+ J_S2             35.00            0.00
+ J_END            47.00            0.00
+ R_IN           -5.00            0.00
+ R_OUT           52.00            0.00
+
+[VERTICES]
+
+[LABELS]
+;X-Coord        Y-Coord         Label & Anchor Node
+ 12.00          1.00            "Sensor 1" J_S1
+ 35.00          1.00            "Sensor 2" J_S2
+
+[BACKDROP]
+
+[END]

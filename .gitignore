@@ -1,0 +1,46 @@
+# Datasets
+/datasets/
+
+# Cache directories (large generated .npy files)
+/cache/
+/cache_c/
+/cache_d/
+/cache_v2/
+
+# Regenerable index files (exceed GitHub 100MB LFS limit)
+/csv/train_index.csv
+/csv/val_index.csv
+/csv/test_index.csv
+
+# Large .inp file (exceeds 100MB limit)
+/inp/L-TOWN.inp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temp files
+*.bin
+*.rpt
+
+# OS
+.DS_Store
+Thumbs.db

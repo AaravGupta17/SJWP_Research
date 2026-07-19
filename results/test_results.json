@@ -1,0 +1,62 @@
+[
+  {
+    "network": "Network 3 (Anytown)",
+    "auroc": 0.9714,
+    "f1": 0.9381,
+    "accuracy": 0.939,
+    "pos_mae": 0.1283,
+    "sev_r2": 0.2294,
+    "n_total": 21720,
+    "n_leak": 10860,
+    "confusion_matrix": [
+      [
+        10358,
+        502
+      ],
+      [
+        822,
+        10038
+      ]
+    ]
+  },
+  {
+    "network": "Network 6 (Richmond)",
+    "auroc": 0.9573,
+    "f1": 0.9236,
+    "accuracy": 0.926,
+    "pos_mae": 0.2279,
+    "sev_r2": 0.2404,
+    "n_total": 15888,
+    "n_leak": 7944,
+    "confusion_matrix": [
+      [
+        7602,
+        342
+      ],
+      [
+        834,
+        7110
+      ]
+    ]
+  },
+  {
+    "network": "Network 8 (Kentucky)",
+    "auroc": 0.8793,
+    "f1": 0.8171,
+    "accuracy": 0.8381,
+    "pos_mae": 0.2617,
+    "sev_r2": 0.6157,
+    "n_total": 1056,
+    "n_leak": 528,
+    "confusion_matrix": [
+      [
+        503,
+        25
+      ],
+      [
+        146,
+        382
+      ]
+    ]
+  }
+]

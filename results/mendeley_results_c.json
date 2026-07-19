@@ -1,0 +1,91 @@
+{
+  "model": "C_v3",
+  "changes": [
+    "SNR range calibration",
+    "Pink noise source",
+    "Correlated channel leak signal",
+    "Joint normalisation"
+  ],
+  "overall": {
+    "auroc": 0.3889,
+    "f1": 0.6429,
+    "acc": 0.4998,
+    "n_total": 5758,
+    "n_leak": 4561,
+    "n_no_leak": 1197
+  },
+  "by_topology": {
+    "Looped": {
+      "auroc": 0.4715,
+      "f1": 0.8673,
+      "n": 2779
+    },
+    "Branched": {
+      "auroc": 0.2755,
+      "f1": 0.2939,
+      "n": 2979
+    }
+  },
+  "by_type": {
+    "Looped/Orifice Leak": {
+      "mean_prob": 0.9788107872009277,
+      "detection_rate": 0.9781021897810219,
+      "n_windows": 548,
+      "label": 1
+    },
+    "Looped/Longitudinal Crack": {
+      "mean_prob": 0.8873149156570435,
+      "detection_rate": 0.8872727272727273,
+      "n_windows": 550,
+      "label": 1
+    },
+    "Looped/Circumferential Crack": {
+      "mean_prob": 0.9892958998680115,
+      "detection_rate": 0.9893992932862191,
+      "n_windows": 566,
+      "label": 1
+    },
+    "Looped/Gasket Leak": {
+      "mean_prob": 0.988638162612915,
+      "detection_rate": 0.9890909090909091,
+      "n_windows": 550,
+      "label": 1
+    },
+    "Looped/No-leak": {
+      "mean_prob": 0.9997340440750122,
+      "false_alarm_rate": 1.0,
+      "n_windows": 565,
+      "label": 0
+    },
+    "Branched/Orifice Leak": {
+      "mean_prob": 0.3432352840900421,
+      "detection_rate": 0.3467153284671533,
+      "n_windows": 548,
+      "label": 1
+    },
+    "Branched/Longitudinal Crack": {
+      "mean_prob": 0.10509223490953445,
+      "detection_rate": 0.10189982728842832,
+      "n_windows": 579,
+      "label": 1
+    },
+    "Branched/Circumferential Crack": {
+      "mean_prob": 0.046900149434804916,
+      "detection_rate": 0.04794520547945205,
+      "n_windows": 584,
+      "label": 1
+    },
+    "Branched/Gasket Leak": {
+      "mean_prob": 0.2951471209526062,
+      "detection_rate": 0.2940251572327044,
+      "n_windows": 636,
+      "label": 1
+    },
+    "Branched/No-leak": {
+      "mean_prob": 0.5464441180229187,
+      "false_alarm_rate": 0.5474683544303798,
+      "n_windows": 632,
+      "label": 0
+    }
+  }
+}

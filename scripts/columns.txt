@@ -1,0 +1,65 @@
+Pipe_ID
+Pipe_Length_m
+Pipe_Diameter_m
+Pipe_Roughness
+Pipe_Material
+Sensor_Positions_m
+Avg_Flow_Velocity_mps
+Avg_Flow_Rate_lps
+Acoustic_Propagation_Speed_mps
+Attenuation_Alpha_per_m
+Leak_Status
+Number_of_Leaks
+Leak_Area_m2
+Leak_Flow_Lps
+Avg_Pressure_at_Leak (leak)
+True_Leak_Position_m (leak)
+Leak_Distance_2nd_Left_m (leak)
+Leak_Distance_Left_m (leak)
+Leak_Distance_Right_m (leak)
+Leak_Distance_2nd_Right_m (leak)
+Pipe_Pressure_Left1_m (leak)
+Pipe_Pressure_Left2_m (leak)
+Pipe_Pressure_Right1_m (leak)
+Pipe_Pressure_Right2_m (leak)
+
+
+            what aarav my baby needs
+
+            sensor_position_m (base)
+            Avg_Flow_Velocity_mps — flow velocity in this pipe segment
+            Pipe_Pressure_Left_m — pressure at left sensor
+            Pipe_Pressure_Right_m — pressure at right sensor
+
+    "NW_Model1": {
+        "inp": "../inp/NW_Model1.inp",
+        "out": "../datasets/NetworkList/Network_1",
+    },
+    "Net3": {
+        "inp": "../inp/Net3_(BWSN-2)_Morph_Error_Free_1s-WQ.inp",
+        "out": "../datasets/NetworkList/Network_2",
+    },
+    "L-TOWN": {
+        "inp": "../inp/L-TOWN.inp",
+        "out": "../datasets/NetworkList/Network_3",
+    },
+    "BWSN": {
+        "inp": "../inp/BWSN_Network.inp",
+        "out": "../datasets/NetworkList/Network_4",
+    },
+    "KY9": {
+        "inp": "../inp/ky9.inp",
+        "out": "../datasets/NetworkList/Network_5",
+    },
+    "KY15": {
+        "inp": "../inp/ky15.inp",
+        "out": "../datasets/NetworkList/Network_6",
+    },
+    "Net6": {
+        "inp": "../inp/Net6.inp",
+        "out": "../datasets/NetworkList/Network_7",
+    },
+    "Rich": {
+        "inp": "../inp/Richmond_skeleton.inp",
+        "out": "../datasets/NetworkList/Network_8",
+    }
