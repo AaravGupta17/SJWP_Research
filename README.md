@@ -1,6 +1,6 @@
 # AcousticLeakNet — Deep Learning for Water Pipe Leak Detection
 
-A 1D CNN with Cross-Channel Attention for detecting, localising, and severity-scoring leaks in water distribution networks using dual-sensor acoustic data. Built for the SJWP (Singapore Junior Water Prize) research project.
+A 1D CNN with Cross-Channel Attention for detecting, localising, and severity-scoring leaks in water distribution networks using dual-sensor acoustic data. Built for the SJWP (Stockholm Junior Water Prize) research project.
 
 ## Problem
 
