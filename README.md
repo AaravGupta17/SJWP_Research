@@ -147,6 +147,3 @@ Waveforms are synthesised from simulation parameters, not recorded from real sen
 - **Noise**: Colored (flow turbulence) + white (thermal) + ground vibration
 - **Augmentation**: ±15% wave speed perturbation, amplitude scaling, optional Gaussian noise
 
-## Citation
-
-If using this work, please cite the relevant SJWP submission.
