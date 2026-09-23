@@ -51,7 +51,9 @@ Public datasets (Hong Kong, Dongguan, Sheffield): `python scripts/download_publi
 -> `datasets/public/` (git-ignored). Loaders: `experiments/public_data.py`. Cross-dataset
 results must use leave-one-SOURCE-out (`loso`); datasets from one source can share recordings.
 
-Every experiment writes a record via `record_run()` to `results/runs/`. Set `LEAKNET_OUT=<dir>`
+Every experiment writes a record via `record_run()` to `results/runs/`. Regenerate the data book
+after new runs: `python scripts/make_data_book.py` (never edit `docs/DATA_BOOK.md` by hand;
+notes go in `docs/data_book_notes/`, written by the students). Set `LEAKNET_OUT=<dir>`
 to redirect plots and run records for smoke tests so they don't mix with real results.
 
 ## Rules that must hold

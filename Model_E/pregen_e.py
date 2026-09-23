@@ -36,7 +36,7 @@ SPLIT_CSV = {
 }
 
 
-def pregenerate_split(split: str, cache_root: Path, realism: dict, seed: int):
+def pregenerate_split(split: str, cache_root: Path, realism: dict, seed: int, drop_db=None):
     out_dir = cache_root / split
     sig_path, lab_path = out_dir / "signals.npy", out_dir / "labels.npy"
     if sig_path.exists() and lab_path.exists():
@@ -45,7 +45,7 @@ def pregenerate_split(split: str, cache_root: Path, realism: dict, seed: int):
     out_dir.mkdir(parents=True, exist_ok=True)
     np.random.seed(seed + zlib.crc32(split.encode()) % 10_000)
 
-    ds = LeakDatasetE(SPLIT_CSV[split], realism=realism, augment=False)
+    ds = LeakDatasetE(SPLIT_CSV[split], realism=realism, augment=False, drop_inaudible_db=drop_db)
     N = len(ds)
     signals = np.lib.format.open_memmap(str(sig_path), mode="w+", dtype=np.float32, shape=(N, 2, 2000))
     labels = np.lib.format.open_memmap(str(lab_path), mode="w+", dtype=np.float32, shape=(N, 4))
@@ -66,14 +66,17 @@ def main():
     ap.add_argument("--no", nargs="*", default=[], choices=list(REALISM_DEFAULTS),
                     help="realism switches to turn OFF (for ablations)")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--drop-inaudible-db", type=float, default=None,
+                    help="drop plastic leak rows whose loss at the nearer sensor exceeds this (dB)")
     args = ap.parse_args()
 
     realism = {k: (k not in args.no) for k in REALISM_DEFAULTS}
     cache_root = Path(args.cache)
     cache_root.mkdir(parents=True, exist_ok=True)
-    (cache_root / "realism.json").write_text(json.dumps({"realism": realism, "seed": args.seed}, indent=2))
+    (cache_root / "realism.json").write_text(json.dumps(
+        {"realism": realism, "seed": args.seed, "drop_inaudible_db": args.drop_inaudible_db}, indent=2))
     for s in (list(SPLIT_CSV) if args.split == "all" else [args.split]):
-        pregenerate_split(s, cache_root, realism, args.seed)
+        pregenerate_split(s, cache_root, realism, args.seed, args.drop_inaudible_db)
     print("\nDone. Train with: cd ../model_C && python train_c.py --cache cache_e --prefix e")
 
 

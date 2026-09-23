@@ -72,7 +72,8 @@ data/inp, data/csv  EPANET networks and sample index files (Git LFS)
 models/           Checkpoints (Git LFS)
 results/          Metrics JSON; results/runs/ = dated run records + INDEX.csv
 plots/            Figures
-docs/             CLAIMS.md (claim → evidence), INTEGRITY_LOG.md (corrections made)
+docs/             CLAIMS.md (claim → evidence), INTEGRITY_LOG.md (corrections made),
+                  DATA_BOOK.md (dated run log; `python scripts/make_data_book.py`)
 archive/          Superseded scratch scripts, kept for history only
 ```
 
@@ -117,8 +118,12 @@ python evaluate_c.py --ckpt best_model_c_v4.pt
 `Model_E/dataset_e.py` subclasses Model C's synthesiser. It uses physical fractional delays (no
 zero-delay shared component, no wrap-around), diverse no-leak noise textures, non-leak
 interferers (bursts, pump hum), an accelerometer-like response, ±6 dB gain jitter, a −10 to
-12 dB leak SNR range, no DC offset, and it drops leak rows that have no leak source. Each change
-is a switch, for ablations.
+12 dB leak SNR range, no DC offset, and it drops leak rows that have no leak source. For plastic
+(PVC) pipes it applies the attenuation **measured** in E10 (`Model_E/calibration_mdpe.json`,
+0.64–2.47 dB/m by frequency) instead of Model C's ≈0.004 dB/m. Metal pipes keep Model C's
+attenuation (no metal measurement available). Each change is a switch, for ablations
+(`pregen_e.py --no <switch>`). `--drop-inaudible-db` optionally drops plastic leak rows too
+far from both sensors to be heard.
 
 ```bash
 cd Model_E

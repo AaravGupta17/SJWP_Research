@@ -219,7 +219,39 @@ def main():
          ", ".join(f"{b} {v:.2f}" for b, v in summary_att["median"].items()) +
          f"; leak peak {np.median(peaks):.0f} Hz; c " +
          ", ".join(f"{k} {v['wave_speed_mps']:.0f} m/s" for k, v in speed.items()))
-    record_run("e10_sheffield_calibration", {"root": str(args.root)}, results, s)
+    run_file = record_run("e10_sheffield_calibration", {"root": str(args.root)}, results, s)
+    write_calibration(summary_att, speed, run_file)
+
+
+def write_calibration(summary_att: pd.DataFrame, speed: dict, run_file: Path):
+    """Model_E/calibration_mdpe.json: the attenuation curve Model E uses for
+    plastic pipes. Bands up to 800 Hz use the measured median dB/m. Above
+    800 Hz the leak falls to the noise floor within 1–3 m, so slope fits
+    are unreliable; those bands are set to the 400–800 Hz value, which is a
+    LOWER bound on the real loss (documented in the file)."""
+    import json
+    reliable = [b for b in summary_att.index if int(b.split("-")[1]) <= 800]
+    floor = float(summary_att.loc["400-800", "median"])
+    bands = []
+    for b in summary_att.index:
+        lo, hi = map(float, b.split("-"))
+        measured = b in reliable
+        bands.append({"lo_hz": lo, "hi_hz": hi,
+                      "db_per_m": float(summary_att.loc[b, "median"]) if measured else floor,
+                      "source": "measured median" if measured
+                      else "set to the 400-800 Hz value (lower bound; fit unreliable)"})
+    cal = {
+        "description": "Plastic-pipe leak-noise attenuation measured on 63 mm MDPE (Sheffield CID lab, "
+                       "Shekofteh 2026, doi:10.15131/shef.data.32229270.v1) by "
+                       "experiments/sheffield_calibration.py",
+        "run_record": f"results/runs/{Path(run_file).name}",
+        "material": "MDPE (used for PVC in Model E; PVC is stiffer, so this may overstate PVC loss)",
+        "bands": bands,
+        "wave_speed_mps_measured": {k: v["wave_speed_mps"] for k, v in speed.items()},
+    }
+    out = REPO_ROOT / "Model_E" / "calibration_mdpe.json"
+    out.write_text(json.dumps(cal, indent=2) + "\n", encoding="utf-8")
+    print(f"Calibration written: {out.relative_to(REPO_ROOT)}")
 
 
 if __name__ == "__main__":

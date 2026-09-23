@@ -27,6 +27,7 @@ def _make(cls, realism=None):
     d.snr_override_db, d.include_pressure_dc = 10, False
     if cls is E.LeakDatasetE:
         d.realism = {**E.REALISM_DEFAULTS, **(realism or {})}
+        d.atten_curve = E.load_attenuation_curve() if d.realism["attenuation"] else None
     return d
 
 
@@ -107,6 +108,48 @@ def test_all_switches_on_runs_and_is_bounded():
         assert x.shape == (2, 2000) and np.isfinite(x).all() and np.abs(x).max() <= 10
 
 
+def test_calibration_file_is_traceable_and_positive():
+    import json
+    cal = json.loads(E.CALIBRATION_FILE.read_text(encoding="utf-8"))
+    assert cal["run_record"].startswith("results/runs/")
+    centres, db = E.load_attenuation_curve()
+    assert (db > 0).all() and np.all(np.diff(centres) > 0)
+
+
+def _band_rms(x, lo, hi, fs=5000):
+    X = np.fft.rfft(x, axis=-1)
+    f = np.fft.rfftfreq(x.shape[-1], 1 / fs)
+    return np.sqrt((np.abs(X[..., (f >= lo) & (f < hi)]) ** 2).sum())
+
+
+def test_measured_attenuation_on_plastic_is_strong_and_frequency_dependent():
+    """PVC leak at 5 m vs 30 m from both sensors: total loss must be large
+    (measured ~0.6-2.5 dB/m), and higher frequencies must lose more."""
+    d = _make(E.LeakDatasetE, {**ALL_OFF, "delay": True, "attenuation": True})
+    near, far = [], []
+    for i in range(10):
+        np.random.seed(i)
+        near.append(d.generate_signal(_leak_cfg(5, 5, pipe_material="PVC")))
+        np.random.seed(i)
+        far.append(d.generate_signal(_leak_cfg(30, 30, pipe_material="PVC")))
+    near, far = np.stack(near).astype(float), np.stack(far).astype(float)
+    total_db = 20 * np.log10(np.sqrt((near ** 2).mean()) / np.sqrt((far ** 2).mean()))
+    assert total_db > 12                          # 25 m extra at >= ~0.6 dB/m
+    lo_db = 20 * np.log10(_band_rms(near, 300, 600) / _band_rms(far, 300, 600))
+    hi_db = 20 * np.log10(_band_rms(near, 900, 1200) / _band_rms(far, 900, 1200))
+    assert hi_db > lo_db
+
+
+def test_metal_pipes_keep_model_c_attenuation():
+    on = _make(E.LeakDatasetE, {**ALL_OFF, "delay": True, "attenuation": True})
+    off = _make(E.LeakDatasetE, {**ALL_OFF, "delay": True, "attenuation": False})
+    np.random.seed(3)
+    a = on.generate_signal(_leak_cfg(30, 40, pipe_material="CI"))
+    np.random.seed(3)
+    b = off.generate_signal(_leak_cfg(30, 40, pipe_material="CI"))
+    assert np.allclose(a, b)
+
+
 def test_leak_rows_without_source_are_dropped(tmp_path, monkeypatch):
     cols = dict(Pipe_Length_m=100, Pipe_Diameter_m=0.15, Pipe_Roughness=100, Pipe_Material="CI",
                 Avg_Flow_Velocity_mps=0.5, Avg_Flow_Rate_lps=5, Acoustic_Propagation_Speed_mps=1200,
@@ -125,3 +168,9 @@ def test_leak_rows_without_source_are_dropped(tmp_path, monkeypatch):
     base = dataset_c.LeakDataset(str(index))
     fixed = E.LeakDatasetE(str(index))
     assert len(base) == 3 and len(fixed) == 2
+
+    # optional: drop plastic leaks whose loss at the nearer sensor is too large
+    pd.DataFrame([dict(r, Pipe_Material="PVC") for r in rows]).to_csv(raw, index=False)
+    kept = E.LeakDatasetE(str(index))                         # nearer sensor 30 m -> ~28 dB
+    dropped = E.LeakDatasetE(str(index), drop_inaudible_db=20)
+    assert len(kept) == 2 and len(dropped) == 1

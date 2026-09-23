@@ -33,12 +33,22 @@ effect can be measured separately.
   [E8] labels       Leak rows with no valid leak distance (which Model C
                     labelled "leak" but synthesised as pure noise) are
                     dropped.
+  [E9] attenuation  PLASTIC pipes (PVC) use the frequency-dependent
+                    attenuation MEASURED on MDPE pipe (Model_E/calibration_mdpe.json,
+                    written by experiments/sheffield_calibration.py):
+                    0.64-2.47 dB/m, jittered x0.7-1.3 per sample. Model C
+                    applied ~0.004 dB/m. Metal pipes keep Model C's
+                    attenuation: no metal measurement is available.
+                    Realistic plastic attenuation makes distant leaks
+                    inaudible; the dataset reports how many, and
+                    `drop_inaudible_db` can drop them (off by default).
 
-Material acoustic parameters are deliberately left as in Model C. They
-should be checked against the literature (Hunaidi & Chu 1999; Gao et al.
-2004/2005) before being changed, and changed as a separate step.
+Material spectral parameters (MATERIAL_ACOUSTIC) are left as in Model C.
+E10 found the measured leak spectrum at the leak (centroid ~770 Hz) close
+to Model C's PVC band (650-950 Hz).
 """
 
+import json
 import sys
 from pathlib import Path
 
@@ -49,20 +59,40 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "model_C"))
 import dataset_c as C                                   # noqa: E402
 
 REALISM_DEFAULTS = dict(delay=True, background=True, interferers=True, sensor=True,
-                        gain=True, snr=True, no_dc=True)
+                        gain=True, snr=True, no_dc=True, attenuation=True)
+PLASTIC = {"PVC"}
+CALIBRATION_FILE = Path(__file__).resolve().parent / "calibration_mdpe.json"
+
+
+def load_attenuation_curve(path: Path = CALIBRATION_FILE):
+    """(band centres in Hz, dB/m) from the measured calibration file."""
+    cal = json.loads(Path(path).read_text(encoding="utf-8"))
+    centres = np.array([np.sqrt(b["lo_hz"] * b["hi_hz"]) for b in cal["bands"]])
+    return centres, np.array([b["db_per_m"] for b in cal["bands"]])
+
+
+def attenuation_db_per_m(freqs_hz: np.ndarray, curve) -> np.ndarray:
+    """Measured curve interpolated in log-frequency, constant beyond the ends."""
+    centres, db = curve
+    return np.interp(np.log(np.maximum(freqs_hz, 1.0)), np.log(centres), db)
 SNR_DB_MIN_E = -10.0
 SNR_DB_MAX_E = 12.0
 
 
-def fractional_delay(src: np.ndarray, delay: float, T: int, pad: int) -> np.ndarray:
+def fractional_delay(src: np.ndarray, delay: float, T: int, pad: int,
+                     gain: np.ndarray = None) -> np.ndarray:
     """Delay a source buffer of length T + 2*pad by `delay` samples (may be
     fractional) and return the central T samples. The FFT shift is circular
     on the long buffer, but with delay < pad the wrapped part never reaches
-    the returned segment, so the result is a true (linear) delay."""
+    the returned segment, so the result is a true (linear) delay.
+    `gain` (optional, one value per rfft bin) applies a frequency-dependent
+    amplitude factor in the same step, e.g. propagation loss."""
     n = len(src)
     f = np.fft.rfftfreq(n)
-    out = np.fft.irfft(np.fft.rfft(src) * np.exp(-2j * np.pi * f * delay), n=n)
-    return out[pad:pad + T]
+    spec = np.fft.rfft(src) * np.exp(-2j * np.pi * f * delay)
+    if gain is not None:
+        spec = spec * gain
+    return np.fft.irfft(spec, n=n)[pad:pad + T]
 
 
 def coloured_noise(T: int, rng=np.random) -> np.ndarray:
@@ -93,12 +123,13 @@ def hp_tilt(x: np.ndarray, fs: int, corner: float) -> np.ndarray:
 
 class LeakDatasetE(C.LeakDataset):
 
-    def __init__(self, index_csv: str, realism: dict = None, **kw):
+    def __init__(self, index_csv: str, realism: dict = None, drop_inaudible_db: float = None, **kw):
         kw.setdefault("include_pressure_dc", False)
         super().__init__(index_csv, **kw)
         self.realism = {**REALISM_DEFAULTS, **(realism or {})}
         if not self.realism["no_dc"]:
             self.include_pressure_dc = True
+        self.atten_curve = load_attenuation_curve() if self.realism["attenuation"] else None
         # [E8] drop leak rows that have no leak source to synthesise
         before = len(self._valid_idx)
         self._valid_idx = [i for i in self._valid_idx
@@ -106,6 +137,29 @@ class LeakDatasetE(C.LeakDataset):
                                    and self._cache[i]["d_left"] <= 0
                                    and self._cache[i]["d_right"] <= 0)]
         print(f"  [E8] dropped {before - len(self._valid_idx)} leak rows without a leak source")
+        if self.atten_curve is not None:
+            self._report_inaudible(drop_inaudible_db)
+
+    def _plastic_loss_db(self, c: dict) -> float:
+        """Loss at the nearer sensor at 300 Hz (a band where leak noise carries
+        in plastic pipe), from the measured curve without jitter."""
+        d = min(x for x in (c["d_left"], c["d_right"]) if x > 0)
+        return float(attenuation_db_per_m(np.array([300.0]), self.atten_curve)[0] * d)
+
+    def _report_inaudible(self, drop_db):
+        plastic_leaks = [i for i in self._valid_idx
+                         if self._cache[i]["leak_status"] == 1
+                         and self._cache[i]["pipe_material"] in PLASTIC]
+        if not plastic_leaks:
+            return
+        loss = np.array([self._plastic_loss_db(self._cache[i]) for i in plastic_leaks])
+        print(f"  [E9] plastic leak rows: {len(loss)} | loss at nearer sensor (300 Hz): "
+              f"median {np.median(loss):.0f} dB, >30 dB in {np.mean(loss > 30):.0%}, "
+              f">60 dB in {np.mean(loss > 60):.0%}")
+        if drop_db is not None:
+            bad = {i for i, l in zip(plastic_leaks, loss) if l > drop_db}
+            self._valid_idx = [i for i in self._valid_idx if i not in bad]
+            print(f"  [E9] dropped {len(bad)} plastic leak rows with loss > {drop_db} dB")
 
     # ── background ──────────────────────────────────────────────────────────
     def _background(self, c: dict) -> np.ndarray:
@@ -176,11 +230,19 @@ class LeakDatasetE(C.LeakDataset):
 
         pad = T
         src = C.generate_leak_source_pink(centre, bandwidth, amp, T + 2 * pad, fs).astype(np.float64)
+        measured = self.atten_curve is not None and c["pipe_material"] in PLASTIC
+        if measured:
+            freqs = np.fft.rfftfreq(len(src), 1.0 / fs)
+            db_per_m = attenuation_db_per_m(freqs, self.atten_curve) * np.random.uniform(0.7, 1.3)
         for ch, d in ((0, c["d_left"]), (1, c["d_right"])):
             if d > 0:
                 delay = min(d / eff_speed * fs, pad - 1)
-                att = np.exp(-eff_alpha * damping * rough * d)
-                result[ch] += fractional_delay(src, delay, T, pad) * att
+                if measured:                            # [E9] measured, frequency-dependent
+                    gain = 10 ** (-db_per_m * d / 20.0)
+                    result[ch] += fractional_delay(src, delay, T, pad, gain=gain)
+                else:                                   # Model C flat attenuation
+                    att = np.exp(-eff_alpha * damping * rough * d)
+                    result[ch] += fractional_delay(src, delay, T, pad) * att
 
     def generate_signal(self, c: dict) -> np.ndarray:
         result = self._background(c)
