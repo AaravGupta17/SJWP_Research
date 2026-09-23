@@ -100,6 +100,9 @@ def _git(*args) -> str:
 
 
 def _jsonable(o):
+    if isinstance(o, str) and o.lower().startswith(str(REPO_ROOT).lower()):
+        # store repo-relative paths: no user folder names in committed records
+        return "<repo>" + o[len(str(REPO_ROOT)):].replace("\\", "/")
     if isinstance(o, dict):
         return {str(k): _jsonable(v) for k, v in o.items()}
     if isinstance(o, (list, tuple)):

@@ -22,6 +22,14 @@ Datasets (see scripts/download_public_data.py for sources and licences):
   hk_noiselogger, hk_hydrophone   Hong Kong real buried networks
   dongguan                        outdoor training base, Dongguan
   mendeley_acc, mendeley_hyd      Mendeley lab testbed (Branched + Looped)
+
+Not used: the Hong Kong MEMS accelerometer files (.xlsx). They hold one
+column of acceleration in g with no timestamps, and neither the dataset
+page nor the available paper text states the sampling rate. Resampling
+with a guessed rate would shift every frequency, so they are excluded
+until the authors confirm the rate. Their file names (sensor unit + date,
+the same units in both the Leak and No-Leak folders) suggest before/after
+recordings with the same sensors, which would make them valuable.
 """
 
 import re
