@@ -70,7 +70,7 @@ experiments/      E1–E8 (see below); every run is logged to results/runs/
 tests/            Unit tests (pytest), no data needed
 data/inp, data/csv  EPANET networks and sample index files (Git LFS)
 models/           Checkpoints (Git LFS)
-results/          Metrics JSON; results/runs/ = dated run records + INDEX.csv
+results/          Metrics JSON; results/runs/ = one dated JSON record per run
 plots/            Figures
 docs/             CLAIMS.md (claim → evidence), INTEGRITY_LOG.md (corrections made),
                   DATA_BOOK.md (dated run log; `python scripts/make_data_book.py`)

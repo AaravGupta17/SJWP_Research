@@ -1,6 +1,9 @@
 """
-make_data_book.py — build docs/DATA_BOOK.md from the run records
-==================================================================
+make_data_book.py — build docs/DATA_BOOK.md (and results/runs/INDEX.csv) from the run records
+===============================================================================================
+INDEX.csv is a one-line-per-run summary, rebuilt here and git-ignored, so
+parallel experiment runs on different machines never conflict in git.
+
 One dated entry per experiment run in results/runs/ (oldest first): what
 was run, the exact command, git commit, settings, the one-line result and
 the record file. This is the evidence section of the research data book;
@@ -16,6 +19,7 @@ the end with a warning that they have no commit/command provenance.
     python scripts/make_data_book.py
 """
 
+import csv
 import json
 import subprocess
 from datetime import datetime
@@ -101,8 +105,14 @@ def main():
         parts.append("")
 
     OUT.write_text("\n".join(parts), encoding="utf-8")
+    with (RUNS / "INDEX.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["timestamp", "experiment", "git_commit", "git_dirty", "summary", "file"])
+        for rec, p in records:
+            w.writerow([rec["timestamp"], rec["experiment"], rec.get("git_commit"),
+                        rec.get("git_dirty"), rec.get("summary"), p.name])
     NOTES.mkdir(parents=True, exist_ok=True)
-    print(f"Wrote {OUT.relative_to(REPO)} ({len(records)} runs)")
+    print(f"Wrote {OUT.relative_to(REPO)} and results/runs/INDEX.csv ({len(records)} runs)")
 
 
 if __name__ == "__main__":

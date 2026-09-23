@@ -3,12 +3,13 @@ _common.py — shared helpers for the experiments/ scripts
 =========================================================
 - Repo-relative paths, so scripts run from any working directory.
 - Model loading that works for every checkpoint in models/.
-- record_run(): every experiment writes a JSON record (config, results,
-  git commit, timestamp) to results/runs/ and appends one line to
-  results/runs/INDEX.csv. This is the evidence trail for the data book.
+- record_run(): every experiment writes one JSON record (config, results,
+  git commit, timestamp) to results/runs/. These files are the evidence
+  trail; scripts/make_data_book.py builds the data book and a (git-ignored)
+  results/runs/INDEX.csv from them. No shared file is appended to, so two
+  people running experiments never create a merge conflict.
 """
 
-import csv
 import json
 import os
 import platform
@@ -115,7 +116,7 @@ def _jsonable(o):
 
 
 def record_run(experiment: str, config: dict, results: dict, summary: str = "") -> Path:
-    """Save a run record and append it to results/runs/INDEX.csv.
+    """Save one run record to results/runs/.
 
     summary: one short human-readable line (e.g. "clean AUROC 0.62 [0.51, 0.74]").
     """
@@ -138,13 +139,5 @@ def record_run(experiment: str, config: dict, results: dict, summary: str = "") 
     }
     out = RUNS_DIR / f"{now:%Y-%m-%d_%H%M%S}_{experiment}.json"
     out.write_text(json.dumps(_jsonable(record), indent=2) + "\n", encoding="utf-8")
-
-    index = RUNS_DIR / "INDEX.csv"
-    new = not index.exists()
-    with index.open("a", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        if new:
-            w.writerow(["timestamp", "experiment", "git_commit", "git_dirty", "summary", "file"])
-        w.writerow([record["timestamp"], experiment, commit, dirty, summary, out.name])
     print(f"\nRun recorded: {out}")
     return out
