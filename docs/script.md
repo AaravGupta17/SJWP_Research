@@ -1,6 +1,6 @@
 # AcousticLeakNet — GENIUS Olympiad 2026 AI Category
 ## Video Presentation Script — Word for Word
-### Aarav Gupta & Armaan Guha · Delhi Public School Noida
+### Aarav Gupta & Armaan Guha
 
 **Total target: ≤ 5 minutes**
 **Format: Screen recording of slides with voiceover**
@@ -23,7 +23,7 @@
 >
 > The technology to find these leaks has existed since the 1980s — acoustic correlators that listen at two points on a pipe and compute the Time Difference of Arrival of the leak signal to locate the fault. But commercial units cost fifteen to thirty-five thousand dollars. Around four thousand urban water utilities in India alone simply cannot afford them. Beyond economics, every million litres lost underground wastes five hundred kilowatt-hours of pumping energy — a direct carbon cost.
 >
-> For our dataset, we simulated eight EPANET hydraulic benchmark networks — four for training: NW_Model1, BWSN-2, BWSN, and KY9; one for validation: Net6; and three completely held-out test networks: L-TOWN from the Czech Republic with nine hundred and five pipes, KY15 from Kentucky with six hundred and sixty-two pipes, and Richmond from the UK with just forty-four pipes. That's a twenty-times size range across three continents. We ran every network across four pipe materials — Cast Iron, Ductile Iron, PVC, and Steel — and three demand multipliers: 0.7, 1.0, and 1.2 times baseline. The result is one hundred and 0.5 million rows across a hundred and fifteen thousand simulation files. No pipe, topology, or hydraulic condition from any test network ever appeared during training."
+> For our dataset, we simulated eight EPANET hydraulic benchmark networks — four for training: NW_Model1, BWSN-2, BWSN, and KY9; one for validation: Net6; and three completely held-out test networks: L-TOWN from Limassol, Cyprus with nine hundred and five pipes, KY15 from Kentucky with six hundred and sixty-two pipes, and Richmond from the UK with just forty-four pipes. That's a twenty-times size range across three continents. We ran every network across four pipe materials — Cast Iron, Ductile Iron, PVC, and Steel — and three demand multipliers: 0.7, 1.0, and 1.2 times baseline. The result is one hundred and 0.5 million rows across a hundred and fifteen thousand simulation files. No pipe, topology, or hydraulic condition from any test network ever appeared during training."
 
 ---
 
@@ -72,7 +72,7 @@
 >
 > Combined mean: AUROC 1.0000, F1 1.0000, PosMAE 0.0478, severity R-squared 0.684 across thirty-eight thousand six hundred and sixty-four samples.
 >
-> Why does it generalise? TDOA signatures, frequency-dependent attenuation profiles, and the Torricelli amplitude-pressure relationship are all governed by physical laws that are independent of network topology. The same physics operates in Czech Republic, USA, and UK — which is exactly why training on simulations generalises across them.
+> Why does it generalise? TDOA signatures, frequency-dependent attenuation profiles, and the Torricelli amplitude-pressure relationship are all governed by physical laws that are independent of network topology. The same physics operates in Cyprus, USA, and UK — which is exactly why training on simulations generalises across them.
 >
 > Table 7 shows the twelve-combination network-by-material breakdown. AUROC is perfect or near-perfect in every single cell. Cast Iron consistently achieves the lowest PosMAE because its highest wave speed produces the sharpest TDOA. Localisation error increases with pipe length — KY15 and Richmond have much longer individual pipes than L-TOWN, so even a small normalised error translates to a larger physical distance."
 

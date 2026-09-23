@@ -1,16 +1,19 @@
 """
-AcousticLeakNet — 1D CNN with Cross-Channel Attention
-======================================================
-Architecture designed specifically for 2-sensor acoustic leak detection.
+AcousticLeakNet — 1D CNN with Cross-Channel Gating
+===================================================
+Architecture for 2-sensor acoustic leak detection.
 
-Novel element: Cross-Channel Attention module that explicitly learns to
-compare the two sensor signals — the computational equivalent of TDOA
-cross-correlation, but learned end-to-end rather than hand-engineered.
+The two sensor channels are encoded by a shared CNN, then each channel's
+feature map is re-weighted by a gate computed from time-averaged
+summaries of both channels (CrossChannelAttention below). The gate is
+constant over time, so this block does NOT align or compare the channels
+in time and is not equivalent to cross-correlation / TDOA. Any timing
+information the model uses must come from the convolutional layers.
+Whether the gate helps at all is tested by the fusion="concat" ablation.
 
-No existing published paper in the water leak detection space uses this.
-The closest prior art (FiT-WST+, 2025) uses single-channel accelerometer
-data. Our architecture is designed for 2-sensor systems and explicitly
-models the inter-sensor relationship that encodes leak location.
+We did not find prior published work using this exact 2-channel design
+for water-pipe leaks; the closest work we found (FiT-WST+, 2025) uses
+single-channel accelerometer data. This is not a systematic review.
 
 Multi-task outputs:
   1. Detection  — binary (BCEWithLogitsLoss)
@@ -60,16 +63,17 @@ class ConvBlock(nn.Module):
 
 class CrossChannelAttention(nn.Module):
     """
-    Efficient cross-channel attention using global context vectors.
+    Cross-channel feature gating (squeeze-and-excitation style).
 
-    Instead of computing a full T×T attention matrix (which is O(T²) memory),
-    we compress each channel to a global context vector and use it to
-    gate the other channel's features. This is O(T) memory and captures
-    the same inter-channel relationship needed for TDOA learning.
+    Each channel's feature map is average-pooled over time to a context
+    vector; the two context vectors are concatenated and mapped to one
+    sigmoid weight per feature channel, which scales f1 at every time step.
 
-    Physical interpretation: the model learns a summary of what sensor 2
-    detected and uses it to reweight the features of sensor 1 — equivalent
-    to asking "given what sensor 2 heard, which parts of sensor 1 are important?"
+    What it can do: emphasise feature channels (e.g. frequency bands) based
+    on what both sensors heard overall.
+    What it cannot do: use timing. Pooling removes the time axis before the
+    gate is computed, so the block has no access to the inter-sensor delay.
+    The class name is kept for checkpoint compatibility.
     """
 
     def __init__(self, channels: int):
@@ -120,21 +124,29 @@ class CrossChannelAttention(nn.Module):
 
 class AcousticLeakNet(nn.Module):
     """
-    1D CNN + Cross-Channel Attention for acoustic leak detection.
+    1D CNN + cross-channel gating for acoustic leak detection.
 
     Input:
-        signal  : (B, 2, 8000) — 2-channel waveform at 8kHz
-        scalars : (B, 9)       — physics metadata
+        signal  : (B, 2, 2000) — 2-channel waveform, 5 kHz, 0.4 s window
+        scalars : (B, 11)      — physics metadata (zeroed at train/test time)
 
     Output:
         det_logit : (B,)  — detection logit
         pos_pred  : (B,)  — normalised leak position [0,1]
         sev_pred  : (B,)  — leak flow rate (L/s)
+
+    fusion:
+        "cca"    — CrossChannelAttention gating (original model)
+        "concat" — ablation: encoder features concatenated with no gating
     """
 
     def __init__(self, signal_length: int = 2000, n_scalars: int = 11,
-                 base_channels: int = 64, dropout: float = 0.3):
+                 base_channels: int = 64, dropout: float = 0.3,
+                 fusion: str = "cca"):
         super().__init__()
+        if fusion not in ("cca", "concat"):
+            raise ValueError(f"fusion must be 'cca' or 'concat', got {fusion!r}")
+        self.fusion = fusion
         C = base_channels
 
         # ── Stage 1: Per-channel feature extraction ────────────────────────────
@@ -151,11 +163,11 @@ class AcousticLeakNet(nn.Module):
         )
         enc_channels = C * 4   # 256
 
-        # ── Stage 2: Cross-Channel Attention (NOVEL) ──────────────────────────
-        # Compares features between sensor 1 and sensor 2
-        # This is where the model learns TDOA-equivalent representations
-        self.cross_attn_1to2 = CrossChannelAttention(enc_channels)
-        self.cross_attn_2to1 = CrossChannelAttention(enc_channels)
+        # ── Stage 2: Cross-channel gating (skipped for fusion="concat") ────────
+        # Time-constant per-feature gates; see CrossChannelAttention docstring
+        if fusion == "cca":
+            self.cross_attn_1to2 = CrossChannelAttention(enc_channels)
+            self.cross_attn_2to1 = CrossChannelAttention(enc_channels)
 
         # Merge: concatenate both attended feature maps → reduce
         self.merge = nn.Sequential(
@@ -230,9 +242,12 @@ class AcousticLeakNet(nn.Module):
         f1 = self.channel_encoder(ch1)   # (B, enc_channels, T/16)
         f2 = self.channel_encoder(ch2)   # (B, enc_channels, T/16)
 
-        # Cross-channel attention: each channel attends to the other
-        f1_attended = self.cross_attn_1to2(f1, f2)   # ch1 learns from ch2
-        f2_attended = self.cross_attn_2to1(f2, f1)   # ch2 learns from ch1
+        # Cross-channel gating: each channel re-weighted using both summaries
+        if self.fusion == "cca":
+            f1_attended = self.cross_attn_1to2(f1, f2)
+            f2_attended = self.cross_attn_2to1(f2, f1)
+        else:
+            f1_attended, f2_attended = f1, f2
 
         # Merge attended features
         merged = self.merge(torch.cat([f1_attended, f2_attended], dim=1))

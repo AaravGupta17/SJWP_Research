@@ -49,9 +49,9 @@ def pregenerate_test(network, index_csv, cache_dir):
 
 if __name__ == "__main__":
     networks = {
-        "Network_3": ("../csv/test_Network_3.csv", "../cache/test_Network_3"),
-        "Network_6": ("../csv/test_Network_6.csv", "../cache/test_Network_6"),
-        "Network_8": ("../csv/test_Network_8.csv", "../cache/test_Network_8"),
+        "Network_3": ("../data/csv/test_Network_3.csv", "../cache/test_Network_3"),
+        "Network_6": ("../data/csv/test_Network_6.csv", "../cache/test_Network_6"),
+        "Network_8": ("../data/csv/test_Network_8.csv", "../cache/test_Network_8"),
     }
 
     for network, (index_csv, cache_dir) in networks.items():

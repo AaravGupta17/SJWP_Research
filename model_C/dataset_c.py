@@ -196,10 +196,17 @@ class LeakDataset(Dataset):
     def __init__(self, index_csv: str,
                  signal_length: int = SIGNAL_LENGTH,
                  sampling_frequency: int = MODEL_FS,
-                 augment: bool = False):
+                 augment: bool = False,
+                 snr_override_db: float = None,
+                 include_pressure_dc: bool = True):
         self.signal_length = signal_length
         self.fs            = sampling_frequency
         self.augment       = augment
+        # Experiment hooks (defaults reproduce the original Model C data):
+        #   snr_override_db     — fixed leak SNR (dB) instead of Torricelli-mapped
+        #   include_pressure_dc — add the pressure-proportional DC offset
+        self.snr_override_db     = snr_override_db
+        self.include_pressure_dc = include_pressure_dc
         self.noise_bank    = get_noise_bank()
 
         print(f"Loading {index_csv}")
@@ -357,8 +364,9 @@ class LeakDataset(Dataset):
         center_freq, bandwidth, damping = MATERIAL_ACOUSTIC.get(mat, DEFAULT_ACOUSTIC)
 
         result = self._get_noise(c["flow_velocity"], c["demand"])
-        result[0] += c["p_left"]  * 3e-4
-        result[1] += c["p_right"] * 3e-4
+        if self.include_pressure_dc:
+            result[0] += c["p_left"]  * 3e-4
+            result[1] += c["p_right"] * 3e-4
 
         if c["leak_status"] != 1 or (c["d_left"] <= 0 and c["d_right"] <= 0):
             return self._normalize(result)
@@ -374,6 +382,8 @@ class LeakDataset(Dataset):
         snr_db          = SNR_DB_MIN + (SNR_DB_MAX - SNR_DB_MIN) * torricelli_norm
         snr_db         += np.random.uniform(-1.5, 1.5)   # small jitter only
         snr_db          = np.clip(snr_db, SNR_DB_MIN, SNR_DB_MAX)
+        if self.snr_override_db is not None:
+            snr_db = self.snr_override_db
         snr_linear      = 10 ** (snr_db / 20.0)
         amp             = max(noise_rms * snr_linear, 1e-7)
 

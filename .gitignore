@@ -6,14 +6,16 @@
 /cache_c/
 /cache_d/
 /cache_v2/
+/cache_sweep/
+/cache_mendeley/
 
 # Regenerable index files (exceed GitHub 100MB LFS limit)
-/csv/train_index.csv
-/csv/val_index.csv
-/csv/test_index.csv
+/data/csv/train_index.csv
+/data/csv/val_index.csv
+/data/csv/test_index.csv
 
 # Large .inp file (exceeds 100MB limit)
-/inp/L-TOWN.inp
+/data/inp/L-TOWN.inp
 
 # Python
 __pycache__/
@@ -44,3 +46,9 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local-only notes (may contain identifying info; never submitted)
+/private/
+
+# Test cache
+.pytest_cache/

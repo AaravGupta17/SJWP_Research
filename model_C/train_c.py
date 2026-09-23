@@ -31,6 +31,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", type=int, default=42)
+parser.add_argument("--fusion", choices=["cca", "concat"], default="cca",
+                    help="concat = ablation without cross-channel gating")
 args = parser.parse_args()
 CACHE_ROOT  = Path("../cache_c")
 MODELS_DIR  = Path("../models")
@@ -38,7 +40,8 @@ PLOTS_DIR   = Path("../plots")
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
-CKPT_NAME = f"best_model_c_seed{args.seed}.pt"
+CKPT_NAME = (f"best_model_c_seed{args.seed}.pt" if args.fusion == "cca"
+             else f"best_model_c_{args.fusion}_seed{args.seed}.pt")
 
 CFG = {
     "batch_size":    256,
@@ -48,6 +51,7 @@ CFG = {
     "base_channels": 64,
     "dropout":       0.3,
     "seed": args.seed,
+    "fusion":        args.fusion,
 
 }
 
@@ -213,7 +217,8 @@ def train():
 
     model     = AcousticLeakNet(signal_length=2000, n_scalars=11,
                                 base_channels=CFG["base_channels"],
-                                dropout=CFG["dropout"]).to(device)
+                                dropout=CFG["dropout"],
+                                fusion=CFG["fusion"]).to(device)
     criterion = UncertaintyLoss().to(device)
     optimizer = torch.optim.AdamW(
         list(model.parameters()) + list(criterion.parameters()),

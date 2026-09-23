@@ -1,6 +1,6 @@
 [
   {
-    "network": "Network 3 (Anytown)",
+    "network": "L-TOWN (Network 3)",
     "auroc": 1.0,
     "f1": 1.0,
     "accuracy": 1.0,
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "network": "Network 6 (Richmond)",
+    "network": "KY15 (Network 6)",
     "auroc": 1.0,
     "f1": 0.9999,
     "accuracy": 0.9999,
@@ -40,7 +40,7 @@
     ]
   },
   {
-    "network": "Network 8 (Kentucky)",
+    "network": "Richmond (Network 8)",
     "auroc": 1.0,
     "f1": 1.0,
     "accuracy": 1.0,

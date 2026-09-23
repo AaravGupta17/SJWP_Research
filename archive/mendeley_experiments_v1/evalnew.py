@@ -41,9 +41,9 @@ PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 TEST_SPLITS = ["test_network_3", "test_network_6", "test_network_8"]
 NETWORK_NAMES = {
-    "test_network_3": "Network 3 (Anytown)",
-    "test_network_6": "Network 6 (Richmond)",
-    "test_network_8": "Network 8 (Kentucky)",
+    "test_network_3": "L-TOWN (Network 3)",
+    "test_network_6": "KY15 (Network 6)",
+    "test_network_8": "Richmond (Network 8)",
 }
 
 

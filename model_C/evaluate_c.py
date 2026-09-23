@@ -36,13 +36,17 @@ RESULTS_DIR = Path("../results")
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
-CKPT_NAME = "best_model_c_v4.pt"
+import argparse
+_parser = argparse.ArgumentParser()
+_parser.add_argument("--ckpt", default="best_model_c_v4.pt",
+                     help="checkpoint file name inside ../models")
+CKPT_NAME = _parser.parse_args().ckpt
 
 TEST_SPLITS = ["test_network_3", "test_network_6", "test_network_8"]
 NETWORK_NAMES = {
-    "test_network_3": "Network 3 (Anytown)",
-    "test_network_6": "Network 6 (Richmond)",
-    "test_network_8": "Network 8 (Kentucky)",
+    "test_network_3": "L-TOWN (Network 3)",
+    "test_network_6": "KY15 (Network 6)",
+    "test_network_8": "Richmond (Network 8)",
 }
 
 
@@ -204,7 +208,8 @@ def main():
     model = AcousticLeakNet(
         signal_length=2000, n_scalars=11,
         base_channels=cfg["base_channels"],
-        dropout=cfg["dropout"]
+        dropout=cfg["dropout"],
+        fusion=cfg.get("fusion", "cca"),
     ).to(device)
     model.load_state_dict(ckpt["model_state"])
     print(f"Loaded epoch {ckpt['epoch']} | val AUROC={ckpt['val_auroc']:.4f}")
@@ -224,9 +229,11 @@ def main():
         print_summary(all_results)
         results_out = [{k: v for k, v in r.items() if k not in ("probs", "true")}
                        for r in all_results]
-        with open(RESULTS_DIR / "test_results_c.json", "w") as f:
+        out_name = ("test_results_c.json" if CKPT_NAME == "best_model_c_v4.pt"
+                    else f"test_results_{Path(CKPT_NAME).stem}.json")
+        with open(RESULTS_DIR / out_name, "w") as f:
             json.dump(results_out, f, indent=2)
-        print(f"\nSaved: {RESULTS_DIR}/test_results_c.json")
+        print(f"\nSaved: {RESULTS_DIR}/{out_name}")
 
 
 if __name__ == "__main__":

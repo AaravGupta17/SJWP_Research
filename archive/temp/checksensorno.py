@@ -29,7 +29,7 @@ def calculate_sensors(inp_file):
 
 
 # Example usage
-inp_path = "../inp/NW_Model1.inp"
+inp_path = "../data/inp/NW_Model1.inp"
 total, details = calculate_sensors(inp_path)
 
 print("Total Sensors Required:", total)

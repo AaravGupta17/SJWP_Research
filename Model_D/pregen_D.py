@@ -1,19 +1,4 @@
-"""
-pregenerate_d.py — Pre-generate Model D signals to disk
-========================================================
-Identical to pregenerate_c.py but:
-  - Imports dataset_d.py (Model D signal synthesis)
-  - Writes to ../cache_d/ (does not overwrite Model C cache)
 
-Usage:
-    python pregenerate_d.py --split all
-    python pregenerate_d.py --split train
-    python pregenerate_d.py --split val
-
-IMPORTANT: Delete ../cache_d/ before running if regenerating.
-    Windows: rmdir /s /q ..\cache_d
-    Linux:   rm -rf ../cache_d
-"""
 
 import os
 os.environ["OMP_NUM_THREADS"] = "2"
@@ -31,11 +16,11 @@ from dataset_d import LeakDataset
 CACHE_ROOT = Path("../cache_d")
 
 SPLIT_CSV = {
-    "train":          "../csv/train_sampled.csv",
-    "val":            "../csv/val_sampled.csv",
-    "test_network_3": "../csv/test_network_3.csv",
-    "test_network_6": "../csv/test_network_6.csv",
-    "test_network_8": "../csv/test_network_8.csv",
+    "train":          "../data/csv/train_sampled.csv",
+    "val":            "../data/csv/val_sampled.csv",
+    "test_network_3": "../data/csv/test_network_3.csv",
+    "test_network_6": "../data/csv/test_network_6.csv",
+    "test_network_8": "../data/csv/test_network_8.csv",
 }
 
 

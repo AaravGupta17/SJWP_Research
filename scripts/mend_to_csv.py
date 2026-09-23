@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 # CONFIGURATION
 # ======================================================
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-INP_FILE = os.path.join(SCRIPT_DIR, "../inp/mend.inp")
+INP_FILE = os.path.join(SCRIPT_DIR, "../data/inp/mend.inp")
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "../datasets/NetworkList/Network_9")
 TEMPLATE_DIR = os.path.join(OUTPUT_DIR, "templates")
 

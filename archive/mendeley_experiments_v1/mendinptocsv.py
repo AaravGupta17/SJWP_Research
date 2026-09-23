@@ -55,7 +55,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 # PATHS
 # ──────────────────────────────────────────────────────────────────────────────
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
-INP_FILE    = "../inp/mend.inp"
+INP_FILE    = "../data/inp/mend.inp"
 OUTPUT_CSV  = "../datasets/NetworkList/NetworkMend/mend.csv"
 
 # ──────────────────────────────────────────────────────────────────────────────

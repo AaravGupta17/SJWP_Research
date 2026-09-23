@@ -34,11 +34,11 @@ from dataset_c import LeakDataset
 CACHE_ROOT = Path("../cache_c")
 
 SPLIT_CSV = {
-    "train":          "../csv/train_sampled.csv",
-    "val":            "../csv/val_sampled.csv",
-    "test_network_3": "../csv/test_network_3.csv",
-    "test_network_6": "../csv/test_network_6.csv",
-    "test_network_8": "../csv/test_network_8.csv",
+    "train":          "../data/csv/train_sampled.csv",
+    "val":            "../data/csv/val_sampled.csv",
+    "test_network_3": "../data/csv/test_network_3.csv",
+    "test_network_6": "../data/csv/test_network_6.csv",
+    "test_network_8": "../data/csv/test_network_8.csv",
 }
 
 

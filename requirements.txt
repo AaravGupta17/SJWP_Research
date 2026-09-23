@@ -1,7 +1,9 @@
 numpy
 pandas
+scipy
 torch
 tqdm
 wntr
 scikit-learn
 matplotlib
+pytest

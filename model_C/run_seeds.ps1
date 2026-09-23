@@ -2,9 +2,10 @@
 # Run from your model_C directory:
 # powershell -ExecutionPolicy Bypass -File run_seeds.ps1
 
-$python = "C:\Users\armaan\PycharmProjects\SJWP_Research\.venv\Scripts\python.exe"
-$script = "C:\Users\armaan\PycharmProjects\SJWP_Research\model_C\train_c.py"
+$python = Join-Path $PSScriptRoot "..\.venv\Scripts\python.exe"
+$script = Join-Path $PSScriptRoot "train_c.py"
 $seeds  = @(42, 123, 7)
+$fusion = "cca"   # set to "concat" for the ablation run
 
 foreach ($seed in $seeds) {
     Write-Host ""
@@ -13,7 +14,7 @@ foreach ($seed in $seeds) {
     Write-Host "  Time: $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Cyan
     Write-Host "========================================" -ForegroundColor Cyan
 
-    & $python $script --seed $seed
+    & $python $script --seed $seed --fusion $fusion
 
     Write-Host ""
     Write-Host "  Seed $seed finished at $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Green

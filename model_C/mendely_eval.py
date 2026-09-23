@@ -345,18 +345,11 @@ def evaluate(model, device):
               f"{delta:+.4f}")
         print(f"{'='*55}")
 
-        if auroc >= 0.80:
-            print(f"\n  RESULT: Model works well on real accelerometer data")
-            print(f"  CONCLUSION: Gap was sensor modality mismatch")
-        elif auroc >= 0.60:
-            print(f"\n  RESULT: Partial improvement")
-            print(f"  CONCLUSION: Modality + flow scale both contribute")
-        elif auroc >= 0.50:
-            print(f"\n  RESULT: Slight improvement")
-            print(f"  CONCLUSION: Flow scale mismatch is dominant")
-        else:
-            print(f"\n  RESULT: No improvement — check CSV DEBUG output above")
-            print(f"  CONCLUSION: Data loading issue likely")
+        # No automatic "conclusion" here: an AUROC value alone cannot tell
+        # which domain-gap factor is responsible. See experiments/ for the
+        # controlled tests (loudness_probe.py, mendeley_eval.py).
+        print(f"\n  NOTE: this script z-scores each window, which does not match")
+        print(f"  the fixed-scale normalisation used in training.")
 
     else:
         print(f"  ERROR: Could not compute AUROC")
