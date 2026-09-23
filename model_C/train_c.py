@@ -33,15 +33,18 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--seed", type=int, default=42)
 parser.add_argument("--fusion", choices=["cca", "concat"], default="cca",
                     help="concat = ablation without cross-channel gating")
+parser.add_argument("--cache", default="cache_c",
+                    help="pre-generated cache folder in the repo root (cache_e for Model E)")
+parser.add_argument("--prefix", default="c", help="checkpoint name prefix (e for Model E)")
 args = parser.parse_args()
-CACHE_ROOT  = Path("../cache_c")
+CACHE_ROOT  = Path("..") / args.cache
 MODELS_DIR  = Path("../models")
 PLOTS_DIR   = Path("../plots")
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
-CKPT_NAME = (f"best_model_c_seed{args.seed}.pt" if args.fusion == "cca"
-             else f"best_model_c_{args.fusion}_seed{args.seed}.pt")
+CKPT_NAME = (f"best_model_{args.prefix}_seed{args.seed}.pt" if args.fusion == "cca"
+             else f"best_model_{args.prefix}_{args.fusion}_seed{args.seed}.pt")
 
 CFG = {
     "batch_size":    256,
@@ -52,6 +55,7 @@ CFG = {
     "dropout":       0.3,
     "seed": args.seed,
     "fusion":        args.fusion,
+    "cache":         args.cache,
 
 }
 
@@ -62,10 +66,13 @@ class CachedDataset(Dataset):
         self.signals = np.load(str(cache_dir / "signals.npy"), mmap_mode="r")
         self.labels  = np.load(str(cache_dir / "labels.npy"),  mmap_mode="r")
         self.augment = augment
-        print(f"CachedDataset [{split}]: {len(self.signals):,} samples | augment={augment}")
+        # rows whose synthesis failed are stored with label -1: skip them
+        self.idx     = np.flatnonzero(np.asarray(self.labels[:, 0]) >= 0)
+        print(f"CachedDataset [{split}]: {len(self.idx):,} samples "
+              f"({len(self.signals) - len(self.idx)} failed rows skipped) | augment={augment}")
 
     def __len__(self):
-        return len(self.signals)
+        return len(self.idx)
 
     def _augment(self, sig):
         sig = sig * np.random.uniform(0.85, 1.15)
@@ -74,6 +81,7 @@ class CachedDataset(Dataset):
         return sig
 
     def __getitem__(self, idx):
+        idx = self.idx[idx]
         sig = self.signals[idx].copy().astype(np.float32)
         lab = self.labels[idx]
         if self.augment:

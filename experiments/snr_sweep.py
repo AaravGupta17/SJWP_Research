@@ -143,7 +143,7 @@ def main():
         ax[0, j].axvspan(0.5, 12, color="grey", alpha=0.12, label="training SNR range")
         ax[0, j].set_title(name)
         ax[0, j].set_ylabel("Detection AUROC")
-        ax[0, j].set_ylim(0.4, 1.02)
+        ax[0, j].set_ylim(0.0, 1.02)
         ax[1, j].set_xlabel("Leak SNR (dB)")
         ax[1, j].set_ylabel("Position MAE (fraction of span)")
         for a in ax[:, j]:

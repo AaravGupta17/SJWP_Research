@@ -31,6 +31,7 @@ import argparse
 from pathlib import Path
 
 import numpy as np
+from scipy.special import expit
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -105,7 +106,7 @@ def main():
         for mode, x in (("zscore", x_z), ("fixed", x_fixed)):
             logit = predict_proba(model, x, logits=True)
             r = report_sets(ws, logit, args.n_boot, threshold=0.0)
-            prob = 1 / (1 + np.exp(-logit.astype(np.float32)))
+            prob = expit(logit.astype(np.float32))
             # share of outputs whose float32 probability is exactly 0 or 1
             # (these tie, and deflated the AUROC of the original evaluation)
             r["saturated_prob_fraction"] = float(np.mean((prob == 0) | (prob == 1)))

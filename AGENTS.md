@@ -22,8 +22,10 @@ research / science-fair project, so **evidence integrity matters more than resul
 
 - `model_C/` main model: `dataset_c.py` (synthesiser), `model.py` (canonical architecture),
   `pregen_c.py`, `train_c.py`, `evaluate_c.py`. `Model_D/` = Model C + extra realism.
-- `experiments/` E1–E5 (loudness probe, shortcut audit, SNR sweep, Mendeley eval, label
-  efficiency). Shared helpers in `experiments/_common.py`; metrics in `experiments/metrics.py`.
+  `Model_E/` = synthesiser fixes (`dataset_e.py`, `pregen_e.py`); trained with
+  `train_c.py --cache cache_e --prefix e`.
+- `experiments/` E1–E8 (loudness probe, shortcut audit, SNR sweep, Mendeley eval, label
+  efficiency, data overview, texture probe, realism check). Shared helpers in `experiments/_common.py`; metrics in `experiments/metrics.py`.
 - `baselines/` classical detectors (RMS energy, cross-correlation, GCC-PHAT).
 - `scripts/` older Model B pipeline and EPANET → CSV index building.
 - `results/` metrics JSON; `results/runs/` dated run records + `INDEX.csv`. `plots/` figures.
@@ -39,6 +41,9 @@ research / science-fair project, so **evidence integrity matters more than resul
 | E3 | `python experiments/snr_sweep.py --no-dc` |
 | E4 | `python experiments/mendeley_eval.py` |
 | E5 | `python experiments/label_efficiency.py` (GPU; `--quick` for a smoke run) |
+| E6 | `python experiments/data_overview.py` |
+| E7 | `python experiments/texture_probe.py` |
+| E8 | `python experiments/realism_check.py` |
 
 Every experiment writes a record via `record_run()` to `results/runs/`. Set `LEAKNET_OUT=<dir>`
 to redirect plots and run records for smoke tests so they don't mix with real results.

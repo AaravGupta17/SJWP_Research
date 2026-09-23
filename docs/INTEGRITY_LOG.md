@@ -20,8 +20,20 @@ dated list of self-found mistakes shows judges that the evidence has been checke
 | 11 | Scripts still pointed at the old `../csv/` and `../inp/` folders after the move to `data/`. | Paths updated. |
 | 12 | AUROC was computed on sigmoid probabilities. The checkpoints output such large logits that many float32 probabilities are exactly 1.0 (or 0.0). Tied scores push AUROC toward 0.5, so earlier real-data AUROCs (0.501, 0.515) may understate how well the model ranks windows. | experiments/ compute AUROC on logits; E4 also reports the old-style AUROC and the saturated fraction, so the size of the effect is measured. Test: `tests/test_metrics.py::test_saturated_sigmoid_hides_ranking_but_logits_do_not`. |
 
+## 23 Sep 2026: after the E1–E5 runs
+
+| # | Problem found | Correction |
+|---|---|---|
+| 13 | Hypothesis in #6 (scaling mismatch causes the real-data false alarms) was **tested and rejected** by E4: matched scaling reduced false alarms only from 100% to 88–91%. | README and CLAIMS updated. #6 stays as a record of the preprocessing mismatch, not as the explanation. |
+| 14 | Model C's synthesiser adds 60% of the leak signal to both channels with **zero delay** (`dataset_c.py`, `CORRELATION_ALPHA`). In noise-free synthetic leaks, cross-correlation lag vs true TDOA gives r = 0.00 (r = 1.00 without that component). The synthetic data never contained a usable time-delay cue, so the model's localisation cannot be timing-based, and GCC-PHAT (MAE ≈ 0.25) was structurally unable to work. | Documented; test `tests/test_dataset_e.py::test_model_c_synthetic_leak_has_no_recoverable_tdoa`. Model E uses physical fractional delays. Claims about TDOA-based localisation removed. |
+| 15 | `np.roll` delays in Model C/D wrap the end of the window back to the start. | Model E uses a linear fractional delay (`tests/test_dataset_e.py::test_fractional_delay_is_linear_not_circular`). |
+| 16 | Leak rows with no valid leak distance were labelled "leak" but synthesised as pure noise. | Model E drops them (`test_leak_rows_without_source_are_dropped`). E3 reports how many exist per network. |
+| 17 | Rows whose synthesis failed are stored with label −1, and `train_c.py` / `evaluate_c.py` would train and evaluate on that −1 target. | Both now skip rows with label < 0 and print how many were skipped. |
+| 18 | `pregen_c.py` never seeded the random generator, so caches can't be regenerated identically. | `Model_E/pregen_e.py` seeds per split. Model C's existing caches are unchanged. |
+
 ## Still open
 
 - `L-TOWN.inp` is not committed (it's over 100 MB). The README says where to get it.
 - Git history still contains the school name (older versions of `docs/script.md` and `TO_DO.md`). If the repository link goes into the IRIS submission, publish a fresh copy without that history, or keep the repo private.
 - No LICENSE chosen yet.
+- Model C/D material acoustic parameters (PVC highest centre frequency, least damping) look inverted relative to the field literature (Hunaidi & Chu 1999; Gao et al. 2004/2005). Not yet checked against the papers; deliberately left unchanged in Model E.
