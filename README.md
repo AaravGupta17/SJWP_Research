@@ -10,36 +10,53 @@ reduce the amount of real labelled data needed?
 
 ## Current status of results
 
+All numbers link to run records in `results/runs/` (23 Sep 2026). Real-data AUROCs are computed
+on logits, with 95% CIs from a bootstrap over recordings.
+
+**Synthetic data (in-domain)**
+
 | Test | Result | Evidence |
 |---|---|---|
-| Held-out synthetic networks (L-TOWN, KY15, Richmond), Model C | AUROC 1.000 on all three | `results/test_results_c.json` |
-| Real recordings (Mendeley testbed, accelerometers), zero-shot, original preprocessing | AUROC 0.501; flags 99.7% / 99.2% of Looped / Branched no-leak windows as leaks | `results/mendeley_accelerometer_results.json` |
-| Real recordings after retraining on Mendeley-matched synthetic data | AUROC 0.515 | `results/experiment2_results.json` |
-| Leak-free noise fed to the checkpoints (E1) | Model C/D checkpoints output P(leak) ≈ 1 for pure noise with RMS ≥ 0.05; the Mendeley-fine-tuned checkpoint switches at RMS 1.0 (exactly the level of z-scored input) | `plots/e1_loudness_probe.png`, `results/runs/2026-09-23_185508_e1_loudness_probe.json` |
+| Held-out synthetic networks, Model C | AUROC 1.000 on L-TOWN, KY15, Richmond | `results/test_results_c.json` |
+| Trivial features on the same test sets (E2) | Peak amplitude 0.92–0.97, RMS 0.77–0.85; DC offset not used (removing it leaves AUROC 1.000) | `results/runs/2026-09-23_202204_e2_shortcut_audit.json` |
+| Leak SNR sweep (E3) | Model AUROC ≥ 0.97 down to −15 dB, 0.84–0.90 at −20 dB; RMS detector ≈ 0.50–0.53 (chance) at ≤ −10 dB | `results/runs/2026-09-23_202425_e3_snr_sweep.json`, `plots/e3_snr_sweep.png` |
+| Localisation (E3) | Model position MAE 0.016–0.094 at native SNR; GCC-PHAT ≈ 0.25 = always guessing the midpoint | same |
+| Is the synthetic time delay recoverable? | No: cross-correlation lag vs true TDOA r = 0.00 in noise-free Model C leaks (r = 1.00 once the zero-delay shared component is removed). The model's localisation cannot be timing-based | `tests/test_dataset_e.py::test_model_c_synthetic_leak_has_no_recoverable_tdoa` |
+
+**Real recordings (Mendeley accelerometers; clean test = Looped: 16 leak, 4 no-leak recordings)**
+
+| Test | Result | Evidence |
+|---|---|---|
+| Original evaluation (legacy) | AUROC 0.501, ~99% false alarms | `results/mendeley_accelerometer_results.json` |
+| Zero-shot, logit AUROC (E4) | 8 checkpoint × scaling combinations: 0.37–0.77. Only 2 have a CI lower bound above 0.5 (C seed42 fixed 0.73 [0.56, 0.88]; D z-score 0.77 [0.54, 0.94]), and the same architecture with another seed (C v4) scores 0.40. These are the best 2 of 8 and are not consistent, so they are not evidence of transfer. False alarms 88–100% at the default threshold in every case | `results/runs/2026-09-23_202146_e4_mendeley_eval.json` |
+| Training-matched input scaling (E4) | False alarms only 100% → 88–91%: scaling is **not** the main cause | same |
+| Loudness as a leak score (E4) | Looped RMS AUROC 0.21 (no-leak recordings are louder); band-energy classifier trained on Branched scores 0.10 on Looped | same |
+| Label efficiency, Branched → Looped (E5) | No method clearly above chance; synthetic pretraining is **worse** than training from scratch at every budget ≥ 5% (≈0.2–0.3 vs ≈0.4–0.56) | `results/runs/2026-09-23_204135_e5_label_efficiency.json`, `plots/e5_label_efficiency.png` |
+| Leak-free noise into the checkpoints (E1) | Model C/D flag pure Gaussian noise as a leak from RMS 0.05 | `results/runs/2026-09-23_185508_e1_loudness_probe.json` |
 
 How to read these:
 
-- The synthetic test networks provide new pipe geometry, but their waveforms come from the same
-  synthesiser used for training, where leak windows contain an injected source and no-leak
-  windows do not. The 1.000 therefore shows the pipeline works in its own domain; it does not
-  show transfer to real pipes. E2 and E3 test how hard this benchmark actually is.
-- The real-data failure has an identified cause (E1): training inputs were scaled by a fixed
-  reference (leak-free windows have RMS ≈ 0.1), but the real-data evaluation z-scored every
-  window (RMS = 1.0), and the trained networks behave like a loudness threshold. E4 re-runs the
-  real-data evaluation with training-matched scaling and a clean test set.
-- The original AUROCs were computed on sigmoid probabilities. These models output logits large
-  enough that float32 probabilities round to exactly 1.0, and tied scores pull AUROC toward
-  0.5. All experiments/ scripts compute AUROC on logits and report the saturated fraction.
+- In its own domain, the model learned more than loudness: it detects leaks at SNRs where an
+  energy detector is at chance. But the synthetic leak carries no usable time delay, so
+  localisation must come from the level difference between the two sensors.
+- On real recordings, nothing tested separates leak from no-leak reliably. Fixing the scaling
+  mismatch did not help. The current working hypothesis is that the synthetic no-leak class
+  contained a single noise texture (one set of hydrophone recordings), so any unfamiliar
+  noise looks like a leak. E7 tests this, and Model E is the corresponding fix.
+- The clean real test has only 4 no-leak recordings, and loudness is inverted between leak and
+  no-leak in Looped. E6 checks whether this comes from confounding by flow condition. The
+  dataset is too small to support strong real-world claims either way.
 
 ## Repository layout
 
 ```
 model_C/          Model C: synthesiser (dataset_c.py), model, training, evaluation  ← main model
 Model_D/          Model D: Model C + extra realism (leak types, attenuation, noise)
+Model_E/          Model E: synthesiser fixes targeting the diagnosed failures (dataset_e.py)
 scripts/          Model B pipeline + index building from EPANET output
 baselines/        Classical detectors on the synthetic caches: RMS energy,
                   cross-correlation, GCC-PHAT
-experiments/      E1–E5 (see below); every run is logged to results/runs/
+experiments/      E1–E8 (see below); every run is logged to results/runs/
 tests/            Unit tests (pytest), no data needed
 data/inp, data/csv  EPANET networks and sample index files (Git LFS)
 models/           Checkpoints (Git LFS)
@@ -80,6 +97,24 @@ python train_c.py --seed 42               # add --fusion concat for the gating a
 python evaluate_c.py --ckpt best_model_c_v4.pt
 ```
 
+## Model E (synthesiser fixes)
+
+`Model_E/dataset_e.py` subclasses Model C's synthesiser. It uses physical fractional delays (no
+zero-delay shared component, no wrap-around), diverse no-leak noise textures, non-leak
+interferers (bursts, pump hum), an accelerometer-like response, ±6 dB gain jitter, a −10 to
+12 dB leak SNR range, no DC offset, and it drops leak rows that have no leak source. Each change
+is a switch, for ablations.
+
+```bash
+cd Model_E
+python pregen_e.py --split all            # -> ../cache_e (seeded, reproducible)
+cd ../model_C
+python train_c.py --cache cache_e --prefix e --seed 42
+python evaluate_c.py --ckpt best_model_e_seed42.pt --cache cache_e
+python evaluate_c.py --ckpt best_model_c_v4.pt  --cache cache_e   # Model C on the harder data
+```
+Then run E4, E5 and E7 with `--ckpts best_model_e_seed42.pt` / `--ckpt best_model_e_seed42.pt`.
+
 ## Experiments
 
 Run from the repository root. Each script prints its results, saves a plot to `plots/`, and
@@ -94,6 +129,9 @@ writes a dated record (config, results, git commit) to `results/runs/`.
 | E5 | Does synthetic pretraining reduce the real labelled data needed? | Mendeley accelerometer, GPU | `python experiments/label_efficiency.py` |
 | B  | Classical baselines on the synthetic caches | `cache_c` | `python baselines/energy.py`, `gccphat.py`, `crosscorr.py` |
 | A  | Does cross-channel gating help? (3 seeds each) | `cache_c`, GPU | `model_C/run_seeds.ps1` with `$fusion = "concat"`, then `evaluate_c.py --ckpt ...` |
+| E6 | What separates leak from no-leak in the real data? Confounding by flow condition? | Mendeley | `python experiments/data_overview.py` (add `--sensor hydrophone --root datasets/Hydrophone/Hydrophone` for hydrophones) |
+| E7 | Does the model flag every unfamiliar noise texture as a leak? | Mendeley hydrophone + accelerometer | `python experiments/texture_probe.py` |
+| E8 | How distinguishable are synthetic windows from real ones (Model C vs E)? | EPANET CSVs + noise bank + Mendeley | `python experiments/realism_check.py` |
 
 Metrics on real data are AUROC, detection rate, false-alarm rate and balanced accuracy, with
 95% confidence intervals from a bootstrap over **recordings** (windows from one recording are

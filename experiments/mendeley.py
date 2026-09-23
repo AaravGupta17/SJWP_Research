@@ -80,6 +80,15 @@ def sensor_stem(name: str) -> str:
     return re.sub(r"[_\- ]?(A|H)[12]$", "", stem)
 
 
+def flow_condition(rec_id: str) -> str:
+    """Operating condition from a recording id.
+    'Looped/No-leak/LO_NL_0.18 LPS' -> '0.18 LPS'; '..._ND' -> 'ND';
+    '..._Transient' -> 'Transient'. Hydrophone ids may carry an extra
+    '_N'/'_NN' suffix, which is ignored."""
+    parts = rec_id.split("/")[-1].split("_")
+    return parts[2] if len(parts) > 2 else "unknown"
+
+
 def _partner(path: Path, tag1: str, tag2: str) -> Path:
     # replace only the LAST occurrence of the channel tag
     i = path.name.rfind(tag1)

@@ -5,7 +5,9 @@
 $python = Join-Path $PSScriptRoot "..\.venv\Scripts\python.exe"
 $script = Join-Path $PSScriptRoot "train_c.py"
 $seeds  = @(42, 123, 7)
-$fusion = "cca"   # set to "concat" for the ablation run
+$fusion = "cca"      # set to "concat" for the ablation run
+$cache  = "cache_c"  # "cache_e" to train Model E
+$prefix = "c"        # "e" for Model E
 
 foreach ($seed in $seeds) {
     Write-Host ""
@@ -14,7 +16,7 @@ foreach ($seed in $seeds) {
     Write-Host "  Time: $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Cyan
     Write-Host "========================================" -ForegroundColor Cyan
 
-    & $python $script --seed $seed --fusion $fusion
+    & $python $script --seed $seed --fusion $fusion --cache $cache --prefix $prefix
 
     Write-Host ""
     Write-Host "  Seed $seed finished at $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Green

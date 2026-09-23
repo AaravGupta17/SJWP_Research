@@ -29,7 +29,6 @@ except ImportError:
 
 from model import AcousticLeakNet
 
-CACHE_ROOT  = Path("../cache_c")
 MODELS_DIR  = Path("../models")
 PLOTS_DIR   = Path("../plots")
 RESULTS_DIR = Path("../results")
@@ -40,7 +39,10 @@ import argparse
 _parser = argparse.ArgumentParser()
 _parser.add_argument("--ckpt", default="best_model_c_v4.pt",
                      help="checkpoint file name inside ../models")
-CKPT_NAME = _parser.parse_args().ckpt
+_parser.add_argument("--cache", default="cache_c", help="cache folder in the repo root")
+_args = _parser.parse_args()
+CKPT_NAME = _args.ckpt
+CACHE_ROOT = Path("..") / _args.cache
 
 TEST_SPLITS = ["test_network_3", "test_network_6", "test_network_8"]
 NETWORK_NAMES = {
@@ -55,11 +57,13 @@ class CachedDataset(Dataset):
         cache_dir    = CACHE_ROOT / split
         self.signals = np.load(str(cache_dir / "signals.npy"), mmap_mode="r")
         self.labels  = np.load(str(cache_dir / "labels.npy"),  mmap_mode="r")
+        self.idx     = np.flatnonzero(np.asarray(self.labels[:, 0]) >= 0)   # skip failed rows
 
     def __len__(self):
-        return len(self.signals)
+        return len(self.idx)
 
     def __getitem__(self, idx):
+        idx = self.idx[idx]
         sig = self.signals[idx].copy().astype(np.float32)
         lab = self.labels[idx]
         return (torch.from_numpy(sig),
@@ -231,6 +235,8 @@ def main():
                        for r in all_results]
         out_name = ("test_results_c.json" if CKPT_NAME == "best_model_c_v4.pt"
                     else f"test_results_{Path(CKPT_NAME).stem}.json")
+        if CACHE_ROOT.name != "cache_c":
+            out_name = out_name.replace(".json", f"_on_{CACHE_ROOT.name}.json")
         with open(RESULTS_DIR / out_name, "w") as f:
             json.dump(results_out, f, indent=2)
         print(f"\nSaved: {RESULTS_DIR}/{out_name}")
