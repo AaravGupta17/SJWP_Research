@@ -165,7 +165,7 @@ def save_table(df, filename, title):
 # EXPORT
 # ==========================================
 
-save_table(df1, "Table1.png", "Table 1. Dataset Composition and Network Split")
-save_table(df2, "Table2.png", "Table 2. Cross-Network Performance Comparison — Model A vs Model B")
+save_table(df1, "../docs/figures/Table1.png", "Table 1. Dataset Composition and Network Split")
+save_table(df2, "../docs/figures/Table2.png", "Table 2. Cross-Network Performance Comparison — Model A vs Model B")
 
 print("Tables generated successfully.")

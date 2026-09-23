@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("../csv/test_index.csv")
+df = pd.read_csv("../data/csv/test_index.csv")
 df = df.dropna(subset=["demand_multiplier"])
 
 for network in ["Network_3", "Network_6", "Network_8"]:
@@ -21,6 +21,6 @@ for network in ["Network_3", "Network_6", "Network_8"]:
             frac=1, random_state=42
         ).reset_index(drop=True)
 
-    out_path = f"../csv/test_{network}.csv"
+    out_path = f"../data/csv/test_{network}.csv"
     combined.to_csv(out_path, index=False)
     print(f"  Saved {len(combined)} samples → {out_path}")

@@ -24,7 +24,7 @@ Pipe_Pressure_Right1_m (leak)
 Pipe_Pressure_Right2_m (leak)
 
 
-            what aarav my baby needs
+            columns needed downstream
 
             sensor_position_m (base)
             Avg_Flow_Velocity_mps — flow velocity in this pipe segment

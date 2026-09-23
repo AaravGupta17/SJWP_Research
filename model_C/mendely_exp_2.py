@@ -1,20 +1,26 @@
 """
 mendeley_experiment2.py — Mendeley Flow-Matched Retraining + Eval
 ==================================================================
-Experiment 2: Proves Mendeley gap is domain mismatch, not model failure.
+Experiment 2: Tests whether retraining on Mendeley-matched synthetic data
+closes the sim-to-real gap. (Result: it did not; AUROC 0.515.)
 
 Pipeline:
   1. Synthesise waveforms from mend.csv (Mendeley-matched EPANET simulation)
   2. Fine-tune Model C on these waveforms (small dataset, few epochs)
   3. Evaluate on real Mendeley accelerometer data (A1/A2 CSVs)
      - Auto-detects sampling rate from CSV timestamps
-     - Uses joint normalisation matching training pipeline
+     - Uses per-window joint z-score. NOTE: this does NOT match the
+       fixed-scale normalisation used in synthesise_pair(); see
+       experiments/loudness_probe.py for why this causes ~all-leak output
   4. Output three-row AUROC comparison table
 
-Expected result:
+Expected vs actual results:
   Municipal EPANET → Municipal pipes  : AUROC 1.000  (existing result)
   Municipal EPANET → Mendeley pipes   : AUROC ~0.49  (Experiment 1 result)
-  Mendeley EPANET  → Mendeley pipes   : AUROC ~0.79+ (this experiment)
+  Mendeley EPANET  → Mendeley pipes   : AUROC 0.515 (actual result, see
+                                        results/experiment2_results.json;
+                                        ~0.79 was a pre-run expectation
+                                        and was never achieved)
 """
 
 import os

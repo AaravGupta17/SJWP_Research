@@ -1,152 +1,116 @@
-# AcousticLeakNet — Deep Learning for Water Pipe Leak Detection
+# AcousticLeakNet
 
-A 1D CNN with Cross-Channel Attention for detecting, localising, and severity-scoring leaks in water distribution networks using dual-sensor acoustic data. Built for the SJWP (Singapore Junior Water Prize) research project.
+A two-sensor acoustic leak detector for water pipes, trained on physics-based synthetic
+waveforms generated from EPANET hydraulic simulations, and tested both on held-out
+synthetic networks and on real pipe-testbed recordings.
 
-## Problem
+**Research question:** can a leak detector trained only on synthetic acoustics transfer to
+real recordings, what causes it to fail when it does not, and does synthetic pretraining
+reduce the amount of real labelled data needed?
 
-Non-revenue water (NRW) losses from leaking pipes cost municipalities billions annually. Traditional acoustic sensors struggle in noisy urban environments. This project uses synthetic acoustic waveforms generated from EPANET hydraulic simulations to train a neural network that detects leaks from paired sensor signals, learning time-difference-of-arrival (TDOA) representations end-to-end.
+## Current status of results
 
-## Architecture
+| Test | Result | Evidence |
+|---|---|---|
+| Held-out synthetic networks (L-TOWN, KY15, Richmond), Model C | AUROC 1.000 on all three | `results/test_results_c.json` |
+| Real recordings (Mendeley testbed, accelerometers), zero-shot, original preprocessing | AUROC 0.501; flags 99.7% / 99.2% of Looped / Branched no-leak windows as leaks | `results/mendeley_accelerometer_results.json` |
+| Real recordings after retraining on Mendeley-matched synthetic data | AUROC 0.515 | `results/experiment2_results.json` |
+| Leak-free noise fed to the checkpoints (E1) | Model C/D checkpoints output P(leak) ≈ 1 for pure noise with RMS ≥ 0.05; the Mendeley-fine-tuned checkpoint switches at RMS 1.0 (exactly the level of z-scored input) | `plots/e1_loudness_probe.png`, `results/runs/2026-09-23_185508_e1_loudness_probe.json` |
 
-**AcousticLeakNet** takes a 2-channel waveform (two sensors, 5kHz sampling) and pipe metadata as input, and outputs:
+How to read these:
 
-| Task | Output | Loss |
-|------|--------|------|
-| Detection | Binary logit | BCEWithLogitsLoss |
-| Localisation | Normalised position [0, 1] | HuberLoss (leak-only) |
-| Severity | Flow rate (L/s) | HuberLoss (leak-only) |
+- The synthetic test networks provide new pipe geometry, but their waveforms come from the same
+  synthesiser used for training, where leak windows contain an injected source and no-leak
+  windows do not. The 1.000 therefore shows the pipeline works in its own domain; it does not
+  show transfer to real pipes. E2 and E3 test how hard this benchmark actually is.
+- The real-data failure has an identified cause (E1): training inputs were scaled by a fixed
+  reference (leak-free windows have RMS ≈ 0.1), but the real-data evaluation z-scored every
+  window (RMS = 1.0), and the trained networks behave like a loudness threshold. E4 re-runs the
+  real-data evaluation with training-matched scaling and a clean test set.
+- The original AUROCs were computed on sigmoid probabilities. These models output logits large
+  enough that float32 probabilities round to exactly 1.0, and tied scores pull AUROC toward
+  0.5. All experiments/ scripts compute AUROC on logits and report the saturated fraction.
 
-Key architectural novelty: **Cross-Channel Attention** — the model learns to compare features between the two sensor channels, computationally equivalent to cross-correlation TDOA but trained end-to-end.
-
-Uncertainty-weighted multi-task loss (Kendall et al., 2018) automatically balances the three tasks during training.
-
-## Project Structure
+## Repository layout
 
 ```
-├── scripts/              # Main training pipeline (base variant)
-│   ├── build_index.py    # Scan datasets, build CSV index files
-│   ├── pregenerate.py    # Pre-generate waveforms to .npy cache
-│   ├── dataset.py        # LeakDataset — physics-based waveform synthesis
-│   ├── model.py          # AcousticLeakNet architecture + UncertaintyLoss
-│   ├── train.py          # Training loop
-│   ├── evaluate.py       # Cross-network test evaluation
-│   └── index_sampling.py # Stratified sampling for train/val splits
-│
-├── model_C/              # Model C variant (calibrated SNR, correlated channels)
-│   ├── pregen_c.py
-│   ├── train_c.py
-│   ├── evaluate_c.py
-│   └── dataset_c.py
-│
-├── Model_D/              # Model D variant
-│   ├── pregen_D.py
-│   ├── train_D.py
-│   ├── eval_D.py
-│   └── dataset_d.py
-│
-├── scriptnewbby/         # Mendeley accelerometer data experiments
-├── inp/                  # EPANET network input files (LFS)
-├── csv/                  # Index and split CSV files (LFS)
-├── models/               # Saved model checkpoints (LFS)
-├── plots/                # Generated evaluation plots
-├── results/              # JSON evaluation metrics
-├── cache/                # Pre-generated signal cache (gitignored)
-├── datasets/             # Raw EPANET simulation CSVs (gitignored)
-└── requirements.txt
+model_C/          Model C: synthesiser (dataset_c.py), model, training, evaluation  ← main model
+Model_D/          Model D: Model C + extra realism (leak types, attenuation, noise)
+scripts/          Model B pipeline + index building from EPANET output
+baselines/        Classical detectors on the synthetic caches: RMS energy,
+                  cross-correlation, GCC-PHAT
+experiments/      E1–E5 (see below); every run is logged to results/runs/
+tests/            Unit tests (pytest), no data needed
+data/inp, data/csv  EPANET networks and sample index files (Git LFS)
+models/           Checkpoints (Git LFS)
+results/          Metrics JSON; results/runs/ = dated run records + INDEX.csv
+plots/            Figures
+docs/             CLAIMS.md (claim → evidence), INTEGRITY_LOG.md (corrections made)
+archive/          Superseded scratch scripts, kept for history only
 ```
+
+`model_C/model.py` is the canonical architecture (`Model_D/model.py` is an identical copy).
+
+## Data
+
+| Data | Source | Location |
+|---|---|---|
+| EPANET networks | Public benchmark networks; `L-TOWN.inp` is the BattLeDIM network (based on Limassol, Cyprus; Vrachimis et al., 2022). It is >100 MB and not committed: download it into `data/inp/`. | `data/inp/` |
+| Simulation CSVs | Generated by `scripts/inptocsv.py` | `datasets/NetworkList/` (not committed) |
+| Real recordings | Mendeley leak-detection testbed dataset (Aghashahi, Sela & Banks, *Data in Brief*, 2023): accelerometers and hydrophones on a looped and a branched PVC testbed | `datasets/Accelerometer/`, `datasets/Hydrophone/` (not committed) |
+
+The Model C/D synthesiser uses the Mendeley **Branched no-leak hydrophone** recordings as
+background noise. Every experiment that tests on Mendeley data therefore treats Branched
+no-leak as contaminated and reports **Looped-only** as the clean test.
 
 ## Setup
 
 ```bash
-git clone https://github.com/AaravGupta17/SJWP_Research.git
-cd SJWP_Research
 pip install -r requirements.txt
+git lfs install && git lfs pull
+python -m pytest tests          # 1–3 min on CPU, no data needed
 ```
 
-Git LFS is used for large files (`.inp`, `.csv`, `.pt`, `.pth`). Install LFS if you haven't:
-
-```bash
-git lfs install
-git lfs pull
-```
-
-## Usage
-
-### 1. Build the index
-
-Scans the raw dataset CSVs and produces index files mapping each sample to its source file and row.
-
-```bash
-cd scripts
-python build_index.py
-python index_sampling.py   # creates train/val splits
-```
-
-### 2. Pre-generate signals
-
-Converts EPANET simulation data into acoustic waveforms and caches them as `.npy` files. This must be done before training.
-
-```bash
-python pregenerate.py --split all
-# or individually:
-python pregenerate.py --split train
-python pregenerate.py --split val
-python pregenerate.py --split test_network_3
-```
-
-### 3. Train
-
-```bash
-python train.py
-```
-
-Checkpoints are saved to `models/` when validation AUROC improves.
-
-### 4. Evaluate
-
-```bash
-python evaluate.py
-```
-
-Evaluates on unseen test networks (L-TOWN, KY15, Richmond) and saves plots to `plots/` and metrics to `results/`.
-
-### Model C / Model D variants
-
-Same pipeline, different directories:
+## Pipeline (Model C)
 
 ```bash
 cd model_C
-python pregen_c.py --split all
-python train_c.py
-python evaluate_c.py
-
-cd ../Model_D
-python pregen_D.py --split all
-python train_D.py
-python eval_D.py
+python pregen_c.py --split all            # synthesise waveforms into ../cache_c
+python train_c.py --seed 42               # add --fusion concat for the gating ablation
+python evaluate_c.py --ckpt best_model_c_v4.pt
 ```
 
-## Data
+## Experiments
 
-The dataset consists of EPANET hydraulic simulation outputs for 8 municipal water networks, across 4 pipe materials (CI, DI, PVC, STEEL), with multiple leak scenarios and demand multipliers.
+Run from the repository root. Each script prints its results, saves a plot to `plots/`, and
+writes a dated record (config, results, git commit) to `results/runs/`.
 
-| Split | Networks | Purpose |
-|-------|----------|---------|
-| Train | 1, 2, 4, 5, 7 | Model training |
-| Test | 3, 6, 8 | Cross-network generalisation |
+| ID | Question | Needs | Command |
+|---|---|---|---|
+| E1 | Does the network just threshold loudness / DC offset? | checkpoints only | `python experiments/loudness_probe.py` |
+| E2 | Can trivial features (RMS, DC, clipping) already solve the synthetic test sets? | `cache_c` | `python experiments/shortcut_audit.py` |
+| E3 | How do the model, RMS and GCC-PHAT degrade as leak SNR drops? | EPANET CSVs + noise bank | `python experiments/snr_sweep.py --no-dc` |
+| E4 | Zero-shot real-data performance with matched scaling and a clean test set, vs classical baselines | Mendeley accelerometer | `python experiments/mendeley_eval.py` |
+| E5 | Does synthetic pretraining reduce the real labelled data needed? | Mendeley accelerometer, GPU | `python experiments/label_efficiency.py` |
+| B  | Classical baselines on the synthetic caches | `cache_c` | `python baselines/energy.py`, `gccphat.py`, `crosscorr.py` |
+| A  | Does cross-channel gating help? (3 seeds each) | `cache_c`, GPU | `model_C/run_seeds.ps1` with `$fusion = "concat"`, then `evaluate_c.py --ckpt ...` |
 
-Each simulation row contains pipe geometry, flow conditions, pressure readings, and leak metadata. The `LeakDataset` class synthesises 2-channel acoustic waveforms on-the-fly from this metadata using physics-based signal generation (Gaussian pulse source, material-specific acoustic properties, TDOA delays, attenuation, and coloured noise).
+Metrics on real data are AUROC, detection rate, false-alarm rate and balanced accuracy, with
+95% confidence intervals from a bootstrap over **recordings** (windows from one recording are
+not independent). F1 and accuracy are not used as headline metrics because the real data is
+80% leak windows.
 
-## Signal Generation
+## Known limitations
 
-Waveforms are synthesised from simulation parameters, not recorded from real sensors:
+- No physical hardware was built or tested; any on-device (ESP32) latency or cost figures are
+  design estimates, not measurements.
+- The synthesiser has hand-set parameters (material centre frequencies, 0.6 channel
+  correlation, SNR range, Model D leak-type mix).
+- The cross-channel gating block is time-constant (squeeze-and-excitation style); it does not
+  perform time alignment or cross-correlation.
+- The real-data test uses one laboratory testbed (PVC, short pipes), which differs from buried
+  municipal mains in material, scale and noise.
 
-- **Source**: Gaussian-envelope pulse at material-dependent centre frequency
-- **Propagation**: Time-delayed to each sensor based on distance and wave speed
-- **Attenuation**: Exponential decay with material-specific damping
-- **Noise**: Colored (flow turbulence) + white (thermal) + ground vibration
-- **Augmentation**: ±15% wave speed perturbation, amplitude scaling, optional Gaussian noise
+## License
 
-## Citation
-
-If using this work, please cite the relevant SJWP submission.
+Not yet chosen.

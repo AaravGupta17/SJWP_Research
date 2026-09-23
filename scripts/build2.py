@@ -5,8 +5,8 @@ from tqdm import tqdm
 DATA_ROOT = "../datasets/NetworkList"
 TRAIN_NETWORKS = ["Network_1", "Network_2", "Network_4", "Network_5", "Network_7"]
 TEST_NETWORKS = ["Network_3", "Network_6", "Network_8"]
-TRAIN_OUTPUT = "../csv/train_index.csv"
-TEST_OUTPUT = "../csv/test_index.csv"
+TRAIN_OUTPUT = "../data/csv/train_index.csv"
+TEST_OUTPUT = "../data/csv/test_index.csv"
 
 FIELDNAMES = [
     "file_path", "row_idx", "network_id", "material_id",
@@ -98,7 +98,7 @@ def process_networks(network_list, output_csv):
     return total_samples
 
 
-os.makedirs("../csv", exist_ok=True)
+os.makedirs("../data/csv", exist_ok=True)
 print("Building training index...")
 train_total = process_networks(TRAIN_NETWORKS, TRAIN_OUTPUT)
 print(f"Total training samples: {train_total}")

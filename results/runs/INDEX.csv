@@ -1,0 +1,2 @@
+timestamp,experiment,git_commit,git_dirty,summary,file
+2026-09-23T18:55:08,e1_loudness_probe,702fe35,True,c_v4: P>=0.5 from RMS 0.05; c_seed42: P>=0.5 from RMS 0.05; c_seed123: P>=0.5 from RMS 0.03; d: P>=0.5 from RMS 0.05; mend: P>=0.5 from RMS 1.0,2026-09-23_185508_e1_loudness_probe.json

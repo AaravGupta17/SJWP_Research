@@ -14,9 +14,9 @@ TRAIN_NETWORKS = ["Network_1", "Network_2", "Network_4", "Network_5"]
 VAL_NETWORKS   = ["Network_7"]
 TEST_NETWORKS  = ["Network_3", "Network_6", "Network_8"]
 
-TRAIN_INDEX = "../csv/train_index.csv"
-TEST_INDEX  = "../csv/test_index.csv"
-OUT_DIR     = Path("../csv")
+TRAIN_INDEX = "../data/csv/train_index.csv"
+TEST_INDEX  = "../data/csv/test_index.csv"
+OUT_DIR     = Path("../data/csv")
 
 SAMPLES_PER_GROUP = 15000   # per network+material+demand+file_type group
 SEED = 42
@@ -81,7 +81,7 @@ for net in TEST_NETWORKS:
     df.to_csv(out, index=False)
     print(f"  {net}: {len(df):,} samples → {out}")
 
-print("\nDone. Files saved to ../csv/")
+print("\nDone. Files saved to ../data/csv/")
 print("  train_sampled.csv")
 print("  val_sampled.csv")
 print("  test_network_3.csv")

@@ -17,35 +17,35 @@ Cd = float(0.75)
 # ======================================================
 NETWORKS = {
     "NW_Model1": {
-        "inp": "../inp/NW_Model1.inp",
+        "inp": "../data/inp/NW_Model1.inp",
         "out": "../datasets/NetworkList/Network_1",
     },
     "Net3": {
-        "inp": "../inp/Net3_(BWSN-2)_Morph_Error_Free_1s-WQ.inp",
+        "inp": "../data/inp/Net3_(BWSN-2)_Morph_Error_Free_1s-WQ.inp",
         "out": "../datasets/NetworkList/Network_2",
     },
     "L-TOWN": {
-        "inp": "../inp/L-TOWN.inp",
+        "inp": "../data/inp/L-TOWN.inp",
         "out": "../datasets/NetworkList/Network_3",
     },
     "BWSN": {
-        "inp": "../inp/BWSN_Network.inp",
+        "inp": "../data/inp/BWSN_Network.inp",
         "out": "../datasets/NetworkList/Network_4",
     },
     "KY9": {
-        "inp": "../inp/ky9.inp",
+        "inp": "../data/inp/ky9.inp",
         "out": "../datasets/NetworkList/Network_5",
     },
     "KY15": {
-        "inp": "../inp/ky15.inp",
+        "inp": "../data/inp/ky15.inp",
         "out": "../datasets/NetworkList/Network_6",
     },
     "Net6": {
-        "inp": "../inp/Net6.inp",
+        "inp": "../data/inp/Net6.inp",
         "out": "../datasets/NetworkList/Network_7",
     },
     "Rich": {
-        "inp": "../inp/Richmond_skeleton.inp",
+        "inp": "../data/inp/Richmond_skeleton.inp",
         "out": "../datasets/NetworkList/Network_8",
     }
 }

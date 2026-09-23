@@ -32,7 +32,7 @@ from tqdm import tqdm
 # ── Config ────────────────────────────────────────────────────────────────────
 DEFAULT_CKPT = Path("../models/best_model_d.pt")
 CACHE_ROOT   = Path("../cache_d")          # ← Model D cache
-CSV_DIR      = Path("../csv")
+CSV_DIR      = Path("../data/csv")
 
 TEST_SPLITS = {
     "Network_3 (L-TOWN, 905 pipes)":  "test_network_3",

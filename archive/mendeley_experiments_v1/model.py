@@ -4,10 +4,10 @@ AcousticLeakNet — 1D CNN with Cross-Channel Attention
 Architecture designed specifically for 2-sensor acoustic leak detection.
 
 Novel element: Cross-Channel Attention module that explicitly learns to
-compare the two sensor signals — the computational equivalent of TDOA
+compare the two sensor signals — intended to relate the two channels (NOTE: the gate is time-constant, so it cannot use TDOA; see model_C/model.py)
 cross-correlation, but learned end-to-end rather than hand-engineered.
 
-No existing published paper in the water leak detection space uses this.
+We did not find prior published work using this design (not a systematic review).
 The closest prior art (FiT-WST+, 2025) uses single-channel accelerometer
 data. Our architecture is designed for 2-sensor systems and explicitly
 models the inter-sensor relationship that encodes leak location.
@@ -65,7 +65,7 @@ class CrossChannelAttention(nn.Module):
     Instead of computing a full T×T attention matrix (which is O(T²) memory),
     we compress each channel to a global context vector and use it to
     gate the other channel's features. This is O(T) memory and captures
-    the same inter-channel relationship needed for TDOA learning.
+    a time-averaged inter-channel summary (no timing; see model_C/model.py).
 
     Physical interpretation: the model learns a summary of what sensor 2
     detected and uses it to reweight the features of sensor 1 — equivalent
@@ -123,7 +123,7 @@ class AcousticLeakNet(nn.Module):
     1D CNN + Cross-Channel Attention for acoustic leak detection.
 
     Input:
-        signal  : (B, 2, 8000) — 2-channel waveform at 8kHz
+        signal  : (B, 2, 2000) — 2-channel waveform, 5 kHz, 0.4 s window
         scalars : (B, 9)       — physics metadata
 
     Output:
@@ -153,7 +153,7 @@ class AcousticLeakNet(nn.Module):
 
         # ── Stage 2: Cross-Channel Attention (NOVEL) ──────────────────────────
         # Compares features between sensor 1 and sensor 2
-        # This is where the model learns TDOA-equivalent representations
+        # Time-constant gating only; it cannot represent TDOA
         self.cross_attn_1to2 = CrossChannelAttention(enc_channels)
         self.cross_attn_2to1 = CrossChannelAttention(enc_channels)
 

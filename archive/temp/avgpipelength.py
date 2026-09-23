@@ -2,7 +2,7 @@ import wntr
 import numpy as np
 
 # ===== SET YOUR INP FILE PATH HERE =====
-inp_file_path = r"../inp/Net6.inp"
+inp_file_path = r"../data/inp/Net6.inp"
 # =======================================
 
 

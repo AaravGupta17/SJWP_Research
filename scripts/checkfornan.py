@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("../csv/train_index_sampled.csv")
+df = pd.read_csv("../data/csv/train_index_sampled.csv")
 
 print(f"Total rows: {len(df)}")
 print(f"\n--- NaN check ---")

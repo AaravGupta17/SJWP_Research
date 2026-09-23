@@ -399,7 +399,7 @@ if __name__ == "__main__":
     print_summary()
 
     inp_content = build_inp()
-    output_file = "../inp/mend.inp"
+    output_file = "../data/inp/mend.inp"
 
     with open(output_file, "w") as f:
         f.write(inp_content)
