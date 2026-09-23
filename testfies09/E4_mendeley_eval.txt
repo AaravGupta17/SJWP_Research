@@ -1,0 +1,64 @@
+=== E4_mendeley_eval: python experiments/mendeley_eval.py  (Wed Sep 23 20:18:49 IST 2026) ===
+Loading accelerometer recordings from C:\Users\armaan\PycharmProjects\SJWP_Research\datasets\Accelerometer\Accelerometer (file_norm=none)
+  Looped/Orifice Leak/LO_OL_0.18 LPS                              88 windows
+  Looped/Orifice Leak/LO_OL_0.47 LPS                              89 windows
+  Looped/Orifice Leak/LO_OL_ND                                    89 windows
+  Looped/Orifice Leak/LO_OL_Transient                             90 windows
+  Looped/Longitudinal Crack/LO_LC_0.18 LPS                        89 windows
+  Looped/Longitudinal Crack/LO_LC_0.47 LPS                        89 windows
+  Looped/Longitudinal Crack/LO_LC_ND                              89 windows
+  Looped/Longitudinal Crack/LO_LC_Transient                       93 windows
+  Looped/Circumferential Crack/LO_CC_0.18 LPS                     90 windows
+  Looped/Circumferential Crack/LO_CC_0.47 LPS                     89 windows
+  Looped/Circumferential Crack/LO_CC_ND                           89 windows
+  Looped/Circumferential Crack/LO_CC_Transient                    89 windows
+  Looped/Gasket Leak/LO_GL_0.18 LPS                               89 windows
+  Looped/Gasket Leak/LO_GL_0.47 LPS                               91 windows
+  Looped/Gasket Leak/LO_GL_ND                                     90 windows
+  Looped/Gasket Leak/LO_GL_Transient                              89 windows
+  Looped/No-leak/LO_NL_0.18 LPS                                   89 windows
+  Looped/No-leak/LO_NL_0.47 LPS                                   89 windows
+  Looped/No-leak/LO_NL_ND                                         89 windows
+  Looped/No-leak/LO_NL_Transient                                  87 windows
+  Branched/Orifice Leak/BR_OL_0.18 LPS                            89 windows
+  Branched/Orifice Leak/BR_OL_0.47 LPS                            89 windows
+  Branched/Orifice Leak/BR_OL_ND                                  89 windows
+  Branched/Orifice Leak/BR_OL_Transient                           93 windows
+  Branched/Longitudinal Crack/BR_LC_0.18 LPS                      84 windows
+  Branched/Longitudinal Crack/BR_LC_0.47 LPS                      90 windows
+  Branched/Longitudinal Crack/BR_LC_ND                            90 windows
+  Branched/Longitudinal Crack/BR_LC_Transient                     91 windows
+  Branched/Circumferential Crack/BR_CC_0.18 LPS                   89 windows
+  Branched/Circumferential Crack/BR_CC_0.47 LPS                   87 windows
+  Branched/Circumferential Crack/BR_CC_ND                         91 windows
+  Branched/Circumferential Crack/BR_CC_Transient                  90 windows
+  Branched/Gasket Leak/BR_GL_0.18 LPS                             89 windows
+  Branched/Gasket Leak/BR_GL_0.47 LPS                             90 windows
+  Branched/Gasket Leak/BR_GL_ND                                   90 windows
+  Branched/Gasket Leak/BR_GL_Transient                            88 windows
+  Branched/No-leak/BR_NL_0.18 LPS                                 90 windows
+  Branched/No-leak/BR_NL_0.47 LPS                                 89 windows
+  Branched/No-leak/BR_NL_ND                                       89 windows
+  Branched/No-leak/BR_NL_Transient                                91 windows
+3574 windows, 40 recordings, 2861 leak windows
+Fixed-scale reference (10 x Branched no-leak RMS): 0.0595637
+best_model_c_v4.pt         zscore clean AUROC 0.401 [0.151, 0.657] | detect 1.000 [1.000, 1.000] | false alarm 1.000 [1.000, 1.000] | saturated 99%
+best_model_c_v4.pt         fixed  clean AUROC 0.404 [0.088, 0.743] | detect 1.000 [1.000, 1.000] | false alarm 0.884 [0.717, 1.000] | saturated 97%
+best_model_c_seed42.pt     zscore clean AUROC 0.710 [0.472, 0.901] | detect 1.000 [1.000, 1.000] | false alarm 1.000 [1.000, 1.000] | saturated 100%
+C:\Users\armaan\PycharmProjects\SJWP_Research\experiments\mendeley_eval.py:108: RuntimeWarning: overflow encountered in exp
+  prob = 1 / (1 + np.exp(-logit.astype(np.float32)))
+best_model_c_seed42.pt     fixed  clean AUROC 0.727 [0.555, 0.876] | detect 1.000 [1.000, 1.000] | false alarm 0.898 [0.717, 1.000] | saturated 99%
+best_model_d.pt            zscore clean AUROC 0.771 [0.537, 0.943] | detect 1.000 [1.000, 1.000] | false alarm 1.000 [1.000, 1.000] | saturated 100%
+best_model_d.pt            fixed  clean AUROC 0.374 [0.128, 0.617] | detect 1.000 [1.000, 1.000] | false alarm 0.907 [0.717, 1.000] | saturated 98%
+C:\Users\armaan\PycharmProjects\SJWP_Research\experiments\mendeley_eval.py:108: RuntimeWarning: overflow encountered in exp
+  prob = 1 / (1 + np.exp(-logit.astype(np.float32)))
+best_model_mend.pt         zscore clean AUROC 0.388 [0.116, 0.675] | detect 0.987 [0.962, 1.000] | false alarm 0.955 [0.890, 1.000] | saturated 97%
+C:\Users\armaan\PycharmProjects\SJWP_Research\experiments\mendeley_eval.py:108: RuntimeWarning: overflow encountered in exp
+  prob = 1 / (1 + np.exp(-logit.astype(np.float32)))
+best_model_mend.pt         fixed  clean AUROC 0.525 [0.161, 0.900] | detect 0.000 [0.000, 0.000] | false alarm 0.000 [0.000, 0.000] | saturated 83%
+rms                               clean AUROC 0.207 [0.031, 0.378]
+gcc_peak                          clean AUROC 0.438 [0.270, 0.559]
+band-energy logreg (Branched->Looped) clean AUROC 0.097 [0.006, 0.232] | detect 0.113 [0.000, 0.259] | false alarm 0.819 [0.676, 0.961]
+
+Run recorded: C:\Users\armaan\PycharmProjects\SJWP_Research\results\runs\2026-09-23_202146_e4_mendeley_eval.json
+=== exit code 0, 178s ===

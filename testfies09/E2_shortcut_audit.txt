@@ -1,0 +1,34 @@
+=== E2_shortcut_audit: python experiments/shortcut_audit.py  (Wed Sep 23 20:21:47 IST 2026) ===
+
+L-TOWN (Network 3)  (n=4000, leak=2000)
+  rms         AUROC = 0.8545
+  dc          AUROC = 0.3363
+  max_abs     AUROC = 0.9705
+  clip_frac   AUROC = 0.5000
+  gcc_peak    AUROC = 0.3162
+  model       AUROC = 1.0000
+  model_noDC  AUROC = 1.0000
+  mean |DC|: leak 0.0077  no-leak 0.0100
+
+KY15 (Network 6)  (n=4000, leak=2000)
+  rms         AUROC = 0.8496
+  dc          AUROC = 0.3477
+  max_abs     AUROC = 0.9640
+  clip_frac   AUROC = 0.5000
+  gcc_peak    AUROC = 0.3257
+  model       AUROC = 1.0000
+  model_noDC  AUROC = 1.0000
+  mean |DC|: leak 0.0093  no-leak 0.0124
+
+Richmond (Network 8)  (n=1056, leak=528)
+  rms         AUROC = 0.7695
+  dc          AUROC = 0.4536
+  max_abs     AUROC = 0.9195
+  clip_frac   AUROC = 0.5000
+  gcc_peak    AUROC = 0.3337
+  model       AUROC = 1.0000
+  model_noDC  AUROC = 1.0000
+  mean |DC|: leak 0.0081  no-leak 0.0101
+
+Run recorded: C:\Users\armaan\PycharmProjects\SJWP_Research\results\runs\2026-09-23_202204_e2_shortcut_audit.json
+=== exit code 0, 18s ===

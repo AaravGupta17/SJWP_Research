@@ -1,0 +1,1170 @@
+{
+  "experiment": "e4_mendeley_eval",
+  "timestamp": "2026-09-23T20:21:46",
+  "git_commit": "38661dd",
+  "git_dirty": false,
+  "python": "3.12.10",
+  "torch": "2.7.1+cu118",
+  "device": "cuda",
+  "command": "experiments/mendeley_eval.py",
+  "config": {
+    "root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Accelerometer\\Accelerometer",
+    "sensor": "accelerometer",
+    "ckpts": [
+      "best_model_c_v4.pt",
+      "best_model_c_seed42.pt",
+      "best_model_d.pt",
+      "best_model_mend.pt"
+    ],
+    "legacy_file_norm": false,
+    "n_boot": 2000
+  },
+  "summary": "clean Looped AUROC: c_v4 z=0.401/fixed=0.404, c_seed42 z=0.710/fixed=0.727, d z=0.771/fixed=0.374, mend z=0.388/fixed=0.525; rms 0.207; logreg 0.097",
+  "results": {
+    "n_windows": 3574,
+    "ref_scale": 0.05956366639215238,
+    "file_norm": "none",
+    "models": {
+      "best_model_c_v4.pt": {
+        "zscore": {
+          "clean_looped": {
+            "auroc": 0.4006663668213237,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.15094270891319014,
+                0.6569003595274782
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.3997068288984057,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.1700556476564147,
+                0.6423374544814736
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.4065580890762408,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.23651638489357427,
+                0.5834213881919516
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 1.0,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 0.9874090654728596,
+          "auroc_on_saturated_probs_LEGACY": 0.48428770949720673
+        },
+        "fixed": {
+          "clean_looped": {
+            "auroc": 0.4042092762680301,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.884180790960452,
+            "balanced_accuracy": 0.557909604519774,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.08785757881626606,
+                0.7433550349946644
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.7171428571428572,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.6414285714285715
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.5110894308309178,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.8941504178272981,
+            "balanced_accuracy": 0.552924791086351,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.2285356336598966,
+                0.8012325341380498
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.7596685082872928,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.6201657458563536
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.4709342597871554,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.8892005610098177,
+            "balanced_accuracy": 0.5553997194950911,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.26299268548420646,
+                0.6698731199245754
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.787896610061287,
+                0.9775596072931276
+              ],
+              "balanced_accuracy": [
+                0.5112201963534362,
+                0.6060516949693564
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 0.884180790960452,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 0.9667039731393396,
+          "auroc_on_saturated_probs_LEGACY": 0.577683615819209
+        }
+      },
+      "best_model_c_seed42.pt": {
+        "zscore": {
+          "clean_looped": {
+            "auroc": 0.7102122983934602,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.4724129860756441,
+                0.9005566635095463
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.2854276029168965,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.14207466899603421,
+                0.48471364244539156
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.5197429473016477,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.3493484249508218,
+                0.6886636254312964
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 1.0,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 1.0,
+          "auroc_on_saturated_probs_LEGACY": 0.5
+        },
+        "fixed": {
+          "clean_looped": {
+            "auroc": 0.7274346652779093,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.8983050847457628,
+            "balanced_accuracy": 0.5508474576271186,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.5548625710464918,
+                0.8763801123084144
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.7171428571428572,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.6414285714285715
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.5597287387599876,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.9303621169916435,
+            "balanced_accuracy": 0.5348189415041782,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.31142482711374664,
+                0.8104376999808554
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.7928176795580111,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.6035911602209945
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.6472545373703424,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.9144460028050491,
+            "balanced_accuracy": 0.5427769985974755,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.4998176633802812,
+                0.7745910046152713
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.8125,
+                0.9958043423057389
+              ],
+              "balanced_accuracy": [
+                0.5020978288471306,
+                0.59375
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 0.8983050847457628,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 0.9904868494683827,
+          "auroc_on_saturated_probs_LEGACY": 0.5550847457627119
+        }
+      },
+      "best_model_d.pt": {
+        "zscore": {
+          "clean_looped": {
+            "auroc": 0.7710582173405296,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.5369569215043136,
+                0.9434439855565542
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.45726115034570414,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.2755132266766609,
+                0.6514454491064071
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.6254617276494404,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 1.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.4695388515690376,
+                0.7737504996932754
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                1.0,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 1.0,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 1.0,
+          "auroc_on_saturated_probs_LEGACY": 0.5
+        },
+        "fixed": {
+          "clean_looped": {
+            "auroc": 0.374449625982388,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.9067796610169492,
+            "balanced_accuracy": 0.5466101694915254,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.1278527851096092,
+                0.6170286917580913
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.7171428571428572,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.6414285714285715
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.4694480235316592,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.9192200557103064,
+            "balanced_accuracy": 0.5403899721448469,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.1297102237135587,
+                0.8003389443899609
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.7845303867403315,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.6077348066298343
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.42166427356729,
+            "detection_rate": 1.0,
+            "false_alarm_rate": 0.9130434782608695,
+            "balanced_accuracy": 0.5434782608695652,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.2139737643259169,
+                0.6259293959022589
+              ],
+              "detection_rate": [
+                1.0,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.8085038382495164,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5957480808752418
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 0.9067796610169492,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 0.9773363178511472,
+          "auroc_on_saturated_probs_LEGACY": 0.5536723163841808
+        }
+      },
+      "best_model_mend.pt": {
+        "zscore": {
+          "clean_looped": {
+            "auroc": 0.3875441877347473,
+            "detection_rate": 0.9874301675977654,
+            "false_alarm_rate": 0.9548022598870056,
+            "balanced_accuracy": 0.5163139538553798,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.11643025405438774,
+                0.6753162974439016
+              ],
+              "detection_rate": [
+                0.9621318373071529,
+                1.0
+              ],
+              "false_alarm_rate": [
+                0.8904494382022472,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.48743016759776536,
+                0.5485340575460026
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.608394361914267,
+            "detection_rate": 0.9930020993701889,
+            "false_alarm_rate": 0.9220055710306406,
+            "balanced_accuracy": 0.5354982641697741,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.27150731598239025,
+                0.8949615292970604
+              ],
+              "detection_rate": [
+                0.9859843373292669,
+                0.9986023759608665
+              ],
+              "false_alarm_rate": [
+                0.7762430939226519,
+                1.0
+              ],
+              "balanced_accuracy": [
+                0.4954765299367876,
+                0.6084059681755172
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.4956311433982077,
+            "detection_rate": 0.9902132121635792,
+            "false_alarm_rate": 0.938288920056101,
+            "balanced_accuracy": 0.5259621460537391,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.27226962408938565,
+                0.7124437416151364
+              ],
+              "detection_rate": [
+                0.9769788181541837,
+                0.9989495890235688
+              ],
+              "false_alarm_rate": [
+                0.860325415082234,
+                0.9957865168539326
+              ],
+              "balanced_accuracy": [
+                0.49651927675551144,
+                0.5662407321446747
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 0.9498607242339833,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 1.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 0.9548022598870056,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 1.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 0.9678231673195299,
+          "auroc_on_saturated_probs_LEGACY": 0.5309353596565982
+        },
+        "fixed": {
+          "clean_looped": {
+            "auroc": 0.5251860224726194,
+            "detection_rate": 0.0,
+            "false_alarm_rate": 0.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1432,
+            "n_no_leak": 354,
+            "ci95": {
+              "auroc": [
+                0.16074918322615045,
+                0.9001539657749668
+              ],
+              "detection_rate": [
+                0.0,
+                0.0
+              ],
+              "false_alarm_rate": [
+                0.0,
+                0.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "branched_CONTAMINATED": {
+            "auroc": 0.5268444536277,
+            "detection_rate": 0.0,
+            "false_alarm_rate": 0.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 1429,
+            "n_no_leak": 359,
+            "ci95": {
+              "auroc": [
+                0.19121973969589456,
+                0.880013165098793
+              ],
+              "detection_rate": [
+                0.0,
+                0.0
+              ],
+              "false_alarm_rate": [
+                0.0,
+                0.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 16,
+            "n_groups_no_leak": 4
+          },
+          "all_CONTAMINATED": {
+            "auroc": 0.5214021029534393,
+            "detection_rate": 0.0,
+            "false_alarm_rate": 0.0,
+            "balanced_accuracy": 0.5,
+            "threshold": 0.0,
+            "n_leak": 2861,
+            "n_no_leak": 713,
+            "ci95": {
+              "auroc": [
+                0.26863195754079466,
+                0.7696588457350579
+              ],
+              "detection_rate": [
+                0.0,
+                0.0
+              ],
+              "false_alarm_rate": [
+                0.0,
+                0.0
+              ],
+              "balanced_accuracy": [
+                0.5,
+                0.5
+              ]
+            },
+            "n_boot": 2000,
+            "n_groups_leak": 32,
+            "n_groups_no_leak": 8
+          },
+          "clean_looped_per_condition": {
+            "Circumferential Crack": {
+              "flag_rate": 0.0,
+              "n_windows": 357,
+              "n_recordings": 4
+            },
+            "Gasket Leak": {
+              "flag_rate": 0.0,
+              "n_windows": 359,
+              "n_recordings": 4
+            },
+            "Longitudinal Crack": {
+              "flag_rate": 0.0,
+              "n_windows": 360,
+              "n_recordings": 4
+            },
+            "No-leak": {
+              "flag_rate": 0.0,
+              "n_windows": 354,
+              "n_recordings": 4
+            },
+            "Orifice Leak": {
+              "flag_rate": 0.0,
+              "n_windows": 356,
+              "n_recordings": 4
+            }
+          },
+          "saturated_prob_fraction": 0.8346390598768887,
+          "auroc_on_saturated_probs_LEGACY": 0.3135593220338983
+        }
+      }
+    },
+    "baselines": {
+      "rms": {
+        "clean_looped": {
+          "auroc": 0.20658949594419718,
+          "detection_rate": null,
+          "false_alarm_rate": null,
+          "balanced_accuracy": null,
+          "threshold": null,
+          "n_leak": 1432,
+          "n_no_leak": 354,
+          "ci95": {
+            "auroc": [
+              0.030536877537628026,
+              0.37828939872230555
+            ],
+            "detection_rate": null,
+            "false_alarm_rate": null,
+            "balanced_accuracy": null
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 16,
+          "n_groups_no_leak": 4
+        },
+        "branched_CONTAMINATED": {
+          "auroc": 0.4402439713768321,
+          "detection_rate": null,
+          "false_alarm_rate": null,
+          "balanced_accuracy": null,
+          "threshold": null,
+          "n_leak": 1429,
+          "n_no_leak": 359,
+          "ci95": {
+            "auroc": [
+              0.2059844142959334,
+              0.690576482973396
+            ],
+            "detection_rate": null,
+            "false_alarm_rate": null,
+            "balanced_accuracy": null
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 16,
+          "n_groups_no_leak": 4
+        },
+        "all_CONTAMINATED": {
+          "auroc": 0.3083392119096443,
+          "detection_rate": null,
+          "false_alarm_rate": null,
+          "balanced_accuracy": null,
+          "threshold": null,
+          "n_leak": 2861,
+          "n_no_leak": 713,
+          "ci95": {
+            "auroc": [
+              0.17155120036978427,
+              0.4479222620069643
+            ],
+            "detection_rate": null,
+            "false_alarm_rate": null,
+            "balanced_accuracy": null
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 32,
+          "n_groups_no_leak": 8
+        }
+      },
+      "gcc_peak": {
+        "clean_looped": {
+          "auroc": 0.43822791402329325,
+          "detection_rate": null,
+          "false_alarm_rate": null,
+          "balanced_accuracy": null,
+          "threshold": null,
+          "n_leak": 1432,
+          "n_no_leak": 354,
+          "ci95": {
+            "auroc": [
+              0.2702408877802433,
+              0.5590194115598885
+            ],
+            "detection_rate": null,
+            "false_alarm_rate": null,
+            "balanced_accuracy": null
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 16,
+          "n_groups_no_leak": 4
+        },
+        "branched_CONTAMINATED": {
+          "auroc": 0.5213864809916356,
+          "detection_rate": null,
+          "false_alarm_rate": null,
+          "balanced_accuracy": null,
+          "threshold": null,
+          "n_leak": 1429,
+          "n_no_leak": 359,
+          "ci95": {
+            "auroc": [
+              0.49686524863825243,
+              0.5488124854195452
+            ],
+            "detection_rate": null,
+            "false_alarm_rate": null,
+            "balanced_accuracy": null
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 16,
+          "n_groups_no_leak": 4
+        },
+        "all_CONTAMINATED": {
+          "auroc": 0.4790535582013371,
+          "detection_rate": null,
+          "false_alarm_rate": null,
+          "balanced_accuracy": null,
+          "threshold": null,
+          "n_leak": 2861,
+          "n_no_leak": 713,
+          "ci95": {
+            "auroc": [
+              0.3880643061075727,
+              0.5415212115527085
+            ],
+            "detection_rate": null,
+            "false_alarm_rate": null,
+            "balanced_accuracy": null
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 32,
+          "n_groups_no_leak": 8
+        }
+      },
+      "bandenergy_logreg_train_branched": {
+        "clean_looped": {
+          "auroc": 0.0966291070921314,
+          "detection_rate": 0.11312849162011174,
+          "false_alarm_rate": 0.8192090395480226,
+          "balanced_accuracy": 0.14695972603604457,
+          "threshold": 0.5,
+          "n_leak": 1432,
+          "n_no_leak": 354,
+          "ci95": {
+            "auroc": [
+              0.005719880123077878,
+              0.2323159145995384
+            ],
+            "detection_rate": [
+              0.0,
+              0.25933697577467957
+            ],
+            "false_alarm_rate": [
+              0.6761363636363636,
+              0.9606741573033708
+            ],
+            "balanced_accuracy": [
+              0.053476860844226606,
+              0.24994023332908327
+            ]
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 16,
+          "n_groups_no_leak": 4
+        }
+      }
+    }
+  }
+}

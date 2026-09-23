@@ -52,3 +52,8 @@ Thumbs.db
 
 # Test cache
 .pytest_cache/
+
+# Regenerable index files at repo root (exceed GitHub limits)
+/csv/
+/inp/
+

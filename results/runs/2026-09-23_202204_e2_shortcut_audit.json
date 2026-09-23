@@ -1,0 +1,70 @@
+{
+  "experiment": "e2_shortcut_audit",
+  "timestamp": "2026-09-23T20:22:04",
+  "git_commit": "38661dd",
+  "git_dirty": true,
+  "python": "3.12.10",
+  "torch": "2.7.1+cu118",
+  "device": "cuda",
+  "command": "experiments/shortcut_audit.py",
+  "config": {
+    "cache": "cache_c",
+    "ckpt": "best_model_c_v4.pt",
+    "max_samples": 4000,
+    "seed": 0
+  },
+  "summary": "L-TOWN: rms 0.855, model 1.000, noDC 1.000; KY15: rms 0.850, model 1.000, noDC 1.000; Richmond: rms 0.769, model 1.000, noDC 1.000",
+  "results": {
+    "L-TOWN (Network 3)": {
+      "n": 4000,
+      "n_leak": 2000,
+      "auroc": {
+        "rms": 0.8545315000000001,
+        "dc": 0.33628925,
+        "max_abs": 0.970516,
+        "clip_frac": 0.5,
+        "gcc_peak": 0.31615575,
+        "model": 1.0,
+        "model_noDC": 1.0
+      },
+      "mean_dc": {
+        "leak": 0.007721746261307198,
+        "no_leak": 0.010011982201553209
+      }
+    },
+    "KY15 (Network 6)": {
+      "n": 4000,
+      "n_leak": 2000,
+      "auroc": {
+        "rms": 0.8495665,
+        "dc": 0.347668,
+        "max_abs": 0.96400575,
+        "clip_frac": 0.5,
+        "gcc_peak": 0.32570825000000003,
+        "model": 0.9999999999999999,
+        "model_noDC": 1.0
+      },
+      "mean_dc": {
+        "leak": 0.00933562069186474,
+        "no_leak": 0.01241721641924088
+      }
+    },
+    "Richmond (Network 8)": {
+      "n": 1056,
+      "n_leak": 528,
+      "auroc": {
+        "rms": 0.7694666838842975,
+        "dc": 0.45360924586776863,
+        "max_abs": 0.9195039887511478,
+        "clip_frac": 0.5,
+        "gcc_peak": 0.3336920339761249,
+        "model": 1.0,
+        "model_noDC": 1.0
+      },
+      "mean_dc": {
+        "leak": 0.008129758577691722,
+        "no_leak": 0.010144743483199754
+      }
+    }
+  }
+}

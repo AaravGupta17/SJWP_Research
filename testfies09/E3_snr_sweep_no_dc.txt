@@ -1,0 +1,71 @@
+=== E3_snr_sweep_no_dc: python experiments/snr_sweep.py --no-dc  (Wed Sep 23 20:22:05 IST 2026) ===
+Loading Mendeley noise bank (Branched no-leak)...
+  Loaded 6 file pairs -> 632 noise windows
+  Noise floor RMS (empirical): 0.175005
+Loading C:\Users\armaan\PycharmProjects\SJWP_Research\cache_sweep\sweep_test_Network_3.csv
+Caching 2,000 rows...
+Caching:   0%|          | 0/2000 [00:00<?, ?rows/s]Caching:  20%|██        | 410/2000 [00:00<00:00, 4073.06rows/s]Caching:  41%|████      | 818/2000 [00:00<00:00, 3683.65rows/s]Caching:  59%|█████▉    | 1189/2000 [00:00<00:00, 1451.10rows/s]Caching:  71%|███████▏  | 1428/2000 [00:01<00:00, 834.90rows/s] Caching:  79%|███████▉  | 1589/2000 [00:01<00:00, 694.36rows/s]Caching:  85%|████████▌ | 1707/2000 [00:01<00:00, 610.92rows/s]Caching:  90%|████████▉ | 1799/2000 [00:02<00:00, 566.59rows/s]Caching:  94%|█████████▍| 1875/2000 [00:02<00:00, 531.39rows/s]Caching:  97%|█████████▋| 1940/2000 [00:02<00:00, 505.21rows/s]Caching: 100%|█████████▉| 1997/2000 [00:02<00:00, 481.73rows/s]Caching: 100%|██████████| 2000/2000 [00:02<00:00, 752.17rows/s]
+  2,000/2,000 rows cached OK
+Ready: 2,000 samples | fs=5000Hz | augment=False
+L-TOWN (Network 3)     native       model AUROC 1.000 | rms 0.865 | gcc 0.332 | posMAE model 0.017 gcc 0.253
+L-TOWN (Network 3)     -20dB        model AUROC 0.899 | rms 0.511 | gcc 0.442 | posMAE model 0.457 gcc 0.245
+L-TOWN (Network 3)     -15dB        model AUROC 0.993 | rms 0.515 | gcc 0.424 | posMAE model 0.326 gcc 0.245
+L-TOWN (Network 3)     -10dB        model AUROC 0.999 | rms 0.525 | gcc 0.406 | posMAE model 0.242 gcc 0.248
+L-TOWN (Network 3)     -5dB         model AUROC 1.000 | rms 0.554 | gcc 0.385 | posMAE model 0.109 gcc 0.246
+L-TOWN (Network 3)     0dB          model AUROC 1.000 | rms 0.623 | gcc 0.363 | posMAE model 0.028 gcc 0.247
+L-TOWN (Network 3)     5dB          model AUROC 1.000 | rms 0.749 | gcc 0.343 | posMAE model 0.020 gcc 0.251
+L-TOWN (Network 3)     10dB         model AUROC 1.000 | rms 0.892 | gcc 0.328 | posMAE model 0.016 gcc 0.253
+L-TOWN (Network 3)     native_noDC  model AUROC 1.000 | rms 0.866 | gcc 0.349 | posMAE model 0.017 gcc 0.253
+L-TOWN (Network 3)     -20dB_noDC   model AUROC 0.869 | rms 0.513 | gcc 0.453 | posMAE model 0.456 gcc 0.245
+L-TOWN (Network 3)     -15dB_noDC   model AUROC 0.990 | rms 0.517 | gcc 0.437 | posMAE model 0.326 gcc 0.246
+L-TOWN (Network 3)     -10dB_noDC   model AUROC 0.999 | rms 0.527 | gcc 0.420 | posMAE model 0.243 gcc 0.249
+L-TOWN (Network 3)     -5dB_noDC    model AUROC 1.000 | rms 0.556 | gcc 0.399 | posMAE model 0.109 gcc 0.246
+L-TOWN (Network 3)     0dB_noDC     model AUROC 1.000 | rms 0.624 | gcc 0.378 | posMAE model 0.028 gcc 0.249
+L-TOWN (Network 3)     5dB_noDC     model AUROC 1.000 | rms 0.750 | gcc 0.360 | posMAE model 0.020 gcc 0.251
+L-TOWN (Network 3)     10dB_noDC    model AUROC 1.000 | rms 0.893 | gcc 0.345 | posMAE model 0.016 gcc 0.252
+Loading C:\Users\armaan\PycharmProjects\SJWP_Research\cache_sweep\sweep_test_Network_6.csv
+Caching 2,000 rows...
+Caching:   0%|          | 0/2000 [00:00<?, ?rows/s]Caching:  18%|█▊        | 350/2000 [00:00<00:00, 3475.64rows/s]Caching:  38%|███▊      | 751/2000 [00:00<00:00, 3772.88rows/s]Caching:  56%|█████▋    | 1129/2000 [00:00<00:00, 1906.90rows/s]Caching:  69%|██████▉   | 1389/2000 [00:01<00:00, 822.82rows/s] Caching:  78%|███████▊  | 1561/2000 [00:01<00:00, 672.95rows/s]Caching:  84%|████████▍ | 1686/2000 [00:01<00:00, 612.18rows/s]Caching:  89%|████████▉ | 1784/2000 [00:02<00:00, 566.52rows/s]Caching:  93%|█████████▎| 1864/2000 [00:02<00:00, 536.89rows/s]Caching:  97%|█████████▋| 1932/2000 [00:02<00:00, 514.32rows/s]Caching: 100%|█████████▉| 1992/2000 [00:02<00:00, 491.49rows/s]Caching: 100%|██████████| 2000/2000 [00:02<00:00, 746.72rows/s]
+  2,000/2,000 rows cached OK
+Ready: 2,000 samples | fs=5000Hz | augment=False
+KY15 (Network 6)       native       model AUROC 1.000 | rms 0.850 | gcc 0.319 | posMAE model 0.087 gcc 0.246
+KY15 (Network 6)       -20dB        model AUROC 0.859 | rms 0.500 | gcc 0.430 | posMAE model 0.499 gcc 0.242
+KY15 (Network 6)       -15dB        model AUROC 0.987 | rms 0.504 | gcc 0.414 | posMAE model 0.345 gcc 0.239
+KY15 (Network 6)       -10dB        model AUROC 1.000 | rms 0.513 | gcc 0.396 | posMAE model 0.251 gcc 0.242
+KY15 (Network 6)       -5dB         model AUROC 1.000 | rms 0.539 | gcc 0.375 | posMAE model 0.203 gcc 0.242
+KY15 (Network 6)       0dB          model AUROC 1.000 | rms 0.601 | gcc 0.353 | posMAE model 0.101 gcc 0.243
+KY15 (Network 6)       5dB          model AUROC 1.000 | rms 0.722 | gcc 0.332 | posMAE model 0.092 gcc 0.246
+KY15 (Network 6)       10dB         model AUROC 1.000 | rms 0.877 | gcc 0.317 | posMAE model 0.084 gcc 0.245
+KY15 (Network 6)       native_noDC  model AUROC 1.000 | rms 0.850 | gcc 0.345 | posMAE model 0.087 gcc 0.244
+KY15 (Network 6)       -20dB_noDC   model AUROC 0.840 | rms 0.504 | gcc 0.450 | posMAE model 0.498 gcc 0.238
+KY15 (Network 6)       -15dB_noDC   model AUROC 0.987 | rms 0.507 | gcc 0.434 | posMAE model 0.347 gcc 0.241
+KY15 (Network 6)       -10dB_noDC   model AUROC 1.000 | rms 0.516 | gcc 0.417 | posMAE model 0.251 gcc 0.242
+KY15 (Network 6)       -5dB_noDC    model AUROC 1.000 | rms 0.541 | gcc 0.397 | posMAE model 0.202 gcc 0.242
+KY15 (Network 6)       0dB_noDC     model AUROC 1.000 | rms 0.602 | gcc 0.376 | posMAE model 0.100 gcc 0.243
+KY15 (Network 6)       5dB_noDC     model AUROC 1.000 | rms 0.723 | gcc 0.357 | posMAE model 0.092 gcc 0.247
+KY15 (Network 6)       10dB_noDC    model AUROC 1.000 | rms 0.877 | gcc 0.343 | posMAE model 0.084 gcc 0.246
+Loading C:\Users\armaan\PycharmProjects\SJWP_Research\cache_sweep\sweep_test_Network_8.csv
+Caching 1,056 rows...
+Caching:   0%|          | 0/1056 [00:00<?, ?rows/s]Caching:  34%|███▍      | 361/1056 [00:00<00:00, 3609.46rows/s]Caching:  68%|██████▊   | 722/1056 [00:00<00:00, 1312.65rows/s]Caching:  88%|████████▊ | 925/1056 [00:00<00:00, 861.66rows/s] Caching: 100%|██████████| 1056/1056 [00:01<00:00, 915.56rows/s]
+  1,056/1,056 rows cached OK
+Ready: 1,056 samples | fs=5000Hz | augment=False
+Richmond (Network 8)   native       model AUROC 1.000 | rms 0.765 | gcc 0.331 | posMAE model 0.094 gcc 0.265
+Richmond (Network 8)   -20dB        model AUROC 0.876 | rms 0.499 | gcc 0.413 | posMAE model 0.490 gcc 0.266
+Richmond (Network 8)   -15dB        model AUROC 0.979 | rms 0.503 | gcc 0.399 | posMAE model 0.329 gcc 0.265
+Richmond (Network 8)   -10dB        model AUROC 0.999 | rms 0.513 | gcc 0.384 | posMAE model 0.267 gcc 0.264
+Richmond (Network 8)   -5dB         model AUROC 1.000 | rms 0.539 | gcc 0.369 | posMAE model 0.255 gcc 0.266
+Richmond (Network 8)   0dB          model AUROC 1.000 | rms 0.602 | gcc 0.352 | posMAE model 0.125 gcc 0.267
+Richmond (Network 8)   5dB          model AUROC 1.000 | rms 0.727 | gcc 0.338 | posMAE model 0.091 gcc 0.266
+Richmond (Network 8)   10dB         model AUROC 1.000 | rms 0.878 | gcc 0.330 | posMAE model 0.080 gcc 0.268
+Richmond (Network 8)   native_noDC  model AUROC 1.000 | rms 0.766 | gcc 0.347 | posMAE model 0.094 gcc 0.267
+Richmond (Network 8)   -20dB_noDC   model AUROC 0.873 | rms 0.501 | gcc 0.422 | posMAE model 0.491 gcc 0.266
+Richmond (Network 8)   -15dB_noDC   model AUROC 0.981 | rms 0.504 | gcc 0.412 | posMAE model 0.330 gcc 0.263
+Richmond (Network 8)   -10dB_noDC   model AUROC 0.999 | rms 0.514 | gcc 0.400 | posMAE model 0.267 gcc 0.265
+Richmond (Network 8)   -5dB_noDC    model AUROC 1.000 | rms 0.540 | gcc 0.385 | posMAE model 0.254 gcc 0.266
+Richmond (Network 8)   0dB_noDC     model AUROC 1.000 | rms 0.603 | gcc 0.366 | posMAE model 0.123 gcc 0.270
+Richmond (Network 8)   5dB_noDC     model AUROC 1.000 | rms 0.727 | gcc 0.353 | posMAE model 0.090 gcc 0.269
+Richmond (Network 8)   10dB_noDC    model AUROC 1.000 | rms 0.878 | gcc 0.346 | posMAE model 0.080 gcc 0.270
+Saved C:\Users\armaan\PycharmProjects\SJWP_Research\plots\e3_snr_sweep.png
+
+Run recorded: C:\Users\armaan\PycharmProjects\SJWP_Research\results\runs\2026-09-23_202425_e3_snr_sweep.json
+=== exit code 0, 141s ===
