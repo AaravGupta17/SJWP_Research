@@ -1,0 +1,931 @@
+{
+  "experiment": "e10_sheffield_calibration",
+  "timestamp": "2026-09-23T23:14:20",
+  "git_commit": "5d75924",
+  "git_dirty": true,
+  "python": "3.13.1",
+  "torch": "2.13.0+cpu",
+  "device": "cpu",
+  "command": "experiments/sheffield_calibration.py",
+  "config": {
+    "root": "C:\\Users\\Aarav Gupta\\PycharmProjects\\SJWP_Research\\datasets\\public\\sheffield\\extracted\\Acoustic Data (Leakage Experiments)"
+  },
+  "summary": "atten dB/m (median by band): 20-50 0.64, 50-100 0.69, 100-200 0.78, 200-400 0.92, 400-800 2.47, 800-1600 0.24, 1600-3200 0.18; leak peak 471 Hz; c 3.6mmDirect_2.8bar 247 m/s, 3mmValve_2.8bar 264 m/s",
+  "results": {
+    "attenuation_db_per_m_by_band": [
+      {
+        "band": "20-50",
+        "median": 0.6423409233302312,
+        "min": 0.2258289683251097,
+        "max": 1.4387768110026609,
+        "count": 8
+      },
+      {
+        "band": "50-100",
+        "median": 0.6937803539414029,
+        "min": 0.10208189405563699,
+        "max": 2.497842420104926,
+        "count": 8
+      },
+      {
+        "band": "100-200",
+        "median": 0.7836403598703047,
+        "min": 0.2169068837950728,
+        "max": 2.190030150413017,
+        "count": 7
+      },
+      {
+        "band": "200-400",
+        "median": 0.9220894675047726,
+        "min": 0.21274759000328797,
+        "max": 2.456227142225855,
+        "count": 8
+      },
+      {
+        "band": "400-800",
+        "median": 2.4743210767237342,
+        "min": 0.46350793630714293,
+        "max": 9.544807871186318,
+        "count": 8
+      },
+      {
+        "band": "800-1600",
+        "median": 0.23527661039965242,
+        "min": 0.058662926713980025,
+        "max": 7.648954545110718,
+        "count": 7
+      },
+      {
+        "band": "1600-3200",
+        "median": 0.1767758583828844,
+        "min": 0.02541266092581234,
+        "max": 13.943930751526954,
+        "count": 7
+      }
+    ],
+    "attenuation_fits": [
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "100-200",
+        "db_per_m": 0.7836403598703047,
+        "n_points": 26,
+        "max_distance_m": 20
+      },
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "1600-3200",
+        "db_per_m": 13.943930751526954,
+        "n_points": 8,
+        "max_distance_m": 3
+      },
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "20-50",
+        "db_per_m": 1.2893162365849857,
+        "n_points": 15,
+        "max_distance_m": 8
+      },
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "200-400",
+        "db_per_m": 1.37661218577504,
+        "n_points": 26,
+        "max_distance_m": 20
+      },
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "400-800",
+        "db_per_m": 2.7640446703937904,
+        "n_points": 22,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "50-100",
+        "db_per_m": 0.8696163985231952,
+        "n_points": 16,
+        "max_distance_m": 20
+      },
+      {
+        "test": "(test#1) 1mmValve_4.2bar",
+        "band": "800-1600",
+        "db_per_m": 7.648954545110718,
+        "n_points": 10,
+        "max_distance_m": 4
+      },
+      {
+        "test": "(test#2) 1mmValve_2.8bar",
+        "band": "100-200",
+        "db_per_m": 2.190030150413017,
+        "n_points": 20,
+        "max_distance_m": 9
+      },
+      {
+        "test": "(test#2) 1mmValve_2.8bar",
+        "band": "20-50",
+        "db_per_m": 1.4387768110026609,
+        "n_points": 5,
+        "max_distance_m": 7
+      },
+      {
+        "test": "(test#2) 1mmValve_2.8bar",
+        "band": "200-400",
+        "db_per_m": 2.456227142225855,
+        "n_points": 14,
+        "max_distance_m": 6
+      },
+      {
+        "test": "(test#2) 1mmValve_2.8bar",
+        "band": "400-800",
+        "db_per_m": 9.544807871186318,
+        "n_points": 7,
+        "max_distance_m": 3
+      },
+      {
+        "test": "(test#2) 1mmValve_2.8bar",
+        "band": "50-100",
+        "db_per_m": 1.8888973894774796,
+        "n_points": 6,
+        "max_distance_m": 3
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "100-200",
+        "db_per_m": 1.860273161840901,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "1600-3200",
+        "db_per_m": 1.9868460695710803,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "20-50",
+        "db_per_m": 1.2969655439473067,
+        "n_points": 8,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "200-400",
+        "db_per_m": 1.7988501531574403,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "400-800",
+        "db_per_m": 2.516756081994342,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "50-100",
+        "db_per_m": 2.497842420104926,
+        "n_points": 10,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#3) 2mmValve_2.8bar",
+        "band": "800-1600",
+        "db_per_m": 2.697757101481234,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "100-200",
+        "db_per_m": 1.2341891072485205,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "1600-3200",
+        "db_per_m": 2.2444346553668946,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "20-50",
+        "db_per_m": 0.7208526116051726,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "200-400",
+        "db_per_m": 2.0369055957814575,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "400-800",
+        "db_per_m": 2.4318860714531265,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "50-100",
+        "db_per_m": 1.531960787390087,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#4) 3mmValve_2.8bar",
+        "band": "800-1600",
+        "db_per_m": 3.0976177177952193,
+        "n_points": 11,
+        "max_distance_m": 10
+      },
+      {
+        "test": "(test#5) 1mmDirect_2.8bar",
+        "band": "1600-3200",
+        "db_per_m": 0.10439873173740834,
+        "n_points": 21,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#5) 1mmDirect_2.8bar",
+        "band": "20-50",
+        "db_per_m": 0.2258289683251097,
+        "n_points": 10,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#5) 1mmDirect_2.8bar",
+        "band": "200-400",
+        "db_per_m": 0.21274759000328797,
+        "n_points": 6,
+        "max_distance_m": 30
+      },
+      {
+        "test": "(test#5) 1mmDirect_2.8bar",
+        "band": "400-800",
+        "db_per_m": 8.004113443591804,
+        "n_points": 5,
+        "max_distance_m": 2
+      },
+      {
+        "test": "(test#5) 1mmDirect_2.8bar",
+        "band": "50-100",
+        "db_per_m": 0.10208189405563699,
+        "n_points": 12,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#5) 1mmDirect_2.8bar",
+        "band": "800-1600",
+        "db_per_m": 0.0997229854073254,
+        "n_points": 9,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "100-200",
+        "db_per_m": 0.26966899208721273,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "1600-3200",
+        "db_per_m": 0.02541266092581234,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "20-50",
+        "db_per_m": 0.5638292350552898,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "200-400",
+        "db_per_m": 0.4574132678641051,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "400-800",
+        "db_per_m": 1.3199010362866173,
+        "n_points": 26,
+        "max_distance_m": 20
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "50-100",
+        "db_per_m": 0.5179443093596108,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#6) 3.6mm_2.8bar",
+        "band": "800-1600",
+        "db_per_m": 0.058662926713980025,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "100-200",
+        "db_per_m": 0.2169068837950728,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "1600-3200",
+        "db_per_m": 0.1767758583828844,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "20-50",
+        "db_per_m": 0.4264618587647585,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "200-400",
+        "db_per_m": 0.4675667492345053,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "400-800",
+        "db_per_m": 0.964726343231481,
+        "n_points": 26,
+        "max_distance_m": 30
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "50-100",
+        "db_per_m": 0.2560591515337714,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#7) longitudinal slit_2.8bar",
+        "band": "800-1600",
+        "db_per_m": 0.23527661039965242,
+        "n_points": 30,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "100-200",
+        "db_per_m": 0.236031372067599,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "1600-3200",
+        "db_per_m": 0.1605966267560154,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "20-50",
+        "db_per_m": 0.3739335364913857,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "200-400",
+        "db_per_m": 0.43866412339919386,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "400-800",
+        "db_per_m": 0.46350793630714293,
+        "n_points": 29,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "50-100",
+        "db_per_m": 0.3496669006744562,
+        "n_points": 32,
+        "max_distance_m": 50
+      },
+      {
+        "test": "(test#8) transverse slit_2.8bar",
+        "band": "800-1600",
+        "db_per_m": 0.19284970125369688,
+        "n_points": 32,
+        "max_distance_m": 50
+      }
+    ],
+    "leak_spectrum_peak_hz": [
+      598.0,
+      602.0,
+      468.0,
+      474.0,
+      636.0,
+      768.0,
+      38.0,
+      50.0,
+      72.0,
+      72.0,
+      2076.0,
+      2076.0,
+      100.0,
+      100.0
+    ],
+    "leak_spectrum_centroid_hz": [
+      775.6295557231731,
+      764.3464163410828,
+      467.73658105793373,
+      475.05638031452827,
+      687.5032337012959,
+      690.8419686399983,
+      1726.6164397074535,
+      1763.4199795021425,
+      284.09489655426427,
+      269.4386783557425,
+      1757.7183633913064,
+      1754.6704456816638,
+      1509.0469754344824,
+      1502.7988638369306
+    ],
+    "wave_speed": {
+      "3.6mmDirect_2.8bar": {
+        "wave_speed_mps": 247.35573163140108,
+        "n_tests": 20,
+        "rms_residual_m": 0.8869641863231132
+      },
+      "3mmValve_2.8bar": {
+        "wave_speed_mps": 264.2843416229528,
+        "n_tests": 20,
+        "rms_residual_m": 0.544243966777255
+      }
+    },
+    "coherence_delays": [
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 1,
+        "file": "test_1_Leak_no1",
+        "delay_ms": 4.7607421875,
+        "coherent_band_hz": [
+          20.0,
+          736.0
+        ],
+        "mean_coherence": 0.5177327557551874
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 1,
+        "file": "test_1_Leak_no2",
+        "delay_ms": 4.7607421875,
+        "coherent_band_hz": [
+          20.0,
+          736.0
+        ],
+        "mean_coherence": 0.5117019905820193
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 2,
+        "file": "test_2_Leak_no1",
+        "delay_ms": 9.6435546875,
+        "coherent_band_hz": [
+          28.0,
+          496.0
+        ],
+        "mean_coherence": 0.4434555967834715
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 2,
+        "file": "test_2_Leak_no2",
+        "delay_ms": 9.6435546875,
+        "coherent_band_hz": [
+          28.0,
+          496.0
+        ],
+        "mean_coherence": 0.456586299669562
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 3,
+        "file": "test_3_Leak_no1",
+        "delay_ms": 22.4609375,
+        "coherent_band_hz": [
+          44.0,
+          516.0
+        ],
+        "mean_coherence": 0.32715106199292904
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 3,
+        "file": "test_3_Leak_no2",
+        "delay_ms": 22.4609375,
+        "coherent_band_hz": [
+          48.0,
+          520.0
+        ],
+        "mean_coherence": 0.3267202398685655
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 4,
+        "file": "test_4_Leak_no1",
+        "delay_ms": 17.2119140625,
+        "coherent_band_hz": [
+          56.0,
+          444.0
+        ],
+        "mean_coherence": 0.3076330175524228
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 4,
+        "file": "test_4_Leak_no2",
+        "delay_ms": 14.2822265625,
+        "coherent_band_hz": [
+          56.0,
+          448.0
+        ],
+        "mean_coherence": 0.3103640081093307
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 5,
+        "file": "test_5_Leak_no1",
+        "delay_ms": 20.751953125,
+        "coherent_band_hz": [
+          64.0,
+          440.0
+        ],
+        "mean_coherence": 0.3131667214391762
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 5,
+        "file": "test_5_Leak_no2",
+        "delay_ms": 20.751953125,
+        "coherent_band_hz": [
+          64.0,
+          440.0
+        ],
+        "mean_coherence": 0.31379440608863707
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 6,
+        "file": "test_6_Leak_no1",
+        "delay_ms": 23.92578125,
+        "coherent_band_hz": [
+          120.0,
+          444.0
+        ],
+        "mean_coherence": 0.2782508062279417
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 6,
+        "file": "test_6_Leak_no2",
+        "delay_ms": 23.8037109375,
+        "coherent_band_hz": [
+          120.0,
+          512.0
+        ],
+        "mean_coherence": 0.28619240988992517
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 7,
+        "file": "test_7_Leak_no1",
+        "delay_ms": 26.85546875,
+        "coherent_band_hz": [
+          164.0,
+          440.0
+        ],
+        "mean_coherence": 0.23227084026266898
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 7,
+        "file": "test_7_Leak_no2",
+        "delay_ms": 26.85546875,
+        "coherent_band_hz": [
+          152.0,
+          440.0
+        ],
+        "mean_coherence": 0.2196035612628759
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 8,
+        "file": "test_8_Leak_no1",
+        "delay_ms": 31.494140625,
+        "coherent_band_hz": [
+          164.0,
+          436.0
+        ],
+        "mean_coherence": 0.190329750577226
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 8,
+        "file": "test_8_Leak_no2",
+        "delay_ms": 31.494140625,
+        "coherent_band_hz": [
+          164.0,
+          436.0
+        ],
+        "mean_coherence": 0.19040609103320846
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 9,
+        "file": "test_9_Leak_no1",
+        "delay_ms": 34.423828125,
+        "coherent_band_hz": [
+          168.0,
+          444.0
+        ],
+        "mean_coherence": 0.19830202019709467
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 9,
+        "file": "test_9_Leak_no2",
+        "delay_ms": 34.423828125,
+        "coherent_band_hz": [
+          168.0,
+          440.0
+        ],
+        "mean_coherence": 0.19548775306863775
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 10,
+        "file": "test_10_Leak_no1",
+        "delay_ms": 37.353515625,
+        "coherent_band_hz": [
+          128.0,
+          440.0
+        ],
+        "mean_coherence": 0.20039656571351816
+      },
+      {
+        "leak": "3.6mmDirect_2.8bar",
+        "distance_m": 10,
+        "file": "test_10_Leak_no2",
+        "delay_ms": 37.353515625,
+        "coherent_band_hz": [
+          128.0,
+          440.0
+        ],
+        "mean_coherence": 0.20969639397076195
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 1,
+        "file": "test_1_no.1",
+        "delay_ms": 3.2958984375,
+        "coherent_band_hz": [
+          24.0,
+          1000.0
+        ],
+        "mean_coherence": 0.8094975227589658
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 1,
+        "file": "test_1_no.2",
+        "delay_ms": 3.2958984375,
+        "coherent_band_hz": [
+          24.0,
+          1000.0
+        ],
+        "mean_coherence": 0.7529031139305998
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 2,
+        "file": "test_2_no.1",
+        "delay_ms": 12.8173828125,
+        "coherent_band_hz": [
+          24.0,
+          1000.0
+        ],
+        "mean_coherence": 0.8308011256076298
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 2,
+        "file": "test_2_no.2",
+        "delay_ms": 12.6953125,
+        "coherent_band_hz": [
+          24.0,
+          1000.0
+        ],
+        "mean_coherence": 0.8324213838819392
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 3,
+        "file": "test_3_no.1",
+        "delay_ms": 13.427734375,
+        "coherent_band_hz": [
+          36.0,
+          988.0
+        ],
+        "mean_coherence": 0.7683941871568912
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 3,
+        "file": "test_3_no.2",
+        "delay_ms": 13.427734375,
+        "coherent_band_hz": [
+          36.0,
+          988.0
+        ],
+        "mean_coherence": 0.7679240319104952
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 4,
+        "file": "test_4_no.1",
+        "delay_ms": 16.7236328125,
+        "coherent_band_hz": [
+          124.0,
+          1000.0
+        ],
+        "mean_coherence": 0.7595996387684442
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 4,
+        "file": "test_4_no.2",
+        "delay_ms": 16.7236328125,
+        "coherent_band_hz": [
+          124.0,
+          1000.0
+        ],
+        "mean_coherence": 0.7686170252898075
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 5,
+        "file": "test_5_no.1",
+        "delay_ms": 20.263671875,
+        "coherent_band_hz": [
+          120.0,
+          852.0
+        ],
+        "mean_coherence": 0.6139415983523325
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 5,
+        "file": "test_5_no.2",
+        "delay_ms": 20.263671875,
+        "coherent_band_hz": [
+          120.0,
+          760.0
+        ],
+        "mean_coherence": 0.5473683986728956
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 6,
+        "file": "test_6_no.1",
+        "delay_ms": 22.5830078125,
+        "coherent_band_hz": [
+          120.0,
+          968.0
+        ],
+        "mean_coherence": 0.6415447003851984
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 6,
+        "file": "test_6_no.2",
+        "delay_ms": 22.5830078125,
+        "coherent_band_hz": [
+          120.0,
+          984.0
+        ],
+        "mean_coherence": 0.642695663469492
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 7,
+        "file": "test_7_no.1",
+        "delay_ms": 26.85546875,
+        "coherent_band_hz": [
+          164.0,
+          688.0
+        ],
+        "mean_coherence": 0.4294470953536227
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 7,
+        "file": "test_7_no.2",
+        "delay_ms": 25.87890625,
+        "coherent_band_hz": [
+          164.0,
+          808.0
+        ],
+        "mean_coherence": 0.5347382648319234
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 8,
+        "file": "test_8_no.1",
+        "delay_ms": 28.9306640625,
+        "coherent_band_hz": [
+          116.0,
+          780.0
+        ],
+        "mean_coherence": 0.45795762605742046
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 8,
+        "file": "test_8_no.2",
+        "delay_ms": 28.9306640625,
+        "coherent_band_hz": [
+          132.0,
+          776.0
+        ],
+        "mean_coherence": 0.4513668963181641
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 9,
+        "file": "test_9_no.1",
+        "delay_ms": 32.958984375,
+        "coherent_band_hz": [
+          124.0,
+          764.0
+        ],
+        "mean_coherence": 0.47692544248537305
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 9,
+        "file": "test_9_no.2",
+        "delay_ms": 32.958984375,
+        "coherent_band_hz": [
+          128.0,
+          760.0
+        ],
+        "mean_coherence": 0.4728722572198223
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 10,
+        "file": "test_10_no.1",
+        "delay_ms": 36.0107421875,
+        "coherent_band_hz": [
+          132.0,
+          764.0
+        ],
+        "mean_coherence": 0.46075882823510894
+      },
+      {
+        "leak": "3mmValve_2.8bar",
+        "distance_m": 10,
+        "file": "test_10_no.2",
+        "delay_ms": 36.0107421875,
+        "coherent_band_hz": [
+          132.0,
+          764.0
+        ],
+        "mean_coherence": 0.46282618489781313
+      }
+    ],
+    "model_c_pvc": {
+      "centre_hz": 800.0,
+      "bandwidth_hz": 300.0,
+      "damping": 0.5
+    }
+  }
+}

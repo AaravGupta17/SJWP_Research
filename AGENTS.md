@@ -44,6 +44,12 @@ research / science-fair project, so **evidence integrity matters more than resul
 | E6 | `python experiments/data_overview.py` |
 | E7 | `python experiments/texture_probe.py` |
 | E8 | `python experiments/realism_check.py` |
+| E9 | `python experiments/cross_dataset.py` (public datasets; GPU for the CNN methods) |
+| E10 | `python experiments/sheffield_calibration.py` |
+
+Public datasets (Hong Kong, Dongguan, Sheffield): `python scripts/download_public_data.py`
+-> `datasets/public/` (git-ignored). Loaders: `experiments/public_data.py`. Cross-dataset
+results must use leave-one-SOURCE-out (`loso`); datasets from one source can share recordings.
 
 Every experiment writes a record via `record_run()` to `results/runs/`. Set `LEAKNET_OUT=<dir>`
 to redirect plots and run records for smoke tests so they don't mix with real results.

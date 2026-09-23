@@ -42,12 +42,15 @@ def point_metrics(y: np.ndarray, p: np.ndarray, threshold: float = 0.5) -> dict:
 
 def cluster_bootstrap(y, p, groups, threshold: float = 0.5, n_boot: int = 2000,
                       seed: int = 0, alpha: float = 0.05) -> dict:
-    """95% CIs by resampling whole groups (recordings), stratified by class.
+    """95% CIs by resampling whole groups (recordings or sites).
 
-    Every group must contain a single class (true for recordings: a file is
-    either a leak recording or a no-leak recording). Groups are resampled
-    with replacement separately within the leak and no-leak strata, so each
-    bootstrap replicate keeps the original number of recordings per class.
+    If every group has a single class (a recording is either leak or
+    no-leak), groups are resampled separately within the leak and no-leak
+    strata, so each replicate keeps the original number of groups per class.
+    If some groups contain both classes (e.g. a Hong Kong site recorded
+    before and after repair), stratification is impossible without splitting
+    a group, so all groups are resampled together; replicates that happen to
+    contain one class only are skipped.
     """
     y = np.asarray(y).astype(int)
     p = np.asarray(p, dtype=np.float64)
@@ -57,10 +60,10 @@ def cluster_bootstrap(y, p, groups, threshold: float = 0.5, n_boot: int = 2000,
     cls_of = {}
     for g, idx in idx_of.items():
         c = np.unique(y[idx])
-        if len(c) != 1:
-            raise ValueError(f"group {g!r} contains both classes")
-        cls_of[g] = int(c[0])
-    strata = {c: [g for g in uniq if cls_of[g] == c] for c in (0, 1)}
+        cls_of[g] = int(c[0]) if len(c) == 1 else -1        # -1 = mixed group
+    mixed = any(c == -1 for c in cls_of.values())
+    strata = ({"all": list(uniq)} if mixed else
+              {c: [g for g in uniq if cls_of[g] == c] for c in (0, 1)})
 
     rng = np.random.default_rng(seed)
     keys = ("auroc", "detection_rate", "false_alarm_rate", "balanced_accuracy")
@@ -82,8 +85,9 @@ def cluster_bootstrap(y, p, groups, threshold: float = 0.5, n_boot: int = 2000,
         d = np.asarray(draws[k])
         ci[k] = ([float(np.quantile(d, alpha / 2)), float(np.quantile(d, 1 - alpha / 2))]
                  if len(d) >= 20 else None)
-    return {"ci95": ci, "n_boot": n_boot,
-            "n_groups_leak": len(strata[1]), "n_groups_no_leak": len(strata[0])}
+    return {"ci95": ci, "n_boot": n_boot, "mixed_groups": mixed,
+            "n_groups_leak": sum(1 for g in uniq if (y[idx_of[g]] == 1).any()),
+            "n_groups_no_leak": sum(1 for g in uniq if (y[idx_of[g]] == 0).any())}
 
 
 def detection_report(y, p, groups=None, threshold: float = 0.5,

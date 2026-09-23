@@ -58,9 +58,20 @@ def test_cluster_ci_wider_than_window_level_ci_when_windows_correlated():
     assert (clustered[1] - clustered[0]) > 2 * (naive[1] - naive[0])
 
 
-def test_group_with_mixed_labels_rejected():
-    with pytest.raises(ValueError):
-        cluster_bootstrap(np.array([0, 1]), np.array([0.1, 0.9]), np.array(["a", "a"]))
+def test_mixed_label_groups_use_unstratified_site_bootstrap():
+    # e.g. a Hong Kong site recorded leaking and again after repair
+    rng = np.random.default_rng(0)
+    y, p, g = [], [], []
+    for site in range(12):
+        for label in (0, 1):
+            for _ in range(5):
+                y.append(label); g.append(f"site{site}")
+                p.append(rng.normal(0.7 if label else 0.3, 0.2))
+    rep = detection_report(np.array(y), np.array(p), np.array(g), n_boot=300)
+    assert rep["mixed_groups"] is True
+    assert rep["n_groups_leak"] == rep["n_groups_no_leak"] == 12
+    lo, hi = rep["ci95"]["auroc"]
+    assert lo <= rep["auroc"] <= hi
 
 
 def test_saturated_sigmoid_hides_ranking_but_logits_do_not():
