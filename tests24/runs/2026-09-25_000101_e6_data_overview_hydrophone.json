@@ -1,0 +1,667 @@
+{
+  "experiment": "e6_data_overview_hydrophone",
+  "timestamp": "2026-09-25T00:01:01",
+  "git_commit": "911f15a",
+  "git_dirty": false,
+  "python": "3.12.10",
+  "torch": "2.7.1+cu118",
+  "device": "cuda",
+  "command": "experiments/data_overview.py --sensor hydrophone --root datasets/Hydrophone/Hydrophone",
+  "config": {
+    "root": "datasets\\Hydrophone\\Hydrophone",
+    "sensor": "hydrophone",
+    "n_boot": 2000
+  },
+  "summary": "Looped: RMS pooled 0.57, within-cond 0.54; Branched: RMS pooled 0.68, within-cond 0.59; LOCO logreg Looped 0.77, Branched 0.64",
+  "results": {
+    "sensor": "hydrophone",
+    "recordings": [
+      {
+        "recording": "Branched/Circumferential Crack/BR_CC_0.18 LPS_N",
+        "topology": "Branched",
+        "condition": "Circumferential Crack",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 100,
+        "median_rms": 266491358.31385642
+      },
+      {
+        "recording": "Branched/Circumferential Crack/BR_CC_0.47 LPS_N",
+        "topology": "Branched",
+        "condition": "Circumferential Crack",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 89,
+        "median_rms": 453772567.0914402
+      },
+      {
+        "recording": "Branched/Circumferential Crack/BR_CC_ND_N",
+        "topology": "Branched",
+        "condition": "Circumferential Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 235695876.60562772
+      },
+      {
+        "recording": "Branched/Circumferential Crack/BR_CC_ND_NN",
+        "topology": "Branched",
+        "condition": "Circumferential Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 464846258.8740413
+      },
+      {
+        "recording": "Branched/Circumferential Crack/BR_CC_Transient_N",
+        "topology": "Branched",
+        "condition": "Circumferential Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 109,
+        "median_rms": 301717149.8938684
+      },
+      {
+        "recording": "Branched/Circumferential Crack/BR_CC_Transient_NN",
+        "topology": "Branched",
+        "condition": "Circumferential Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 103,
+        "median_rms": 278304698.4156853
+      },
+      {
+        "recording": "Branched/Gasket Leak/BR_GL_0.18 LPS_N",
+        "topology": "Branched",
+        "condition": "Gasket Leak",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 95,
+        "median_rms": 197588297.3836839
+      },
+      {
+        "recording": "Branched/Gasket Leak/BR_GL_0.47 LPS_N",
+        "topology": "Branched",
+        "condition": "Gasket Leak",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 276991140.79854834
+      },
+      {
+        "recording": "Branched/Gasket Leak/BR_GL_ND_N",
+        "topology": "Branched",
+        "condition": "Gasket Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 93,
+        "median_rms": 312565218.1135741
+      },
+      {
+        "recording": "Branched/Gasket Leak/BR_GL_ND_NN",
+        "topology": "Branched",
+        "condition": "Gasket Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 101,
+        "median_rms": 278369994.32773286
+      },
+      {
+        "recording": "Branched/Gasket Leak/BR_GL_Transient_N",
+        "topology": "Branched",
+        "condition": "Gasket Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 127,
+        "median_rms": 320500588.2644708
+      },
+      {
+        "recording": "Branched/Gasket Leak/BR_GL_Transient_NN",
+        "topology": "Branched",
+        "condition": "Gasket Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 129,
+        "median_rms": 295252358.83869064
+      },
+      {
+        "recording": "Branched/Longitudinal Crack/BR_LC_0.18 LPS_N",
+        "topology": "Branched",
+        "condition": "Longitudinal Crack",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 205865141.95381397
+      },
+      {
+        "recording": "Branched/Longitudinal Crack/BR_LC_0.47 LPS_N",
+        "topology": "Branched",
+        "condition": "Longitudinal Crack",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 95,
+        "median_rms": 256869020.1863498
+      },
+      {
+        "recording": "Branched/Longitudinal Crack/BR_LC_ND_N",
+        "topology": "Branched",
+        "condition": "Longitudinal Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 264698253.96201718
+      },
+      {
+        "recording": "Branched/Longitudinal Crack/BR_LC_ND_NN",
+        "topology": "Branched",
+        "condition": "Longitudinal Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 93,
+        "median_rms": 300662661.23062515
+      },
+      {
+        "recording": "Branched/Longitudinal Crack/BR_LC_Transient_N",
+        "topology": "Branched",
+        "condition": "Longitudinal Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 104,
+        "median_rms": 300822750.6289711
+      },
+      {
+        "recording": "Branched/Longitudinal Crack/BR_LC_Transient_NN",
+        "topology": "Branched",
+        "condition": "Longitudinal Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 104,
+        "median_rms": 351543059.4641764
+      },
+      {
+        "recording": "Branched/No-leak/BR_NL_0.18 LPS_N",
+        "topology": "Branched",
+        "condition": "No-leak",
+        "flow": "0.18 LPS",
+        "label": 0,
+        "n_windows": 87,
+        "median_rms": 387910188.1591939
+      },
+      {
+        "recording": "Branched/No-leak/BR_NL_0.47 LPS_N",
+        "topology": "Branched",
+        "condition": "No-leak",
+        "flow": "0.47 LPS",
+        "label": 0,
+        "n_windows": 91,
+        "median_rms": 323562046.56736976
+      },
+      {
+        "recording": "Branched/No-leak/BR_NL_ND_N",
+        "topology": "Branched",
+        "condition": "No-leak",
+        "flow": "ND",
+        "label": 0,
+        "n_windows": 95,
+        "median_rms": 64414896.501224026
+      },
+      {
+        "recording": "Branched/No-leak/BR_NL_ND_NN",
+        "topology": "Branched",
+        "condition": "No-leak",
+        "flow": "ND",
+        "label": 0,
+        "n_windows": 91,
+        "median_rms": 136682462.59850895
+      },
+      {
+        "recording": "Branched/No-leak/BR_NL_Transient_N",
+        "topology": "Branched",
+        "condition": "No-leak",
+        "flow": "Transient",
+        "label": 0,
+        "n_windows": 153,
+        "median_rms": 230689618.74897796
+      },
+      {
+        "recording": "Branched/No-leak/BR_NL_Transient_NN",
+        "topology": "Branched",
+        "condition": "No-leak",
+        "flow": "Transient",
+        "label": 0,
+        "n_windows": 115,
+        "median_rms": 226774578.50265253
+      },
+      {
+        "recording": "Branched/Orifice Leak/BR_OL_0.18 LPS_N",
+        "topology": "Branched",
+        "condition": "Orifice Leak",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 385846819.81986374
+      },
+      {
+        "recording": "Branched/Orifice Leak/BR_OL_0.47 LPS_N",
+        "topology": "Branched",
+        "condition": "Orifice Leak",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 384359230.21070087
+      },
+      {
+        "recording": "Branched/Orifice Leak/BR_OL_ND_N",
+        "topology": "Branched",
+        "condition": "Orifice Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 385291222.2870575
+      },
+      {
+        "recording": "Branched/Orifice Leak/BR_OL_ND_NN",
+        "topology": "Branched",
+        "condition": "Orifice Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 93,
+        "median_rms": 373929468.9562408
+      },
+      {
+        "recording": "Branched/Orifice Leak/BR_OL_Transient_N",
+        "topology": "Branched",
+        "condition": "Orifice Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 95,
+        "median_rms": 400555797.3266257
+      },
+      {
+        "recording": "Branched/Orifice Leak/BR_OL_Transient_NN",
+        "topology": "Branched",
+        "condition": "Orifice Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 401479019.540486
+      },
+      {
+        "recording": "Looped/Circumferential Crack/LO_CC_0.18 LPS_N",
+        "topology": "Looped",
+        "condition": "Circumferential Crack",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 96,
+        "median_rms": 392249024.7932703
+      },
+      {
+        "recording": "Looped/Circumferential Crack/LO_CC_0.47 LPS_N",
+        "topology": "Looped",
+        "condition": "Circumferential Crack",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 100,
+        "median_rms": 365111004.8735807
+      },
+      {
+        "recording": "Looped/Circumferential Crack/LO_CC_ND_N",
+        "topology": "Looped",
+        "condition": "Circumferential Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 93,
+        "median_rms": 443669796.2845868
+      },
+      {
+        "recording": "Looped/Circumferential Crack/LO_CC_ND_NN",
+        "topology": "Looped",
+        "condition": "Circumferential Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 348787586.5022695
+      },
+      {
+        "recording": "Looped/Circumferential Crack/LO_CC_Transient_N",
+        "topology": "Looped",
+        "condition": "Circumferential Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 97,
+        "median_rms": 188899236.5172207
+      },
+      {
+        "recording": "Looped/Circumferential Crack/LO_CC_Transient_NN",
+        "topology": "Looped",
+        "condition": "Circumferential Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 366999823.1143428
+      },
+      {
+        "recording": "Looped/Gasket Leak/LO_GL_0.18 LPS_N",
+        "topology": "Looped",
+        "condition": "Gasket Leak",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 391169905.95498997
+      },
+      {
+        "recording": "Looped/Gasket Leak/LO_GL_0.47 LPS_N",
+        "topology": "Looped",
+        "condition": "Gasket Leak",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 358876405.72348976
+      },
+      {
+        "recording": "Looped/Gasket Leak/LO_GL_ND_N",
+        "topology": "Looped",
+        "condition": "Gasket Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 382835601.38347274
+      },
+      {
+        "recording": "Looped/Gasket Leak/LO_GL_ND_NN",
+        "topology": "Looped",
+        "condition": "Gasket Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 449135808.73295933
+      },
+      {
+        "recording": "Looped/Gasket Leak/LO_GL_Transient_N",
+        "topology": "Looped",
+        "condition": "Gasket Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 345980317.8987324
+      },
+      {
+        "recording": "Looped/Gasket Leak/LO_GL_Transient_NN",
+        "topology": "Looped",
+        "condition": "Gasket Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 94,
+        "median_rms": 331287794.3981247
+      },
+      {
+        "recording": "Looped/Longitudinal Crack/LO_LC_0.18 LPS_N",
+        "topology": "Looped",
+        "condition": "Longitudinal Crack",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 468249266.11221087
+      },
+      {
+        "recording": "Looped/Longitudinal Crack/LO_LC_0.47 LPS_N",
+        "topology": "Looped",
+        "condition": "Longitudinal Crack",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 350498684.9471648
+      },
+      {
+        "recording": "Looped/Longitudinal Crack/LO_LC_ND_N",
+        "topology": "Looped",
+        "condition": "Longitudinal Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 94,
+        "median_rms": 382248961.2205707
+      },
+      {
+        "recording": "Looped/Longitudinal Crack/LO_LC_ND_NN",
+        "topology": "Looped",
+        "condition": "Longitudinal Crack",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 89,
+        "median_rms": 350286055.97610116
+      },
+      {
+        "recording": "Looped/Longitudinal Crack/LO_LC_Transient_N",
+        "topology": "Looped",
+        "condition": "Longitudinal Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 94,
+        "median_rms": 396874851.6650537
+      },
+      {
+        "recording": "Looped/Longitudinal Crack/LO_LC_Transient_NN",
+        "topology": "Looped",
+        "condition": "Longitudinal Crack",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 385398063.52190137
+      },
+      {
+        "recording": "Looped/No-leak/LO_NL_0.18 LPS_N",
+        "topology": "Looped",
+        "condition": "No-leak",
+        "flow": "0.18 LPS",
+        "label": 0,
+        "n_windows": 90,
+        "median_rms": 375153396.7693345
+      },
+      {
+        "recording": "Looped/No-leak/LO_NL_0.47 LPS_N",
+        "topology": "Looped",
+        "condition": "No-leak",
+        "flow": "0.47 LPS",
+        "label": 0,
+        "n_windows": 98,
+        "median_rms": 402086572.1874783
+      },
+      {
+        "recording": "Looped/No-leak/LO_NL_ND_N",
+        "topology": "Looped",
+        "condition": "No-leak",
+        "flow": "ND",
+        "label": 0,
+        "n_windows": 108,
+        "median_rms": 152520619.01032314
+      },
+      {
+        "recording": "Looped/No-leak/LO_NL_ND_NN",
+        "topology": "Looped",
+        "condition": "No-leak",
+        "flow": "ND",
+        "label": 0,
+        "n_windows": 90,
+        "median_rms": 364158610.40797436
+      },
+      {
+        "recording": "Looped/No-leak/LO_NL_Transient_N",
+        "topology": "Looped",
+        "condition": "No-leak",
+        "flow": "Transient",
+        "label": 0,
+        "n_windows": 90,
+        "median_rms": 263270443.5173515
+      },
+      {
+        "recording": "Looped/No-leak/LO_NL_Transient_NN",
+        "topology": "Looped",
+        "condition": "No-leak",
+        "flow": "Transient",
+        "label": 0,
+        "n_windows": 89,
+        "median_rms": 338620261.418778
+      },
+      {
+        "recording": "Looped/Orifice Leak/LO_OL_0.18 LPS_N",
+        "topology": "Looped",
+        "condition": "Orifice Leak",
+        "flow": "0.18 LPS",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 343219799.8030134
+      },
+      {
+        "recording": "Looped/Orifice Leak/LO_OL_0.47 LPS_N",
+        "topology": "Looped",
+        "condition": "Orifice Leak",
+        "flow": "0.47 LPS",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 294957005.08056325
+      },
+      {
+        "recording": "Looped/Orifice Leak/LO_OL_ND_N",
+        "topology": "Looped",
+        "condition": "Orifice Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 91,
+        "median_rms": 194856239.04624525
+      },
+      {
+        "recording": "Looped/Orifice Leak/LO_OL_ND_NN",
+        "topology": "Looped",
+        "condition": "Orifice Leak",
+        "flow": "ND",
+        "label": 1,
+        "n_windows": 90,
+        "median_rms": 194028192.050404
+      },
+      {
+        "recording": "Looped/Orifice Leak/LO_OL_Transient_N",
+        "topology": "Looped",
+        "condition": "Orifice Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 208276679.43240815
+      },
+      {
+        "recording": "Looped/Orifice Leak/LO_OL_Transient_NN",
+        "topology": "Looped",
+        "condition": "Orifice Leak",
+        "flow": "Transient",
+        "label": 1,
+        "n_windows": 92,
+        "median_rms": 220120403.25746343
+      }
+    ],
+    "rms_auroc": {
+      "Looped": {
+        "pooled": 0.5687163744793791,
+        "pooled_ci95": [
+          0.40364787659663903,
+          0.7322670349539095
+        ],
+        "within_flow_condition": {
+          "0.18 LPS": 0.5721473495058401,
+          "0.47 LPS": 0.3437106746183729,
+          "ND": 0.6762688614540466,
+          "Transient": 0.5825058994714979
+        }
+      },
+      "Branched": {
+        "pooled": 0.6830912611305572,
+        "pooled_ci95": [
+          0.5162404943601165,
+          0.8384484658860403
+        ],
+        "within_flow_condition": {
+          "0.18 LPS": 0.21282709708975298,
+          "0.47 LPS": 0.5072105976215565,
+          "ND": 0.9387890596810275,
+          "Transient": 0.7117071437238893
+        }
+      }
+    },
+    "loco_logreg": {
+      "Looped": {
+        "pooled_out_of_fold": {
+          "auroc": 0.7672054744146262,
+          "detection_rate": 0.7411924119241192,
+          "false_alarm_rate": 0.39469026548672564,
+          "balanced_accuracy": 0.6732510732186967,
+          "threshold": 0.0,
+          "n_leak": 2214,
+          "n_no_leak": 565,
+          "ci95": {
+            "auroc": [
+              0.6101109475385119,
+              0.9052320536576182
+            ],
+            "detection_rate": [
+              0.6221194105562178,
+              0.8571460935982911
+            ],
+            "false_alarm_rate": [
+              0.11926605504587157,
+              0.6801346801346801
+            ],
+            "balanced_accuracy": [
+              0.5225366577945024,
+              0.8223108805702886
+            ]
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 24,
+          "n_groups_no_leak": 6
+        },
+        "per_held_out_condition": {
+          "0.18 LPS": 0.9176999101527403,
+          "0.47 LPS": 0.9036220386277835,
+          "ND": 0.9725513017694087,
+          "Transient": 0.801498805027179
+        }
+      },
+      "Branched": {
+        "pooled_out_of_fold": {
+          "auroc": 0.6354220038508627,
+          "detection_rate": 0.708138048572646,
+          "false_alarm_rate": 0.47310126582278483,
+          "balanced_accuracy": 0.6175183913749305,
+          "threshold": 0.0,
+          "n_leak": 2347,
+          "n_no_leak": 632,
+          "ci95": {
+            "auroc": [
+              0.40518737165582985,
+              0.8068045103334557
+            ],
+            "detection_rate": [
+              0.6267372398868284,
+              0.7894747618431829
+            ],
+            "false_alarm_rate": [
+              0.25213675213675213,
+              0.7508833922261484
+            ],
+            "balanced_accuracy": [
+              0.4689676562633718,
+              0.7374321333703661
+            ]
+          },
+          "n_boot": 2000,
+          "n_groups_leak": 24,
+          "n_groups_no_leak": 6
+        },
+        "per_held_out_condition": {
+          "0.18 LPS": 0.2892210809488872,
+          "0.47 LPS": 0.6539515279241307,
+          "ND": 0.630266291405066,
+          "Transient": 0.7294017716296566
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+
+recording                                                  flow  label  win  median RMS
+Branched/Circumferential Crack/BR_CC_0.18 LPS          0.18 LPS      1   89    0.003996
+Branched/Circumferential Crack/BR_CC_0.47 LPS          0.47 LPS      1   87    0.009405
+Branched/Circumferential Crack/BR_CC_ND                      ND      1   91    0.001325
+Branched/Circumferential Crack/BR_CC_Transient        Transient      1   90    0.009479
+Branched/Gasket Leak/BR_GL_0.18 LPS                    0.18 LPS      1   89    0.004624
+Branched/Gasket Leak/BR_GL_0.47 LPS                    0.47 LPS      1   90     0.01011
+Branched/Gasket Leak/BR_GL_ND                                ND      1   90    0.001938
+Branched/Gasket Leak/BR_GL_Transient                  Transient      1   88    0.009779
+Branched/Longitudinal Crack/BR_LC_0.18 LPS             0.18 LPS      1   84    0.004626
+Branched/Longitudinal Crack/BR_LC_0.47 LPS             0.47 LPS      1   90    0.009905
+Branched/Longitudinal Crack/BR_LC_ND                         ND      1   90     0.00126
+Branched/Longitudinal Crack/BR_LC_Transient           Transient      1   91    0.009296
+Branched/No-leak/BR_NL_0.18 LPS                        0.18 LPS      0   90    0.004295
+Branched/No-leak/BR_NL_0.47 LPS                        0.47 LPS      0   89    0.009888
+Branched/No-leak/BR_NL_ND                                    ND      0   89    0.002089
+Branched/No-leak/BR_NL_Transient                      Transient      0   91    0.009874
+Branched/Orifice Leak/BR_OL_0.18 LPS                   0.18 LPS      1   89    0.003994
+Branched/Orifice Leak/BR_OL_0.47 LPS                   0.47 LPS      1   89    0.009425
+Branched/Orifice Leak/BR_OL_ND                               ND      1   89    0.001726
+Branched/Orifice Leak/BR_OL_Transient                 Transient      1   93    0.009599
+Looped/Circumferential Crack/LO_CC_0.18 LPS            0.18 LPS      1   90    0.001649
+Looped/Circumferential Crack/LO_CC_0.47 LPS            0.47 LPS      1   89     0.00162
+Looped/Circumferential Crack/LO_CC_ND                        ND      1   89    0.001439
+Looped/Circumferential Crack/LO_CC_Transient          Transient      1   89    0.001574
+Looped/Gasket Leak/LO_GL_0.18 LPS                      0.18 LPS      1   89    0.003676
+Looped/Gasket Leak/LO_GL_0.47 LPS                      0.47 LPS      1   91    0.001395
+Looped/Gasket Leak/LO_GL_ND                                  ND      1   90    0.001389
+Looped/Gasket Leak/LO_GL_Transient                    Transient      1   89    0.001665
+Looped/Longitudinal Crack/LO_LC_0.18 LPS               0.18 LPS      1   89    0.001432
+Looped/Longitudinal Crack/LO_LC_0.47 LPS               0.47 LPS      1   89    0.001507
+Looped/Longitudinal Crack/LO_LC_ND                           ND      1   89    0.001417
+Looped/Longitudinal Crack/LO_LC_Transient             Transient      1   93     0.00155
+Looped/No-leak/LO_NL_0.18 LPS                          0.18 LPS      0   89    0.004838
+Looped/No-leak/LO_NL_0.47 LPS                          0.47 LPS      0   89    0.009951
+Looped/No-leak/LO_NL_ND                                      ND      0   89    0.002105
+Looped/No-leak/LO_NL_Transient                        Transient      0   87    0.009751
+Looped/Orifice Leak/LO_OL_0.18 LPS                     0.18 LPS      1   88    0.003447
+Looped/Orifice Leak/LO_OL_0.47 LPS                     0.47 LPS      1   89    0.006833
+Looped/Orifice Leak/LO_OL_ND                                 ND      1   89    0.001755
+Looped/Orifice Leak/LO_OL_Transient                   Transient      1   90     0.00758
+
+RMS as a leak score (AUROC; <0.5 = no-leak is louder)
+  Looped    pooled 0.207 [0.031, 0.378] | within condition: 0.18 LPS 0.07, 0.47 LPS 0.00, ND 0.15, Transient 0.36
+  Branched  pooled 0.440 [0.206, 0.691] | within condition: 0.18 LPS 0.48, 0.47 LPS 0.39, ND 0.16, Transient 0.39
+
+Band-energy logistic regression, leave-one-flow-condition-out (within topology)
+  Looped    pooled out-of-fold AUROC 0.866 [0.719, 0.997] | detect 0.946 [0.881, 1.000] | false alarm 0.251 [0.000, 0.506]
+            per held-out condition: 0.18 LPS 1.00, 0.47 LPS 1.00, ND 0.80, Transient 0.62
+  Branched  pooled out-of-fold AUROC 0.617 [0.392, 0.832] | detect 0.650 [0.467, 0.815] | false alarm 0.513 [0.171, 0.860]
+            per held-out condition: 0.18 LPS 0.52, 0.47 LPS 0.39, ND 0.93, Transient 0.74
+
+Saved tests24\plots\e6_data_overview_accelerometer.png
+
+Run recorded: tests24\runs\2026-09-25_000032_e6_data_overview_accelerometer.json
