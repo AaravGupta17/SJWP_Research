@@ -1,0 +1,27 @@
+{
+  "experiment": "e8_realism_check",
+  "timestamp": "2026-09-25T00:05:09",
+  "git_commit": "911f15a",
+  "git_dirty": false,
+  "python": "3.12.10",
+  "torch": "2.7.1+cu118",
+  "device": "cuda",
+  "command": "experiments/realism_check.py",
+  "config": {
+    "acc_root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Accelerometer\\Accelerometer",
+    "csv": "val_sampled.csv",
+    "n": 1500,
+    "seed": 0
+  },
+  "summary": "Model C: no-leak 1.000, leak 1.000; Model E: no-leak 0.994, leak 0.998",
+  "results": {
+    "Model C": {
+      "no_leak": 1.0,
+      "leak": 0.9999981338931654
+    },
+    "Model E": {
+      "no_leak": 0.9943992571959145,
+      "leak": 0.9976692325635643
+    }
+  }
+}

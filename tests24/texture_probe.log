@@ -1,0 +1,33 @@
+noise bank: 632 windows, noise RMS 0.17258 (training ref 1.7258)
+
+best_model_c_v4.pt  sanity: training-scale bank (RMS 0.118) flagged 0%  (should be ~0%)
+  source           RMS 0.05  RMS 0.1   RMS 0.2     (fraction flagged as leak)
+  bank                   0%        0%        3% 
+  hyd_looped             0%        0%        9% 
+  bank_phase             0%        1%       20% 
+  bank_phase_ind         0%        1%       19% 
+  acc_branched          99%      100%      100% 
+  acc_looped            99%      100%      100% 
+  gaussian             100%      100%      100% 
+
+best_model_c_seed42.pt  sanity: training-scale bank (RMS 0.118) flagged 0%  (should be ~0%)
+  source           RMS 0.05  RMS 0.1   RMS 0.2     (fraction flagged as leak)
+  bank                   0%        0%        8% 
+  hyd_looped             0%        0%       29% 
+  bank_phase             0%        6%       39% 
+  bank_phase_ind         0%        5%       38% 
+  acc_branched         100%      100%      100% 
+  acc_looped           100%      100%      100% 
+  gaussian             100%      100%      100% 
+
+best_model_d.pt  sanity: training-scale bank (RMS 0.118) flagged 0%  (should be ~0%)
+  source           RMS 0.05  RMS 0.1   RMS 0.2     (fraction flagged as leak)
+  bank                   0%        0%        2% 
+  hyd_looped             0%        0%        0% 
+  bank_phase             0%        0%        7% 
+  bank_phase_ind         0%        1%        6% 
+  acc_branched          99%      100%      100% 
+  acc_looped           100%      100%      100% 
+  gaussian             100%      100%      100% 
+
+Run recorded: tests24\runs\2026-09-25_000006_e7_texture_probe.json

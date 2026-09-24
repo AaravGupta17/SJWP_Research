@@ -1,0 +1,76 @@
+Loading hydrophone recordings from datasets\Hydrophone\Hydrophone (file_norm=max)
+  Looped/Orifice Leak/LO_OL_0.18 LPS_N                            92 windows
+  Looped/Orifice Leak/LO_OL_0.47 LPS_N                            91 windows
+  Looped/Orifice Leak/LO_OL_ND_N                                  91 windows
+  Looped/Orifice Leak/LO_OL_ND_NN                                 90 windows
+  Looped/Orifice Leak/LO_OL_Transient_N                           92 windows
+  Looped/Orifice Leak/LO_OL_Transient_NN                          92 windows
+  Looped/Longitudinal Crack/LO_LC_0.18 LPS_N                      92 windows
+  Looped/Longitudinal Crack/LO_LC_0.47 LPS_N                      91 windows
+  Looped/Longitudinal Crack/LO_LC_ND_N                            94 windows
+  Looped/Longitudinal Crack/LO_LC_ND_NN                           89 windows
+  Looped/Longitudinal Crack/LO_LC_Transient_N                     94 windows
+  Looped/Longitudinal Crack/LO_LC_Transient_NN                    90 windows
+  Looped/Circumferential Crack/LO_CC_0.18 LPS_N                   96 windows
+  Looped/Circumferential Crack/LO_CC_0.47 LPS_N                  100 windows
+  Looped/Circumferential Crack/LO_CC_ND_N                         93 windows
+  Looped/Circumferential Crack/LO_CC_ND_NN                        90 windows
+  Looped/Circumferential Crack/LO_CC_Transient_N                  97 windows
+  Looped/Circumferential Crack/LO_CC_Transient_NN                 90 windows
+  Looped/Gasket Leak/LO_GL_0.18 LPS_N                             91 windows
+  Looped/Gasket Leak/LO_GL_0.47 LPS_N                             91 windows
+  Looped/Gasket Leak/LO_GL_ND_N                                   91 windows
+  Looped/Gasket Leak/LO_GL_ND_NN                                  91 windows
+  Looped/Gasket Leak/LO_GL_Transient_N                            92 windows
+  Looped/Gasket Leak/LO_GL_Transient_NN                           94 windows
+  Looped/No-leak/LO_NL_0.18 LPS_N                                 90 windows
+  Looped/No-leak/LO_NL_0.47 LPS_N                                 98 windows
+  Looped/No-leak/LO_NL_ND_N                                      108 windows
+  Looped/No-leak/LO_NL_ND_NN                                      90 windows
+  Looped/No-leak/LO_NL_Transient_N                                90 windows
+  Looped/No-leak/LO_NL_Transient_NN                               89 windows
+  Branched/Orifice Leak/BR_OL_0.18 LPS_N                          90 windows
+  Branched/Orifice Leak/BR_OL_0.47 LPS_N                          90 windows
+  Branched/Orifice Leak/BR_OL_ND_N                                90 windows
+  Branched/Orifice Leak/BR_OL_ND_NN                               93 windows
+  Branched/Orifice Leak/BR_OL_Transient_N                         95 windows
+  Branched/Orifice Leak/BR_OL_Transient_NN                        90 windows
+  Branched/Longitudinal Crack/BR_LC_0.18 LPS_N                    91 windows
+  Branched/Longitudinal Crack/BR_LC_0.47 LPS_N                    95 windows
+  Branched/Longitudinal Crack/BR_LC_ND_N                          92 windows
+  Branched/Longitudinal Crack/BR_LC_ND_NN                         93 windows
+  Branched/Longitudinal Crack/BR_LC_Transient_N                  104 windows
+  Branched/Longitudinal Crack/BR_LC_Transient_NN                 104 windows
+  Branched/Circumferential Crack/BR_CC_0.18 LPS_N                100 windows
+  Branched/Circumferential Crack/BR_CC_0.47 LPS_N                 89 windows
+  Branched/Circumferential Crack/BR_CC_ND_N                       91 windows
+  Branched/Circumferential Crack/BR_CC_ND_NN                      92 windows
+  Branched/Circumferential Crack/BR_CC_Transient_N               109 windows
+  Branched/Circumferential Crack/BR_CC_Transient_NN              103 windows
+  Branched/Gasket Leak/BR_GL_0.18 LPS_N                           95 windows
+  Branched/Gasket Leak/BR_GL_0.47 LPS_N                           91 windows
+  Branched/Gasket Leak/BR_GL_ND_N                                 93 windows
+  Branched/Gasket Leak/BR_GL_ND_NN                               101 windows
+  Branched/Gasket Leak/BR_GL_Transient_N                         127 windows
+  Branched/Gasket Leak/BR_GL_Transient_NN                        129 windows
+  Branched/No-leak/BR_NL_0.18 LPS_N                               87 windows
+  Branched/No-leak/BR_NL_0.47 LPS_N                               91 windows
+  Branched/No-leak/BR_NL_ND_N                                     95 windows
+  Branched/No-leak/BR_NL_ND_NN                                    91 windows
+  Branched/No-leak/BR_NL_Transient_N                             153 windows
+  Branched/No-leak/BR_NL_Transient_NN                            115 windows
+5758 windows, 60 recordings, 4561 leak windows
+Fixed-scale reference (10 x Branched no-leak RMS): 1.72578
+best_model_c_v4.pt         zscore clean AUROC 0.608 [0.506, 0.707] | detect 0.961 [0.917, 0.989] | false alarm 1.000 [1.000, 1.000] | saturated 55%
+best_model_c_v4.pt         fixed  clean AUROC 0.519 [0.265, 0.743] | detect 0.000 [0.000, 0.001] | false alarm 0.002 [0.000, 0.006] | saturated 1%
+best_model_c_seed42.pt     zscore clean AUROC 0.235 [0.178, 0.296] | detect 1.000 [0.999, 1.000] | false alarm 1.000 [1.000, 1.000] | saturated 80%
+best_model_c_seed42.pt     fixed  clean AUROC 0.724 [0.481, 0.923] | detect 0.064 [0.000, 0.154] | false alarm 0.004 [0.000, 0.007] | saturated 66%
+best_model_d.pt            zscore clean AUROC 0.379 [0.311, 0.446] | detect 0.851 [0.797, 0.903] | false alarm 0.927 [0.892, 0.964] | saturated 43%
+best_model_d.pt            fixed  clean AUROC 0.887 [0.833, 0.926] | detect 0.000 [0.000, 0.000] | false alarm 0.000 [0.000, 0.000] | saturated 0%
+best_model_mend.pt         zscore clean AUROC 0.164 [0.075, 0.280] | detect 0.000 [0.000, 0.000] | false alarm 0.000 [0.000, 0.000] | saturated 100%
+best_model_mend.pt         fixed  clean AUROC 0.220 [0.110, 0.353] | detect 0.000 [0.000, 0.000] | false alarm 0.000 [0.000, 0.000] | saturated 100%
+rms                               clean AUROC 0.616 [0.471, 0.755]
+gcc_peak                          clean AUROC 0.585 [0.526, 0.635]
+band-energy logreg (Branched->Looped) clean AUROC 0.182 [0.110, 0.263] | detect 0.065 [0.024, 0.118] | false alarm 0.228 [0.126, 0.320]
+
+Run recorded: tests24\runs\2026-09-25_000355_e4_mendeley_eval.json

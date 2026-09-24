@@ -1,0 +1,6 @@
+timestamp,experiment,git_commit,git_dirty,summary,file
+2026-09-25T00:00:06,e7_texture_probe,911f15a,False,"best_model_c_v4.pt: sanity 0%; flagged @RMS0.1 bank 0%, hyd_looped 0%, bank_phase 1%, bank_phase_ind 1%, acc_branched 100%, acc_looped 100%, gaussian 100%",2026-09-25_000006_e7_texture_probe.json
+2026-09-25T00:00:32,e6_data_overview_accelerometer,911f15a,False,"Looped: RMS pooled 0.21, within-cond 0.15; Branched: RMS pooled 0.44, within-cond 0.36; LOCO logreg Looped 0.87, Branched 0.62",2026-09-25_000032_e6_data_overview_accelerometer.json
+2026-09-25T00:01:01,e6_data_overview_hydrophone,911f15a,False,"Looped: RMS pooled 0.57, within-cond 0.54; Branched: RMS pooled 0.68, within-cond 0.59; LOCO logreg Looped 0.77, Branched 0.64",2026-09-25_000101_e6_data_overview_hydrophone.json
+2026-09-25T00:03:55,e4_mendeley_eval,911f15a,False,"clean Looped AUROC: c_v4 z=0.608/fixed=0.519, c_seed42 z=0.235/fixed=0.724, d z=0.379/fixed=0.887, mend z=0.164/fixed=0.220; rms 0.616; logreg 0.182",2026-09-25_000355_e4_mendeley_eval.json
+2026-09-25T00:05:09,e8_realism_check,911f15a,False,"Model C: no-leak 1.000, leak 1.000; Model E: no-leak 0.994, leak 0.998",2026-09-25_000509_e8_realism_check.json

@@ -1,0 +1,156 @@
+{
+  "experiment": "e7_texture_probe",
+  "timestamp": "2026-09-25T00:00:06",
+  "git_commit": "911f15a",
+  "git_dirty": false,
+  "python": "3.12.10",
+  "torch": "2.7.1+cu118",
+  "device": "cuda",
+  "command": "experiments/texture_probe.py",
+  "config": {
+    "hyd_root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Hydrophone\\Hydrophone",
+    "acc_root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Accelerometer\\Accelerometer",
+    "ckpts": [
+      "best_model_c_v4.pt",
+      "best_model_c_seed42.pt",
+      "best_model_d.pt"
+    ],
+    "n": 300,
+    "seed": 0
+  },
+  "summary": "best_model_c_v4.pt: sanity 0%; flagged @RMS0.1 bank 0%, hyd_looped 0%, bank_phase 1%, bank_phase_ind 1%, acc_branched 100%, acc_looped 100%, gaussian 100%",
+  "results": {
+    "noise_rms": 0.17257761711256453,
+    "ref": 1.7257761711256454,
+    "target_rms": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "models": {
+      "best_model_c_v4.pt": {
+        "bank_training_scale": {
+          "model_rms": 0.11824891716241837,
+          "flag_rate": 0.0
+        },
+        "bank": {
+          "0.05": 0.0,
+          "0.1": 0.0033333333333333335,
+          "0.2": 0.02666666666666667
+        },
+        "hyd_looped": {
+          "0.05": 0.0,
+          "0.1": 0.0,
+          "0.2": 0.09
+        },
+        "bank_phase": {
+          "0.05": 0.0,
+          "0.1": 0.01,
+          "0.2": 0.20333333333333334
+        },
+        "bank_phase_ind": {
+          "0.05": 0.0,
+          "0.1": 0.01,
+          "0.2": 0.18666666666666668
+        },
+        "acc_branched": {
+          "0.05": 0.9866666666666667,
+          "0.1": 1.0,
+          "0.2": 1.0
+        },
+        "acc_looped": {
+          "0.05": 0.99,
+          "0.1": 1.0,
+          "0.2": 1.0
+        },
+        "gaussian": {
+          "0.05": 1.0,
+          "0.1": 1.0,
+          "0.2": 1.0
+        }
+      },
+      "best_model_c_seed42.pt": {
+        "bank_training_scale": {
+          "model_rms": 0.11824891716241837,
+          "flag_rate": 0.0
+        },
+        "bank": {
+          "0.05": 0.0,
+          "0.1": 0.0033333333333333335,
+          "0.2": 0.07666666666666666
+        },
+        "hyd_looped": {
+          "0.05": 0.0,
+          "0.1": 0.0,
+          "0.2": 0.29
+        },
+        "bank_phase": {
+          "0.05": 0.0,
+          "0.1": 0.06,
+          "0.2": 0.3933333333333333
+        },
+        "bank_phase_ind": {
+          "0.05": 0.0,
+          "0.1": 0.05333333333333334,
+          "0.2": 0.38333333333333336
+        },
+        "acc_branched": {
+          "0.05": 0.9966666666666667,
+          "0.1": 1.0,
+          "0.2": 1.0
+        },
+        "acc_looped": {
+          "0.05": 0.9966666666666667,
+          "0.1": 0.9966666666666667,
+          "0.2": 1.0
+        },
+        "gaussian": {
+          "0.05": 1.0,
+          "0.1": 1.0,
+          "0.2": 1.0
+        }
+      },
+      "best_model_d.pt": {
+        "bank_training_scale": {
+          "model_rms": 0.11824891716241837,
+          "flag_rate": 0.0
+        },
+        "bank": {
+          "0.05": 0.0,
+          "0.1": 0.0,
+          "0.2": 0.02
+        },
+        "hyd_looped": {
+          "0.05": 0.0,
+          "0.1": 0.0,
+          "0.2": 0.0
+        },
+        "bank_phase": {
+          "0.05": 0.0,
+          "0.1": 0.0033333333333333335,
+          "0.2": 0.06666666666666667
+        },
+        "bank_phase_ind": {
+          "0.05": 0.0,
+          "0.1": 0.006666666666666667,
+          "0.2": 0.06333333333333334
+        },
+        "acc_branched": {
+          "0.05": 0.9866666666666667,
+          "0.1": 0.9966666666666667,
+          "0.2": 1.0
+        },
+        "acc_looped": {
+          "0.05": 0.9966666666666667,
+          "0.1": 0.9966666666666667,
+          "0.2": 0.9966666666666667
+        },
+        "gaussian": {
+          "0.05": 1.0,
+          "0.1": 1.0,
+          "0.2": 1.0
+        }
+      }
+    }
+  }
+}

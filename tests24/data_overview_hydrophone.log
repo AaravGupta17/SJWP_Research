@@ -1,0 +1,76 @@
+
+recording                                                  flow  label  win  median RMS
+Branched/Circumferential Crack/BR_CC_0.18 LPS_N        0.18 LPS      1  100   2.665e+08
+Branched/Circumferential Crack/BR_CC_0.47 LPS_N        0.47 LPS      1   89   4.538e+08
+Branched/Circumferential Crack/BR_CC_ND_N                    ND      1   91   2.357e+08
+Branched/Circumferential Crack/BR_CC_ND_NN                   ND      1   92   4.648e+08
+Branched/Circumferential Crack/BR_CC_Transient_N      Transient      1  109   3.017e+08
+Branched/Circumferential Crack/BR_CC_Transient_NN     Transient      1  103   2.783e+08
+Branched/Gasket Leak/BR_GL_0.18 LPS_N                  0.18 LPS      1   95   1.976e+08
+Branched/Gasket Leak/BR_GL_0.47 LPS_N                  0.47 LPS      1   91    2.77e+08
+Branched/Gasket Leak/BR_GL_ND_N                              ND      1   93   3.126e+08
+Branched/Gasket Leak/BR_GL_ND_NN                             ND      1  101   2.784e+08
+Branched/Gasket Leak/BR_GL_Transient_N                Transient      1  127   3.205e+08
+Branched/Gasket Leak/BR_GL_Transient_NN               Transient      1  129   2.953e+08
+Branched/Longitudinal Crack/BR_LC_0.18 LPS_N           0.18 LPS      1   91   2.059e+08
+Branched/Longitudinal Crack/BR_LC_0.47 LPS_N           0.47 LPS      1   95   2.569e+08
+Branched/Longitudinal Crack/BR_LC_ND_N                       ND      1   92   2.647e+08
+Branched/Longitudinal Crack/BR_LC_ND_NN                      ND      1   93   3.007e+08
+Branched/Longitudinal Crack/BR_LC_Transient_N         Transient      1  104   3.008e+08
+Branched/Longitudinal Crack/BR_LC_Transient_NN        Transient      1  104   3.515e+08
+Branched/No-leak/BR_NL_0.18 LPS_N                      0.18 LPS      0   87   3.879e+08
+Branched/No-leak/BR_NL_0.47 LPS_N                      0.47 LPS      0   91   3.236e+08
+Branched/No-leak/BR_NL_ND_N                                  ND      0   95   6.441e+07
+Branched/No-leak/BR_NL_ND_NN                                 ND      0   91   1.367e+08
+Branched/No-leak/BR_NL_Transient_N                    Transient      0  153   2.307e+08
+Branched/No-leak/BR_NL_Transient_NN                   Transient      0  115   2.268e+08
+Branched/Orifice Leak/BR_OL_0.18 LPS_N                 0.18 LPS      1   90   3.858e+08
+Branched/Orifice Leak/BR_OL_0.47 LPS_N                 0.47 LPS      1   90   3.844e+08
+Branched/Orifice Leak/BR_OL_ND_N                             ND      1   90   3.853e+08
+Branched/Orifice Leak/BR_OL_ND_NN                            ND      1   93   3.739e+08
+Branched/Orifice Leak/BR_OL_Transient_N               Transient      1   95   4.006e+08
+Branched/Orifice Leak/BR_OL_Transient_NN              Transient      1   90   4.015e+08
+Looped/Circumferential Crack/LO_CC_0.18 LPS_N          0.18 LPS      1   96   3.922e+08
+Looped/Circumferential Crack/LO_CC_0.47 LPS_N          0.47 LPS      1  100   3.651e+08
+Looped/Circumferential Crack/LO_CC_ND_N                      ND      1   93   4.437e+08
+Looped/Circumferential Crack/LO_CC_ND_NN                     ND      1   90   3.488e+08
+Looped/Circumferential Crack/LO_CC_Transient_N        Transient      1   97   1.889e+08
+Looped/Circumferential Crack/LO_CC_Transient_NN       Transient      1   90    3.67e+08
+Looped/Gasket Leak/LO_GL_0.18 LPS_N                    0.18 LPS      1   91   3.912e+08
+Looped/Gasket Leak/LO_GL_0.47 LPS_N                    0.47 LPS      1   91   3.589e+08
+Looped/Gasket Leak/LO_GL_ND_N                                ND      1   91   3.828e+08
+Looped/Gasket Leak/LO_GL_ND_NN                               ND      1   91   4.491e+08
+Looped/Gasket Leak/LO_GL_Transient_N                  Transient      1   92    3.46e+08
+Looped/Gasket Leak/LO_GL_Transient_NN                 Transient      1   94   3.313e+08
+Looped/Longitudinal Crack/LO_LC_0.18 LPS_N             0.18 LPS      1   92   4.682e+08
+Looped/Longitudinal Crack/LO_LC_0.47 LPS_N             0.47 LPS      1   91   3.505e+08
+Looped/Longitudinal Crack/LO_LC_ND_N                         ND      1   94   3.822e+08
+Looped/Longitudinal Crack/LO_LC_ND_NN                        ND      1   89   3.503e+08
+Looped/Longitudinal Crack/LO_LC_Transient_N           Transient      1   94   3.969e+08
+Looped/Longitudinal Crack/LO_LC_Transient_NN          Transient      1   90   3.854e+08
+Looped/No-leak/LO_NL_0.18 LPS_N                        0.18 LPS      0   90   3.752e+08
+Looped/No-leak/LO_NL_0.47 LPS_N                        0.47 LPS      0   98   4.021e+08
+Looped/No-leak/LO_NL_ND_N                                    ND      0  108   1.525e+08
+Looped/No-leak/LO_NL_ND_NN                                   ND      0   90   3.642e+08
+Looped/No-leak/LO_NL_Transient_N                      Transient      0   90   2.633e+08
+Looped/No-leak/LO_NL_Transient_NN                     Transient      0   89   3.386e+08
+Looped/Orifice Leak/LO_OL_0.18 LPS_N                   0.18 LPS      1   92   3.432e+08
+Looped/Orifice Leak/LO_OL_0.47 LPS_N                   0.47 LPS      1   91    2.95e+08
+Looped/Orifice Leak/LO_OL_ND_N                               ND      1   91   1.949e+08
+Looped/Orifice Leak/LO_OL_ND_NN                              ND      1   90    1.94e+08
+Looped/Orifice Leak/LO_OL_Transient_N                 Transient      1   92   2.083e+08
+Looped/Orifice Leak/LO_OL_Transient_NN                Transient      1   92   2.201e+08
+
+RMS as a leak score (AUROC; <0.5 = no-leak is louder)
+  Looped    pooled 0.569 [0.404, 0.732] | within condition: 0.18 LPS 0.57, 0.47 LPS 0.34, ND 0.68, Transient 0.58
+  Branched  pooled 0.683 [0.516, 0.838] | within condition: 0.18 LPS 0.21, 0.47 LPS 0.51, ND 0.94, Transient 0.71
+
+Band-energy logistic regression, leave-one-flow-condition-out (within topology)
+  Looped    pooled out-of-fold AUROC 0.767 [0.610, 0.905] | detect 0.741 [0.622, 0.857] | false alarm 0.395 [0.119, 0.680]
+            per held-out condition: 0.18 LPS 0.92, 0.47 LPS 0.90, ND 0.97, Transient 0.80
+  Branched  pooled out-of-fold AUROC 0.635 [0.405, 0.807] | detect 0.708 [0.627, 0.789] | false alarm 0.473 [0.252, 0.751]
+            per held-out condition: 0.18 LPS 0.29, 0.47 LPS 0.65, ND 0.63, Transient 0.73
+
+Saved tests24\plots\e6_data_overview_hydrophone.png
+
+Run recorded: tests24\runs\2026-09-25_000101_e6_data_overview_hydrophone.json
