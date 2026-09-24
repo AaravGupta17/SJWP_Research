@@ -8,7 +8,7 @@
   "device": "cuda",
   "command": "experiments/data_overview.py",
   "config": {
-    "root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Accelerometer\\Accelerometer",
+    "root": "<repo>/datasets/Accelerometer/Accelerometer",
     "sensor": "accelerometer",
     "n_boot": 2000
   },

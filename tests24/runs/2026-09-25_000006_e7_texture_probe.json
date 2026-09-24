@@ -8,8 +8,8 @@
   "device": "cuda",
   "command": "experiments/texture_probe.py",
   "config": {
-    "hyd_root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Hydrophone\\Hydrophone",
-    "acc_root": "C:\\Users\\armaan\\PycharmProjects\\SJWP_Research\\datasets\\Accelerometer\\Accelerometer",
+    "hyd_root": "<repo>/datasets/Hydrophone/Hydrophone",
+    "acc_root": "<repo>/datasets/Accelerometer/Accelerometer",
     "ckpts": [
       "best_model_c_v4.pt",
       "best_model_c_seed42.pt",

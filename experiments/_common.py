@@ -25,10 +25,12 @@ REPO_ROOT   = Path(__file__).resolve().parents[1]
 MODELS_DIR  = REPO_ROOT / "models"
 RESULTS_DIR = REPO_ROOT / "results"
 # LEAKNET_OUT redirects plots and run records (used for smoke tests, so
-# they never mix with real results)
+# they never mix with real results). Resolved now, because some scripts
+# os.chdir() later and a relative path would then point somewhere else.
 _OUT        = os.environ.get("LEAKNET_OUT")
-PLOTS_DIR   = Path(_OUT) / "plots" if _OUT else REPO_ROOT / "plots"
-RUNS_DIR    = Path(_OUT) / "runs" if _OUT else RESULTS_DIR / "runs"
+_OUT        = Path(_OUT).resolve() if _OUT else None
+PLOTS_DIR   = _OUT / "plots" if _OUT else REPO_ROOT / "plots"
+RUNS_DIR    = _OUT / "runs" if _OUT else RESULTS_DIR / "runs"
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 DATASETS    = REPO_ROOT / "datasets"
 
