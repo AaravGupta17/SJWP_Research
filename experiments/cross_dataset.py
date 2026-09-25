@@ -7,7 +7,9 @@ Real-world test across independent public datasets (experiments/public_data.py):
                                   in these two sets no site has both a leak and a
                                   no-leak recording)
   dongguan                        outdoor training base (ductile iron, PE, steel, PVC)
-  mendeley_acc, mendeley_hyd      lab testbed (PVC)
+  mendeley_acc, mendeley_hyd      lab testbed (PVC); Looped recordings only by
+                                  default, because the synthetic checkpoints used
+                                  Branched no-leak as background noise
 
 All windows: one sensor channel, 5 kHz, band-limited to 2 kHz, 0.4 s, and
 standardised per window (sensor gains differ between datasets, so absolute
@@ -175,12 +177,18 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--n-boot", type=int, default=1000)
     ap.add_argument("--quick", action="store_true", help="200 steps, 300 bootstrap draws")
+    ap.add_argument("--mendeley-topology", choices=["looped", "all"], default="looped",
+                    help="'all' keeps the Branched recordings, which the synthetic checkpoints saw")
     args = ap.parse_args()
     if args.quick:
         args.steps, args.n_boot = 200, 300
     device = get_device()
     print(f"Device: {device}\nLoading datasets (5 kHz, band-limited to {P.BAND_HZ:.0f} Hz):")
     W = P.load(args.datasets)
+    if args.mendeley_topology == "looped":            # for every method alike
+        n = len(W)
+        W = P.drop_mendeley_branched(W)
+        print(f"  dropped {n - len(W)} Mendeley Branched windows (contaminated); Looped only")
     present = [d for d in args.datasets if (W.dataset == d).any()]
     X = standardise(W.x)
     Fz = features_1ch(X)

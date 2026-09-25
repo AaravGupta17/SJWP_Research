@@ -55,3 +55,12 @@ def test_windows_and_concat():
 def test_features_are_loudness_free():
     x = np.random.default_rng(0).normal(0, 1, (6, 2000))
     assert np.allclose(features_1ch(standardise(x)), features_1ch(standardise(50 * x)), atol=1e-5)
+
+
+def test_mendeley_branched_is_dropped_but_other_datasets_kept():
+    meta = np.array(["Branched/0.18 LPS", "Looped/ND", "Branched/ND", "Branched/pvc"])
+    ds = np.array(["mendeley_hyd", "mendeley_hyd", "mendeley_acc", "dongguan"])
+    w = P.Windows(np.zeros((4, 8), np.float32), np.array([0, 1, 1, 0]),
+                  np.array(["a", "b", "c", "d"]), ds, meta)
+    kept = P.drop_mendeley_branched(w)
+    assert list(kept.group) == ["b", "d"]
