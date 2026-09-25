@@ -1,0 +1,69 @@
+Device: cuda
+Loading datasets (5 kHz, band-limited to 2000 Hz):
+  hk_noiselogger     2175 windows |   32 groups | leak 46%
+  hk_hydrophone      2000 windows |   18 groups | leak 50%
+  dongguan           1772 windows |  293 groups | leak 56%
+  mendeley_acc       7148 windows |   40 groups | leak 80%
+  mendeley_hyd      11516 windows |   60 groups | leak 79%
+
+=== within-dataset, 5-fold grouped CV ===
+  hk_noiselogger   logreg       AUROC 0.585 [0.416, 0.789] | bal.acc 0.600 (2s)
+  hk_noiselogger   cnn_scratch  AUROC 0.425 [0.266, 0.655] | bal.acc 0.465 (101s)
+  hk_noiselogger   cnn_pre      AUROC 0.444 [0.271, 0.635] | bal.acc 0.486 (100s)
+  hk_noiselogger   probe        AUROC 0.460 [0.311, 0.639] | bal.acc 0.498 (50s)
+  hk_hydrophone    logreg       AUROC 0.900 [0.779, 0.993] | bal.acc 0.835 (3s)
+  hk_hydrophone    cnn_scratch  AUROC 0.939 [0.877, 0.987] | bal.acc 0.867 (104s)
+  hk_hydrophone    cnn_pre      AUROC 0.958 [0.906, 0.999] | bal.acc 0.889 (105s)
+  hk_hydrophone    probe        AUROC 0.849 [0.701, 0.962] | bal.acc 0.742 (59s)
+  dongguan         logreg       AUROC 0.891 [0.836, 0.933] | bal.acc 0.819 (4s)
+  dongguan         cnn_scratch  AUROC 0.971 [0.954, 0.989] | bal.acc 0.938 (106s)
+  dongguan         cnn_pre      AUROC 0.968 [0.950, 0.987] | bal.acc 0.924 (109s)
+  dongguan         probe        AUROC 0.965 [0.941, 0.983] | bal.acc 0.918 (62s)
+  mendeley_acc     logreg       AUROC 0.666 [0.532, 0.787] | bal.acc 0.603 (7s)
+  mendeley_acc     cnn_scratch  AUROC 0.847 [0.779, 0.910] | bal.acc 0.729 (119s)
+  mendeley_acc     cnn_pre      AUROC 0.864 [0.800, 0.922] | bal.acc 0.742 (121s)
+  mendeley_acc     probe        AUROC 0.813 [0.758, 0.872] | bal.acc 0.729 (72s)
+  mendeley_hyd     logreg       AUROC 0.632 [0.527, 0.746] | bal.acc 0.602 (11s)
+  mendeley_hyd     cnn_scratch  AUROC 0.779 [0.663, 0.884] | bal.acc 0.728 (119s)
+  mendeley_hyd     cnn_pre      AUROC 0.854 [0.773, 0.925] | bal.acc 0.761 (121s)
+  mendeley_hyd     probe        AUROC 0.690 [0.517, 0.854] | bal.acc 0.702 (78s)
+
+=== loso: hold out dongguan | train on [np.str_('hk_hydrophone'), np.str_('hk_noiselogger'), np.str_('mendeley_acc'), np.str_('mendeley_hyd')] ===
+  (logreg: 0s)
+  (cnn_scratch: 22s)
+  (cnn_pre: 22s)
+  (probe: 13s)
+  test dongguan         logreg       AUROC 0.722 [0.651, 0.792] | detect 0.42 false alarm 0.13
+  test dongguan         cnn_scratch  AUROC 0.627 [0.502, 0.718] | detect 0.48 false alarm 0.30
+  test dongguan         cnn_pre      AUROC 0.625 [0.543, 0.692] | detect 0.49 false alarm 0.26
+  test dongguan         probe        AUROC 0.690 [0.640, 0.745] | detect 0.51 false alarm 0.17
+
+=== loso: hold out hongkong | train on [np.str_('dongguan'), np.str_('mendeley_acc'), np.str_('mendeley_hyd')] ===
+  (logreg: 0s)
+  (cnn_scratch: 22s)
+  (cnn_pre: 22s)
+  (probe: 12s)
+  test hk_hydrophone    logreg       AUROC 0.193 [0.041, 0.358] | detect 0.53 false alarm 0.96
+  test hk_hydrophone    cnn_scratch  AUROC 0.883 [0.762, 0.977] | detect 0.96 false alarm 0.62
+  test hk_hydrophone    cnn_pre      AUROC 0.497 [0.294, 0.736] | detect 0.47 false alarm 0.44
+  test hk_hydrophone    probe        AUROC 0.340 [0.104, 0.606] | detect 0.22 false alarm 0.25
+  test hk_noiselogger   logreg       AUROC 0.442 [0.291, 0.661] | detect 0.29 false alarm 0.43
+  test hk_noiselogger   cnn_scratch  AUROC 0.528 [0.297, 0.666] | detect 0.81 false alarm 0.85
+  test hk_noiselogger   cnn_pre      AUROC 0.447 [0.194, 0.582] | detect 0.80 false alarm 0.79
+  test hk_noiselogger   probe        AUROC 0.426 [0.217, 0.568] | detect 0.65 false alarm 0.81
+
+=== loso: hold out mendeley | train on [np.str_('dongguan'), np.str_('hk_hydrophone'), np.str_('hk_noiselogger')] ===
+  (logreg: 0s)
+  (cnn_scratch: 23s)
+  (cnn_pre: 22s)
+  (probe: 13s)
+  test mendeley_acc     logreg       AUROC 0.512 [0.370, 0.652] | detect 0.48 false alarm 0.44
+  test mendeley_acc     cnn_scratch  AUROC 0.468 [0.349, 0.590] | detect 0.35 false alarm 0.42
+  test mendeley_acc     cnn_pre      AUROC 0.537 [0.436, 0.646] | detect 0.35 false alarm 0.35
+  test mendeley_acc     probe        AUROC 0.606 [0.502, 0.720] | detect 0.40 false alarm 0.34
+  test mendeley_hyd     logreg       AUROC 0.550 [0.441, 0.650] | detect 0.59 false alarm 0.52
+  test mendeley_hyd     cnn_scratch  AUROC 0.617 [0.554, 0.678] | detect 0.38 false alarm 0.19
+  test mendeley_hyd     cnn_pre      AUROC 0.616 [0.539, 0.695] | detect 0.54 false alarm 0.28
+  test mendeley_hyd     probe        AUROC 0.647 [0.548, 0.739] | detect 0.60 false alarm 0.28
+
+Run recorded: <repo>/tests25/runs/2026-09-25_134512_e9_cross_dataset.json

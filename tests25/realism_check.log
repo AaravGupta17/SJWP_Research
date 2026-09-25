@@ -1,0 +1,52 @@
+Loading Mendeley noise bank (Branched no-leak)...
+  Loaded 6 file pairs -> 632 noise windows
+  Noise floor RMS (empirical): 0.175005
+Loading <repo>/cache_sweep/realism_val_sampled_0.csv
+Caching 1,500 rows...
+
+Caching:   0%|          | 0/1500 [00:00<?, ?rows/s]
+Caching:  17%|█▋        | 257/1500 [00:00<00:00, 2326.22rows/s]
+Caching:  38%|███▊      | 572/1500 [00:00<00:00, 2613.90rows/s]
+Caching:  56%|█████▌    | 834/1500 [00:00<00:00, 973.20rows/s] 
+Caching:  67%|██████▋   | 1001/1500 [00:01<00:01, 459.56rows/s]
+Caching:  74%|███████▍  | 1110/1500 [00:02<00:01, 358.63rows/s]
+Caching:  79%|███████▉  | 1187/1500 [00:02<00:01, 312.09rows/s]
+Caching:  83%|████████▎ | 1244/1500 [00:02<00:00, 279.58rows/s]
+Caching:  86%|████████▌ | 1289/1500 [00:03<00:00, 261.45rows/s]
+Caching:  88%|████████▊ | 1326/1500 [00:03<00:00, 247.54rows/s]
+Caching:  90%|█████████ | 1357/1500 [00:03<00:00, 235.55rows/s]
+Caching:  92%|█████████▏| 1385/1500 [00:03<00:00, 227.43rows/s]
+Caching:  94%|█████████▍| 1410/1500 [00:03<00:00, 220.29rows/s]
+Caching:  96%|█████████▌| 1433/1500 [00:03<00:00, 216.64rows/s]
+Caching:  97%|█████████▋| 1456/1500 [00:03<00:00, 216.65rows/s]
+Caching:  99%|█████████▊| 1478/1500 [00:04<00:00, 208.54rows/s]
+Caching: 100%|█████████▉| 1499/1500 [00:04<00:00, 198.30rows/s]
+Caching: 100%|██████████| 1500/1500 [00:04<00:00, 358.43rows/s]
+  1,500/1,500 rows cached OK
+Ready: 1,500 samples | fs=5000Hz | augment=False
+Loading <repo>/cache_sweep/realism_val_sampled_0.csv
+Caching 1,500 rows...
+
+Caching:   0%|          | 0/1500 [00:00<?, ?rows/s]
+Caching:  18%|█▊        | 264/1500 [00:00<00:00, 2634.04rows/s]
+Caching:  38%|███▊      | 572/1500 [00:00<00:00, 2769.91rows/s]
+Caching:  57%|█████▋    | 849/1500 [00:00<00:00, 1025.04rows/s]
+Caching:  68%|██████▊   | 1026/1500 [00:01<00:00, 507.26rows/s]
+Caching:  76%|███████▌  | 1142/1500 [00:01<00:00, 407.25rows/s]
+Caching:  82%|████████▏ | 1225/1500 [00:02<00:00, 354.73rows/s]
+Caching:  86%|████████▌ | 1288/1500 [00:02<00:00, 325.92rows/s]
+Caching:  89%|████████▉ | 1338/1500 [00:02<00:00, 304.54rows/s]
+Caching:  92%|█████████▏| 1379/1500 [00:03<00:00, 285.82rows/s]
+Caching:  94%|█████████▍| 1414/1500 [00:03<00:00, 274.15rows/s]
+Caching:  96%|█████████▋| 1445/1500 [00:03<00:00, 270.06rows/s]
+Caching:  98%|█████████▊| 1475/1500 [00:03<00:00, 257.50rows/s]
+Caching: 100%|██████████| 1500/1500 [00:03<00:00, 420.76rows/s]
+  1,500/1,500 rows cached OK
+Ready: 1,500 samples | fs=5000Hz | augment=False
+  [E8] dropped 0 leak rows without a leak source
+  [E9] plastic leak rows: 210 | loss at nearer sensor (300 Hz): median 15 dB, >30 dB in 24%, >60 dB in 4%
+Model C: real-vs-synthetic AUROC  no-leak 1.000 | leak 1.000   (0.5 = indistinguishable)
+Model E: real-vs-synthetic AUROC  no-leak 0.994 | leak 0.997   (0.5 = indistinguishable)
+Saved <repo>/tests25/plots/e8_realism_check.png
+
+Run recorded: <repo>/tests25/runs/2026-09-25_130813_e8_realism_check.json
