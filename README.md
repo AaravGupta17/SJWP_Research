@@ -63,6 +63,7 @@ How to read these:
 model_C/          Model C: synthesiser (dataset_c.py), model, training, evaluation  ← main model
 Model_D/          Model D: Model C + extra realism (leak types, attenuation, noise)
 Model_E/          Model E: synthesiser fixes targeting the diagnosed failures (dataset_e.py)
+Model_F/          Model F: new training data and objective (real backgrounds, no loudness cue)
 scripts/          Model B pipeline + index building from EPANET output
 baselines/        Classical detectors on the synthetic caches: RMS energy,
                   cross-correlation, GCC-PHAT
@@ -135,6 +136,24 @@ python evaluate_c.py --ckpt best_model_c_v4.pt  --cache cache_e   # Model C on t
 ```
 Then run E4, E5 and E7 with `--ckpts best_model_e_seed42.pt` / `--ckpt best_model_e_seed42.pt`.
 
+## Model F (new training data and objective)
+
+Same architecture, new data and training, each change aimed at a diagnosed failure (see
+`docs/MODEL_F_PREREG.md`, written before any Model F result). Every training sample is mixed on
+the fly: a pre-generated Model E leak signal over a fresh background (real no-leak recordings from
+Hong Kong, Dongguan and Mendeley Branched, or synthetic noise), plus interferers, random EQ, a
+2 kHz band limit and a joint z-score, so absolute loudness is not available. Real labelled windows
+from the training sources make up 30% of rows. Checkpoints are chosen by detection AUROC on
+held-out groups. No Mendeley label and no Mendeley Looped recording is used.
+
+```bash
+python Model_F/bank_f.py                    # real windows -> cache_f/bank.npz
+python Model_F/pregen_f.py                  # leak signals -> cache_f/{train,val}
+python Model_F/audit_f.py                   # shortcut check of the training data (H0)
+python Model_F/train_f.py                   # -> models/best_model_f_seed0.pt
+python experiments/model_f_eval.py --ckpt best_model_f_seed0.pt   # E11
+```
+
 ## Experiments
 
 Run from the repository root. Each script prints its results, saves a plot to `plots/`, and
@@ -154,6 +173,7 @@ writes a dated record (config, results, git commit) to `results/runs/`.
 | E8 | How distinguishable are synthetic windows from real ones (Model C vs E)? | EPANET CSVs + noise bank + Mendeley | `python experiments/realism_check.py` |
 | E9 | Does single-channel leak detection transfer to a real network it has never seen? (within-dataset CV and leave-one-source-out; logreg, CNN from scratch, CNN from the synthetic encoder, frozen-encoder probe) | public datasets + Mendeley, GPU | `python experiments/cross_dataset.py` |
 | E10 | Measured plastic-pipe attenuation, leak spectrum and wave speed, compared with the synthesiser's values | Sheffield data | `python experiments/sheffield_calibration.py` |
+| E11 | Model F on data it never heard: Mendeley Looped (both sensors), held-out public sources, noise sanity; logreg baseline on the same windows | Mendeley + public datasets | `python experiments/model_f_eval.py --ckpt ...` |
 
 Metrics on real data are AUROC, detection rate, false-alarm rate and balanced accuracy, with
 95% confidence intervals from a bootstrap over **recordings** (windows from one recording are

@@ -23,7 +23,8 @@ research / science-fair project, so **evidence integrity matters more than resul
 - `model_C/` main model: `dataset_c.py` (synthesiser), `model.py` (canonical architecture),
   `pregen_c.py`, `train_c.py`, `evaluate_c.py`. `Model_D/` = Model C + extra realism.
   `Model_E/` = synthesiser fixes (`dataset_e.py`, `pregen_e.py`); trained with
-  `train_c.py --cache cache_e --prefix e`.
+  `train_c.py --cache cache_e --prefix e`. `Model_F/` = new training data and objective
+  (`bank_f.py`, `pregen_f.py`, `train_f.py`, `audit_f.py`); pre-registered in `docs/MODEL_F_PREREG.md`.
 - `experiments/` E1–E8 (loudness probe, shortcut audit, SNR sweep, Mendeley eval, label
   efficiency, data overview, texture probe, realism check). Shared helpers in `experiments/_common.py`; metrics in `experiments/metrics.py`.
 - `baselines/` classical detectors (RMS energy, cross-correlation, GCC-PHAT).
@@ -47,6 +48,7 @@ research / science-fair project, so **evidence integrity matters more than resul
 | E8 | `python experiments/realism_check.py` |
 | E9 | `python experiments/cross_dataset.py` (public datasets; GPU for the CNN methods) |
 | E10 | `python experiments/sheffield_calibration.py` |
+| E11 | `python experiments/model_f_eval.py --ckpt best_model_f_seed0.pt` (Model F) |
 
 Public datasets (Hong Kong, Dongguan, Sheffield): `python scripts/download_public_data.py`
 -> `datasets/public/` (git-ignored). Loaders: `experiments/public_data.py`. Cross-dataset
@@ -65,8 +67,11 @@ to redirect plots and run records for smoke tests so they don't mix with real re
   are contaminated. The clean real-data test is **Looped-only**.
 - Real-data metrics: AUROC, detection rate, false-alarm rate, balanced accuracy, with bootstrap
   CIs over **recordings**, not windows. Don't headline F1/accuracy (data is 80% leak).
-- Input scaling must match training (fixed reference scale, leak-free RMS ≈ 0.1), not
-  per-window z-scoring.
+- Input scaling must match the checkpoint's training: Models C–E use a fixed reference scale
+  (leak-free RMS ≈ 0.1), not per-window z-scoring; Model F (`cfg["input_norm"] == "zscore"`)
+  uses a 2 kHz band limit and a joint z-score (`Model_F/augment_f.py`).
+- Model F results are judged against `docs/MODEL_F_PREREG.md`; don't change its hypotheses or
+  pass rules after seeing results.
 - Never write an expected result into a docstring or doc as if it were measured. Any new number
   in docs must point to a file in `results/`. Log fixed mistakes in `docs/INTEGRITY_LOG.md`.
 - No identifying information (school name, city) in committed files — competition rules.
