@@ -31,6 +31,15 @@ dated list of self-found mistakes shows judges that the evidence has been checke
 | 17 | Rows whose synthesis failed are stored with label −1, and `train_c.py` / `evaluate_c.py` would train and evaluate on that −1 target. | Both now skip rows with label < 0 and print how many were skipped. |
 | 18 | `pregen_c.py` never seeded the random generator, so caches can't be regenerated identically. | `Model_E/pregen_e.py` seeds per split. Model C's existing caches are unchanged. |
 
+## 25 Sep 2026: after the tests24/tests25 runs
+
+| # | Problem found | Correction |
+|---|---|---|
+| 19 | E9 (`cross_dataset.py`) used all Mendeley recordings, including the Branched no-leak files that the synthetic checkpoints saw as background noise (#7). The `cnn_pre` and `probe` rows on Mendeley in `tests25/` are therefore contaminated; `logreg`, `cnn_scratch` and the Hong Kong/Dongguan rows are not. | E9 now keeps only Looped Mendeley recordings, for every method (dropping only Branched no-leak would make "Branched" mean "leak"). `--mendeley-topology all` reproduces the old behaviour. Test: `tests/test_public_data.py::test_mendeley_branched_is_dropped_but_other_datasets_kept`. E9 to be rerun. |
+| 20 | A relative `LEAKNET_OUT` broke after scripts that `os.chdir()` (E8 crashed in tests24). | Resolved to an absolute path on import; `tests/test_common.py`. |
+| 21 | The anonymity scanner (`scripts/make_submission_copy.py`) and its test contained the school and city names they were meant to catch, plus both student names. | Those terms now live in the git-ignored `private/forbidden_terms.txt`; the test uses made-up names and checks the script names no place. |
+| 22 | Same seed, same data: `cnn_scratch` never uses the checkpoint, yet its AUROCs differ by up to ≈0.01 between the two full E9 runs in `tests25/runs/` (GPU non-determinism). | Not a bug, but differences of this size are treated as noise, not findings. |
+
 ## Still open
 
 - `L-TOWN.inp` is not committed (it's over 100 MB). The README says where to get it.

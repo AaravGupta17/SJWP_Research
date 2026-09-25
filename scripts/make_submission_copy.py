@@ -17,6 +17,9 @@ create a new repository from the copy yourselves.
 
     python scripts/make_submission_copy.py                      # -> ../SJWP_submission_copy
     python scripts/make_submission_copy.py --out D:/copy --extra-terms "Sector 30"
+
+The school/city/state terms go in private/forbidden_terms.txt (git-ignored),
+one regex per line, so that this script does not itself contain them.
 """
 
 import argparse
@@ -31,14 +34,22 @@ EXCLUDE_DIRS = ("archive/", "private/")
 TEXT_EXT = {".py", ".md", ".txt", ".csv", ".json", ".ps1", ".m", ".yml", ".yaml", ".toml",
             ".cfg", ".ini", ".gitignore", ".gitattributes", ".inp", ""}
 
-# Case-insensitive whole-word patterns. School/city/state from what the repo
-# has contained; AI-tool names per AGENTS.md; personal Windows user paths.
+# Case-insensitive patterns: AI-tool names per AGENTS.md and personal Windows
+# user paths. School/city/state are NOT written here, since this file is
+# submitted too; they are read from the git-ignored PRIVATE_TERMS file.
 DEFAULT_TERMS = [
-    r"Delhi Public School", r"\bDPS\b", r"\bNoida\b", r"\bDelhi\b", r"\bNCR\b",
-    r"\bUttar Pradesh\b", r"\bClaude\b", r"\bAnthropic\b", r"Co-Authored-By",
-    r"Generated with",
+    r"\bClaude\b", r"\bAnthropic\b", r"Co-Authored-By", r"Generated with",
     r"[A-Za-z]:[\\/]+Users[\\/]+\w",       # C:\Users\name, C:\\Users\\name (JSON), C:/Users/name
 ]
+PRIVATE_TERMS = REPO / "private" / "forbidden_terms.txt"
+
+
+def load_private_terms(path: Path = PRIVATE_TERMS):
+    """One regex per line (e.g. the school name, \\bCityName\\b); '#' lines are comments."""
+    if not path.exists():
+        return []
+    lines = path.read_text(encoding="utf-8").splitlines()
+    return [t.strip() for t in lines if t.strip() and not t.lstrip().startswith("#")]
 
 
 def tracked_files():
@@ -110,7 +121,11 @@ def main():
     if args.redact_paths:
         print(f"Redacted user-folder paths in {redact_user_paths(out)} file(s) of the copy")
 
-    patterns = [re.compile(t, re.IGNORECASE) for t in DEFAULT_TERMS]
+    private = load_private_terms()
+    if not private:
+        print(f"WARNING: {PRIVATE_TERMS.relative_to(REPO)} is missing or empty, so the school/city "
+              "are NOT being checked. Create it with one term per line.")
+    patterns = [re.compile(t, re.IGNORECASE) for t in DEFAULT_TERMS + private]
     patterns += [re.compile(re.escape(t), re.IGNORECASE) for t in args.extra_terms]
     hits = scan(out, patterns)
     if not hits:

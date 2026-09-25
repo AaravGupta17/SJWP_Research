@@ -182,6 +182,16 @@ def load_mendeley(sensor: str = "accelerometer", root: Path = None) -> Windows:
     return _pack(rows)
 
 
+def drop_mendeley_branched(w: Windows) -> Windows:
+    """Keep only Looped Mendeley recordings. The synthetic checkpoints used Branched
+    no-leak (hydrophone) as background noise, and the accelerometer set records the
+    same runs. Dropping only those no-leak files would make "Branched" mean "leak",
+    so every Branched recording goes. Other datasets are untouched."""
+    branched = (np.char.startswith(w.meta.astype(str), "Branched/")
+                & np.char.startswith(w.dataset.astype(str), "mendeley"))
+    return w.subset(~branched)
+
+
 LOADERS = {
     "hk_noiselogger": lambda: load_hongkong(sensors=("Noise Loggers",)),
     "hk_hydrophone": lambda: load_hongkong(sensors=("Hydrophones",)),
