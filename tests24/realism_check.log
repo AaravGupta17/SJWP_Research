@@ -1,12 +1,12 @@
 Loading Mendeley noise bank (Branched no-leak)...
   Loaded 6 file pairs -> 632 noise windows
   Noise floor RMS (empirical): 0.175005
-Loading C:\Users\armaan\PycharmProjects\SJWP_Research\cache_sweep\realism_val_sampled_0.csv
+Loading <repo>/cache_sweep/realism_val_sampled_0.csv
 Caching 1,500 rows...
 Caching:   0%|          | 0/1500 [00:00<?, ?rows/s]Caching:  13%|█▎        | 200/1500 [00:00<00:00, 1997.93rows/s]Caching:  28%|██▊       | 420/1500 [00:00<00:00, 2107.26rows/s]Caching:  43%|████▎     | 647/1500 [00:00<00:00, 2073.40rows/s]Caching:  57%|█████▋    | 855/1500 [00:00<00:00, 701.24rows/s] Caching:  66%|██████▋   | 994/1500 [00:01<00:01, 405.59rows/s]Caching:  73%|███████▎  | 1090/1500 [00:02<00:01, 322.64rows/s]Caching:  77%|███████▋  | 1160/1500 [00:02<00:01, 267.22rows/s]Caching:  81%|████████  | 1212/1500 [00:03<00:01, 236.76rows/s]Caching:  83%|████████▎ | 1252/1500 [00:03<00:01, 226.74rows/s]Caching:  86%|████████▌ | 1286/1500 [00:03<00:00, 217.63rows/s]Caching:  88%|████████▊ | 1315/1500 [00:03<00:00, 213.80rows/s]Caching:  89%|████████▉ | 1341/1500 [00:03<00:00, 207.98rows/s]Caching:  91%|█████████ | 1365/1500 [00:03<00:00, 201.95rows/s]Caching:  92%|█████████▏| 1387/1500 [00:03<00:00, 199.55rows/s]Caching:  94%|█████████▍| 1408/1500 [00:04<00:00, 189.76rows/s]Caching:  95%|█████████▌| 1430/1500 [00:04<00:00, 195.47rows/s]Caching:  97%|█████████▋| 1453/1500 [00:04<00:00, 199.96rows/s]Caching:  98%|█████████▊| 1474/1500 [00:04<00:00, 190.02rows/s]Caching: 100%|█████████▉| 1494/1500 [00:04<00:00, 182.41rows/s]Caching: 100%|██████████| 1500/1500 [00:04<00:00, 327.44rows/s]
   1,500/1,500 rows cached OK
 Ready: 1,500 samples | fs=5000Hz | augment=False
-Loading C:\Users\armaan\PycharmProjects\SJWP_Research\cache_sweep\realism_val_sampled_0.csv
+Loading <repo>/cache_sweep/realism_val_sampled_0.csv
 Caching 1,500 rows...
 Caching:   0%|          | 0/1500 [00:00<?, ?rows/s]Caching:  13%|█▎        | 193/1500 [00:00<00:00, 1913.00rows/s]Caching:  29%|██▉       | 436/1500 [00:00<00:00, 2046.65rows/s]Caching:  45%|████▍     | 670/1500 [00:00<00:00, 2172.47rows/s]Caching:  59%|█████▉    | 888/1500 [00:01<00:01, 601.08rows/s] Caching:  69%|██████▊   | 1031/1500 [00:01<00:01, 369.64rows/s]Caching:  75%|███████▌  | 1129/1500 [00:02<00:01, 307.28rows/s]Caching:  80%|████████  | 1200/1500 [00:02<00:01, 275.43rows/s]Caching:  84%|████████▎ | 1254/1500 [00:03<00:00, 253.43rows/s]Caching:  86%|████████▋ | 1297/1500 [00:03<00:00, 240.02rows/s]Caching:  89%|████████▉ | 1332/1500 [00:03<00:00, 228.02rows/s]Caching:  91%|█████████ | 1362/1500 [00:03<00:00, 219.96rows/s]Caching:  93%|█████████▎| 1389/1500 [00:03<00:00, 215.27rows/s]Caching:  94%|█████████▍| 1414/1500 [00:03<00:00, 208.65rows/s]Caching:  96%|█████████▌| 1437/1500 [00:04<00:00, 205.54rows/s]Caching:  97%|█████████▋| 1459/1500 [00:04<00:00, 204.07rows/s]Caching:  99%|█████████▊| 1480/1500 [00:04<00:00, 193.64rows/s]Caching: 100%|██████████| 1500/1500 [00:04<00:00, 187.81rows/s]Caching: 100%|██████████| 1500/1500 [00:04<00:00, 337.03rows/s]
   1,500/1,500 rows cached OK
@@ -14,6 +14,6 @@ Ready: 1,500 samples | fs=5000Hz | augment=False
   [E8] dropped 0 leak rows without a leak source
 Model C: real-vs-synthetic AUROC  no-leak 1.000 | leak 1.000   (0.5 = indistinguishable)
 Model E: real-vs-synthetic AUROC  no-leak 0.994 | leak 0.998   (0.5 = indistinguishable)
-Saved C:\Users\armaan\PycharmProjects\SJWP_Research\tests24\plots\e8_realism_check.png
+Saved <repo>/tests24/plots/e8_realism_check.png
 
-Run recorded: C:\Users\armaan\PycharmProjects\SJWP_Research\tests24\runs\2026-09-25_000509_e8_realism_check.json
+Run recorded: <repo>/tests24/runs/2026-09-25_000509_e8_realism_check.json

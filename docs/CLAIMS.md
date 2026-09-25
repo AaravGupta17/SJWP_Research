@@ -41,7 +41,8 @@ Last reviewed: 23 Sep 2026 (after E1–E5 runs).
 | CCA is the key novelty | PENDING (ablation) | Run `--fusion concat` with 3 seeds. If there's no difference, say so. Either way it's a finding. |
 | "No prior work uses this" / "first in WDN" / "without precedent" | REWORD | Say "we did not find prior work using…", and cite the closest work you did find (e.g. FiT-WST+, 2025). You didn't do a systematic search. |
 | "No free tuning parameters" | REMOVE | Hand-set values: material centre frequencies and bandwidths, 0.6 channel correlation, SNR range 0.5–12 dB, the ×5000 Torricelli scaling, the 40/25/20/15 leak-type mix. |
-| Uses a physics-based synthesiser (Torricelli amplitude, wave speed, attenuation) | OK | `model_C/dataset_c.py`. |
+| Uses a physics-based synthesiser (Torricelli amplitude, wave speed, attenuation) | REWORD | Model C/D: physics-*inspired*; E10 measured plastic attenuation at 0.6–2.5 dB/m, about 100× more than they apply. Model E: plastic attenuation **calibrated to measurements** (MDPE, applied to PVC); metals still uncalibrated. Say exactly that. |
+| Real leak noise is measurable between two sensors on a plastic pipe | OK | E10 panel C: delay grows linearly with distance, wave speed 247–264 m/s (Sheffield MDPE). |
 | No pipe metadata used at inference | OK | Scalars are zeroed in training and evaluation. |
 | 3 test networks span "three continents" | REWORD | L-TOWN is based on Limassol, **Cyprus** (not the Czech Republic). Just name the three networks. |
 

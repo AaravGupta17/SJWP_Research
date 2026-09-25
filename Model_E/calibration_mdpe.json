@@ -1,0 +1,53 @@
+{
+  "description": "Plastic-pipe leak-noise attenuation measured on 63 mm MDPE (Sheffield CID lab, Shekofteh 2026, doi:10.15131/shef.data.32229270.v1) by experiments/sheffield_calibration.py",
+  "run_record": "results/runs/2026-09-23_232819_e10_sheffield_calibration.json",
+  "material": "MDPE (used for PVC in Model E; PVC is stiffer, so this may overstate PVC loss)",
+  "bands": [
+    {
+      "lo_hz": 20.0,
+      "hi_hz": 50.0,
+      "db_per_m": 0.6423409233302312,
+      "source": "measured median"
+    },
+    {
+      "lo_hz": 50.0,
+      "hi_hz": 100.0,
+      "db_per_m": 0.6937803539414029,
+      "source": "measured median"
+    },
+    {
+      "lo_hz": 100.0,
+      "hi_hz": 200.0,
+      "db_per_m": 0.7836403598703047,
+      "source": "measured median"
+    },
+    {
+      "lo_hz": 200.0,
+      "hi_hz": 400.0,
+      "db_per_m": 0.9220894675047726,
+      "source": "measured median"
+    },
+    {
+      "lo_hz": 400.0,
+      "hi_hz": 800.0,
+      "db_per_m": 2.4743210767237342,
+      "source": "measured median"
+    },
+    {
+      "lo_hz": 800.0,
+      "hi_hz": 1600.0,
+      "db_per_m": 2.4743210767237342,
+      "source": "set to the 400-800 Hz value (lower bound; fit unreliable)"
+    },
+    {
+      "lo_hz": 1600.0,
+      "hi_hz": 3200.0,
+      "db_per_m": 2.4743210767237342,
+      "source": "set to the 400-800 Hz value (lower bound; fit unreliable)"
+    }
+  ],
+  "wave_speed_mps_measured": {
+    "3.6mmDirect_2.8bar": 247.35573163140108,
+    "3mmValve_2.8bar": 264.2843416229528
+  }
+}

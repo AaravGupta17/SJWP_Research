@@ -85,4 +85,6 @@ The synthetic data is still easy to tell apart from the real recordings.
 relative `LEAKNET_OUT=tests24` no longer resolved. `snr_sweep.py` changes directory the same way.
 It was rerun with an absolute `LEAKNET_OUT` path and finished normally; `realism_check.log` is
 from the rerun. The permanent fix would be to resolve `LEAKNET_OUT` to an absolute path in
-`experiments/_common.py`, which has not been changed.
+`experiments/_common.py`; this has since been done, so a relative `LEAKNET_OUT` now works.
+
+User-folder paths in the logs and run records were replaced with `<repo>` after the run.

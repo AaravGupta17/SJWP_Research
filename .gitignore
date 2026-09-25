@@ -57,3 +57,6 @@ Thumbs.db
 /csv/
 /inp/
 
+
+# Generated from results/runs/*.json by scripts/make_data_book.py
+/results/runs/INDEX.csv
